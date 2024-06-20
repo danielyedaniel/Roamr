@@ -1,4 +1,4 @@
-import json
+import csv
 from faker import Faker
 import random
 import base64
@@ -21,8 +21,10 @@ for i in range(1, 101):
     }
     locations_data.append(location)
 
-with open('locations_100.json', 'w') as f:
-    json.dump(locations_data, f, indent=2)
+with open('locations_100.csv', 'w', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=locations_data[0].keys())
+    writer.writeheader()
+    writer.writerows(locations_data)
 
 
 def generate_base64_image():
@@ -56,8 +58,10 @@ for i in range(1, 101):
     }
     users_data.append(user)
 
-with open('users_100.json', 'w') as f:
-    json.dump(users_data, f, indent=2)
+with open('users_100.csv', 'w', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=users_data[0].keys())
+    writer.writeheader()
+    writer.writerows(users_data)
 
 # posts data
 posts_data = []
@@ -68,13 +72,15 @@ for i in range(1, 1001):
         "postID": i,
         "locationID": random.randint(1, 100),
         "description": fake.text(max_nb_chars=200),
-        "commentCount": random.randint(0, 1000),
+        "commentsCount": random.randint(0, 1000),
         "image": generate_base64_image()
     }
     posts_data.append(post)
 
-with open('posts_1000.json', 'w') as f:
-    json.dump(posts_data, f, indent=2)
+with open('posts_1000.csv', 'w', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=posts_data[0].keys())
+    writer.writeheader()
+    writer.writerows(posts_data)
 
 # comments data
 comments_data = []
@@ -88,8 +94,10 @@ for i in range(1, 2001):
     }
     comments_data.append(comment)
 
-with open('comments_2000.json', 'w') as f:
-    json.dump(comments_data, f, indent=2)
+with open('comments_2000.csv', 'w', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=comments_data[0].keys())
+    writer.writeheader()
+    writer.writerows(comments_data)
 
 # follows data
 follows_data = []
@@ -104,7 +112,13 @@ for i in range(1, 501):
         "followerID": followerID,
         "followedID": followedID
     }
+    
+    if follow in follows_data:
+        continue
+    
     follows_data.append(follow)
 
-with open('follows_500.json', 'w') as f:
-    json.dump(follows_data, f, indent=2)
+with open('follows_500.csv', 'w', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=follows_data[0].keys())
+    writer.writeheader()
+    writer.writerows(follows_data)
