@@ -53,17 +53,14 @@ Make sure you have [Docker](https://www.docker.com/) installed and running.
 - **Dockerized**: The application is containerized using Docker. Running `docker-compose up` will start both the frontend and backend services and a local PostgreSQL database.
 
 ## Database
-Sure, here's the updated section for your documentation:
-
-## Database
 
 All SQL scripts are located within the `sql_scripts` directory. The `create_tables.sql` script is responsible for creating the necessary tables. The `init.sql` script populates all the tables with initial sample data. Additionally, there are five other query scripts in the `sql_scripts` directory:
 
-- `check_username_or_email.sql`
-- `find_following.sql`
-- `find_posts_from_following.sql`
-- `login.sql`
-- `search_users.sql`
+- `check_username_or_email.sql`: This SQL file checks if a username or email has already been taken. It returns all users that use the username or email.
+- `find_following.sql`: This SQL file finds all the users that a certain userID is following. It returns all users that this user follows.
+- `find_posts_from_following.sql`: This SQL file finds all the posts from all the users they are following given a userID. It returns all posts that should show up in their feed.
+- `login.sql`: This SQL file checks if a username and hashed password match a user within the DB. It returns all users that match the username and password.
+- `search_users.sql`: This SQL file returns all users that begin with a certain string. It returns all users that have the string prefix.
 
 The outputs of these queries are stored in the `sql_out` directory. Each output file has the same name as the corresponding SQL script but with a `.out` extension.
 
