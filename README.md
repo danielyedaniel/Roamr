@@ -54,7 +54,7 @@ Make sure you have [Docker](https://www.docker.com/) installed and running.
 
 ## Database
 
-All SQL scripts are located within the `sql_scripts` directory. The `create_tables.sql` script is responsible for creating the necessary tables. The `init.sql` script populates all the tables with initial sample data. Additionally, there are five other query scripts in the `sql_scripts` directory:
+All SQL scripts are located within the `sql_scripts` directory. The `create_tables.sql` script is responsible for creating the necessary tables. The `init.sql` script populates all the tables with initial sample data. Additionally, there are five other query scripts that we have run over our sample DB and that we may use; they are in the `sql_scripts` directory:
 
 - `check_username_or_email.sql`: This SQL file checks if a username or email has already been taken. It returns all users that use the username or email.
 - `find_following.sql`: This SQL file finds all the users that a certain userID is following. It returns all users that this user follows.
