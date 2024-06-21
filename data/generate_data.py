@@ -49,7 +49,7 @@ first_user = {
     "userID": 1,
     "email": "danielye@gmail.com",
     "username": "DanielYee",
-    "passwordHash": "$2a$10$3dwzJ.USYxBNsnn7YfhvOu71cTyr2nV6fiel6HbBteJHgT3IAsW9u",
+    "passwordHash": "$2a$10$3dwzJ.USYxBNsnn7YfhvOu71cTyr2nV6fiel6HbBteJHgT3IAsW9u", # password123
     "profilePicture": generate_base64_profile_picture(),
     "firstName": "Daniel",
     "lastName": "Ye",
