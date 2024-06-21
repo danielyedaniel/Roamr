@@ -21,6 +21,7 @@ func main() {
     mux := http.NewServeMux()
     mux.HandleFunc("/login", handlers.LoginHandler(database))
     mux.HandleFunc("/signup", handlers.SignupHandler(database))
+    mux.HandleFunc("/search", handlers.SearchHandler(database))
 
     corsMux := setupCORS(mux)
 

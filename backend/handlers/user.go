@@ -19,6 +19,10 @@ type Credentials struct {
     LastName       string `json:"last_name"`
 }
 
+type SearchRequest struct {
+    Username string `json:"username"`
+}
+
 func SignupHandler(db *gorm.DB) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         var creds Credentials
@@ -80,3 +84,25 @@ func LoginHandler(db *gorm.DB) http.HandlerFunc {
         fmt.Fprintf(w, "Login successful")
     }
 }
+
+func SearchHandler(db *gorm.DB) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        var searchReq SearchRequest
+        if err := json.NewDecoder(r.Body).Decode(&searchReq); err != nil {
+            http.Error(w, "Invalid request payload", http.StatusBadRequest)
+            return
+        }
+
+        var users []models.User
+        if err := db.Where("username LIKE ?", "%"+searchReq.Username+"%").Find(&users).Error; err != nil {
+            http.Error(w, "Error querying database", http.StatusInternalServerError)
+            return
+        }
+
+        w.Header().Set("Content-Type", "application/json")
+        if err := json.NewEncoder(w).Encode(users); err != nil {
+            http.Error(w, "Error encoding response", http.StatusInternalServerError)
+        }
+    }
+}
+
