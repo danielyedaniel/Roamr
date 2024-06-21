@@ -45,7 +45,20 @@ def generate_base64_profile_picture():
 # users data
 users_data = []
 
-for i in range(1, 101):
+first_user = {
+    "userID": 1,
+    "email": "danielye@gmail.com",
+    "username": "DanielYee",
+    "passwordHash": "$2a$10$3dwzJ.USYxBNsnn7YfhvOu71cTyr2nV6fiel6HbBteJHgT3IAsW9u",
+    "profilePicture": generate_base64_profile_picture(),
+    "firstName": "Daniel",
+    "lastName": "Ye",
+    "dateCreated": fake.date_this_decade().isoformat()
+}
+users_data.append(first_user)
+
+# Generate remaining users
+for i in range(2, 101):
     user = {
         "userID": i,
         "email": fake.email(),
