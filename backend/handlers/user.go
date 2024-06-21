@@ -7,12 +7,16 @@ import (
     "gorm.io/gorm"
     "net/http"
     "golang.org/x/crypto/bcrypt"
+    "time"
 )
 
 type Credentials struct {
-    Username string `json:"username"`
-    Password string `json:"password"`
-    Email    string `json:"email"`
+    Username       string `json:"username"`
+    Password       string `json:"password"`
+    Email          string `json:"email"`
+    ProfilePicture string `json:"profile_picture"`
+    FirstName      string `json:"first_name"`
+    LastName       string `json:"last_name"`
 }
 
 func SignupHandler(db *gorm.DB) http.HandlerFunc {
@@ -30,9 +34,13 @@ func SignupHandler(db *gorm.DB) http.HandlerFunc {
         }
 
         user := models.User{
-            Username: creds.Username,
-            Password: string(hashedPassword),
-            Email:    creds.Email,
+            Username:       creds.Username,
+            PasswordHash:   string(hashedPassword),
+            Email:          creds.Email,
+            ProfilePicture: creds.ProfilePicture,
+            FirstName:      creds.FirstName,
+            LastName:       creds.LastName,
+            DateCreated:    time.Now(),
         }
 
         if err := db.Create(&user).Error; err != nil {
@@ -63,7 +71,7 @@ func LoginHandler(db *gorm.DB) http.HandlerFunc {
             return
         }
 
-        if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(creds.Password)); err != nil {
+        if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(creds.Password)); err != nil {
             http.Error(w, "Invalid username or password", http.StatusUnauthorized)
             return
         }
