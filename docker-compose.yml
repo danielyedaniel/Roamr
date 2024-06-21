@@ -1,29 +1,29 @@
 version: '3.8'
 
 services:
-  backend:
-    build:
-      context: ./backend
-    ports:
-      - "8000:8000"
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      DB_USER: postgres
-      DB_PASSWORD: password
-      DB_NAME: postgres
-      DB_HOST: postgres
-      DB_PORT: 5432
+  # backend:
+  #   build:
+  #     context: ./backend
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   environment:
+  #     DB_USER: postgres
+  #     DB_PASSWORD: password
+  #     DB_NAME: postgres
+  #     DB_HOST: postgres
+  #     DB_PORT: 5432
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - backend
 
   postgres:
     image: postgres:14

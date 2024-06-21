@@ -9,7 +9,7 @@ CREATE TABLE "User" (
   "dateCreated" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE "Follows" (
+CREATE TABLE "Follow" (
   "followerID" INT NOT NULL,
   "followedID" INT NOT NULL,
   PRIMARY KEY ("followerID", "followedID"),
@@ -17,7 +17,7 @@ CREATE TABLE "Follows" (
   CONSTRAINT "fk_followedID" FOREIGN KEY ("followedID") REFERENCES "User" ("userID") ON DELETE CASCADE
 );
 
-CREATE TABLE "Locations" (
+CREATE TABLE "Location" (
   "locationID" SERIAL PRIMARY KEY,
   "country" VARCHAR(255),
   "city" VARCHAR(255),
@@ -26,7 +26,7 @@ CREATE TABLE "Locations" (
   UNIQUE ("country", "city")
 );
 
-CREATE TABLE "Posts" (
+CREATE TABLE "Post" (
   "userID" INT NOT NULL,
   "postID" SERIAL PRIMARY KEY,
   "description" TEXT NOT NULL,
@@ -34,14 +34,14 @@ CREATE TABLE "Posts" (
   "image" TEXT NOT NULL,
   "locationID" INT,
   CONSTRAINT "fk_userID" FOREIGN KEY ("userID") REFERENCES "User" ("userID") ON DELETE CASCADE,
-  CONSTRAINT "fk_locationID" FOREIGN KEY ("locationID") REFERENCES "Locations" ("locationID") ON DELETE SET NULL
+  CONSTRAINT "fk_locationID" FOREIGN KEY ("locationID") REFERENCES "Location" ("locationID") ON DELETE SET NULL
 );
 
-CREATE TABLE "Comments" (
+CREATE TABLE "Comment" (
   "commentID" SERIAL PRIMARY KEY,
   "postID" INT NOT NULL,
   "userID" INT NOT NULL,
   "content" TEXT NOT NULL,
-  CONSTRAINT "fk_postID" FOREIGN KEY ("postID") REFERENCES "Posts" ("postID") ON DELETE CASCADE,
+  CONSTRAINT "fk_postID" FOREIGN KEY ("postID") REFERENCES "Post" ("postID") ON DELETE CASCADE,
   CONSTRAINT "fk_comment_userID" FOREIGN KEY ("userID") REFERENCES "User" ("userID") ON DELETE CASCADE
 );
