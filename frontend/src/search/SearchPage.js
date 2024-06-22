@@ -75,12 +75,12 @@ const SearchPage = () => {
                             </TableHead>
                             <TableBody>
                                 {results.map((row) => (
-                                    <TableRow key={row.username}>
+                                    <TableRow key={row.ID}>
                                         <TableCell component="th" scope="row">
-                                            {row.username}
+                                            {row.Username}
                                         </TableCell>
-                                        <TableCell>{row.firstName}</TableCell>
-                                        <TableCell>{row.lastName}</TableCell>
+                                        <TableCell>{row.FirstName}</TableCell>
+                                        <TableCell>{row.LastName}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
