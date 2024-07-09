@@ -63,3 +63,13 @@ type Comment struct {
 func (Comment) TableName() string {
 	return "Comment"
 }
+
+type Rating struct {
+	UserID     uint `gorm:"primaryKey;column:userID"`
+	LocationID uint `gorm:"primaryKey;column:locationID"`
+	Rating     int  `gorm:"not null;column:rating"`
+}
+
+func (Rating) TableName() string {
+	return "Rating"
+}

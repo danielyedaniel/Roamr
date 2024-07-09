@@ -45,3 +45,12 @@ CREATE TABLE "Comment" (
   CONSTRAINT "fk_postID" FOREIGN KEY ("postID") REFERENCES "Post" ("postID") ON DELETE CASCADE,
   CONSTRAINT "fk_comment_userID" FOREIGN KEY ("userID") REFERENCES "User" ("userID") ON DELETE CASCADE
 );
+
+CREATE TABLE "Rating" (
+  "userID" INT NOT NULL,
+  "locationID" INT NOT NULL,
+  "rating" INT NOT NULL,
+  PRIMARY KEY ("userID", "locationID"),
+  CONSTRAINT "fk_rating_userID" FOREIGN KEY ("userID") REFERENCES "User" ("userID") ON DELETE CASCADE,
+  CONSTRAINT "fk_rating_locationID" FOREIGN KEY ("locationID") REFERENCES "Location" ("locationID") ON DELETE CASCADE
+);
