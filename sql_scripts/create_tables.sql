@@ -52,6 +52,7 @@ CREATE TABLE "ratings" (
   "user_id" INT NOT NULL,
   "location_id" INT NOT NULL,
   "rating" INT NOT NULL,
+  "review" TEXT,
   "date_created" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY ("user_id", "location_id"),
   CONSTRAINT "fk_rating_user_id" FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE CASCADE,

@@ -21,7 +21,7 @@ for i in range(1, 101):
     }
     locations_data.append(location)
 
-with open('locations_100.csv', 'w', newline='') as f:
+with open('locations.csv', 'w', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=locations_data[0].keys())
     writer.writeheader()
     writer.writerows(locations_data)
@@ -60,7 +60,7 @@ first_user = {
 }
 users_data.append(first_user)
 
-# Generate remaining users
+# Generate remaining users - 100
 for i in range(2, 101):
     user = {
         "user_id": i,
@@ -74,12 +74,12 @@ for i in range(2, 101):
     }
     users_data.append(user)
 
-with open('users_100.csv', 'w', newline='') as f:
+with open('users.csv', 'w', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=users_data[0].keys())
     writer.writeheader()
     writer.writerows(users_data)
 
-# posts data
+# posts data - 1000
 posts_data = []
 
 for i in range(1, 1001):
@@ -94,12 +94,12 @@ for i in range(1, 1001):
     }
     posts_data.append(post)
 
-with open('posts_1000.csv', 'w', newline='') as f:
+with open('posts.csv', 'w', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=posts_data[0].keys())
     writer.writeheader()
     writer.writerows(posts_data)
 
-# comments data
+# comments data - 2000
 comments_data = []
 
 for i in range(1, 2001):
@@ -112,12 +112,12 @@ for i in range(1, 2001):
     }
     comments_data.append(comment)
 
-with open('comments_2000.csv', 'w', newline='') as f:
+with open('comments.csv', 'w', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=comments_data[0].keys())
     writer.writeheader()
     writer.writerows(comments_data)
 
-# follows data
+# follows data - 500
 follows_data = []
 
 for i in range(1, 501):
@@ -136,12 +136,12 @@ for i in range(1, 501):
 
     follows_data.append(follow)
 
-with open('follows_500.csv', 'w', newline='') as f:
+with open('follows.csv', 'w', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=follows_data[0].keys())
     writer.writeheader()
     writer.writerows(follows_data)
 
-# ratings data
+# ratings data - 2000
 ratings_data = []
 existing_ratings = set()
 
@@ -160,10 +160,11 @@ while len(ratings_data) < 2000:
         "user_id": user_id,
         "location_id": location_id,
         "rating": rating,
+        "review": fake.text(max_nb_chars=200),
         "date_created": fake.date_this_decade().isoformat()
     })
 
-with open('ratings_2000.csv', 'w', newline='') as f:
-    writer = csv.DictWriter(f, fieldnames=["user_id", "location_id", "rating", "date_created"])
+with open('ratings.csv', 'w', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=["user_id", "location_id", "rating", "review", "date_created"])
     writer.writeheader()
     writer.writerows(ratings_data)
