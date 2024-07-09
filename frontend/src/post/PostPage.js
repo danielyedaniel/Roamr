@@ -44,7 +44,7 @@ const PostPage = () => {
             const locationData = await locationResponse.json();
             console.log('Location search response:', locationData);
 
-            const locationID = locationData[0].location_id;
+            const locationID = locationData[0].LocationID;
 
             const postData = {
                 user_id: userID,
