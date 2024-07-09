@@ -1,0 +1,29 @@
+ location_id |          country           |        city         |  latitude   |  longitude  | rating_count 
+-------------+----------------------------+---------------------+-------------+-------------+--------------
+         360 | Bouvet Island (Bouvetoya)  | Hallfort            | -77.0854775 |   16.018574 |           37
+          90 | Gambia                     | West Ianport        |  -55.750538 |  -29.849221 |           32
+          57 | Saint Martin               | Romeroshire         | -56.4397275 |  115.042355 |           31
+           3 | Gambia                     | North Peterborough  |   77.451903 |  106.722873 |           31
+          53 | Mongolia                   | North Matthewfort   |  41.2863465 |   69.525707 |           31
+         363 | Colombia                   | Port Sharon         |  -61.244788 | -152.250717 |           31
+         349 | Guinea                     | Joelberg            |   16.669775 | -128.860562 |           31
+         177 | Cocos (Keeling) Islands    | Rogersville         | -35.8657345 |  125.134534 |           30
+         149 | Nicaragua                  | East Christianmouth | -51.0306785 |  110.701475 |           30
+         116 | Slovakia (Slovak Republic) | Tinaburgh           |  28.9086375 |   61.935013 |           29
+         393 | Burundi                    | Lake Rebeccaberg    | -59.7343625 |   46.227023 |           29
+         394 | Czech Republic             | Stephaniefort       | -39.7477605 |    3.373458 |           29
+         129 | Myanmar                    | East Emilyfort      |   -9.827967 |  142.765489 |           29
+         327 | Croatia                    | Maddoxfurt          |  85.1370715 | -166.481207 |           28
+         110 | Jordan                     | South Gwendolyn     |  -33.413905 |  155.995916 |           28
+          38 | Liberia                    | Adamland            |    19.06152 |  152.960642 |           28
+         364 | Latvia                     | Rebeccashire        |  -21.186669 |   -34.62396 |           28
+         130 | Jordan                     | Jenniferstad        |   22.731041 |   24.441932 |           28
+         346 | Saint Kitts and Nevis      | Lake Lisaborough    |   17.587907 |  169.801118 |           27
+          77 | Azerbaijan                 | Lake Juliestad      |  -7.4329035 | -144.811866 |           27
+         371 | French Guiana              | Floresville         |  -66.747865 |   41.837571 |           27
+         373 | Ethiopia                   | North Daniel        |   14.809675 |  149.799638 |           27
+         144 | Paraguay                   | Lake Andrewshire    |  14.2776325 |  -88.779275 |           27
+          26 | Korea                      | East Derek          |  59.7567855 | -100.433656 |           27
+          34 | Trinidad and Tobago        | West Davidstad      | -35.7259655 | -108.957513 |           27
+(25 rows)
+

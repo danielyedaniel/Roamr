@@ -47,6 +47,8 @@ def generate_base64_profile_picture():
 
 # users data - 1000
 users_data = []
+email_set = set()
+username_set = set()
 
 first_user = {
     "user_id": 1,
@@ -59,20 +61,31 @@ first_user = {
     "date_created": fake.date_this_decade().isoformat()
 }
 users_data.append(first_user)
+email_set.add(first_user["email"])
+username_set.add(first_user["username"])
 
 # Generate remaining users
 for i in range(2, 1001):
+    while True:
+        email = fake.email()
+        username = fake.user_name()
+        if email not in email_set and username not in username_set:
+            break
+    
     user = {
         "user_id": i,
-        "email": fake.email(),
-        "username": fake.user_name(),
+        "email": email,
+        "username": username,
         "password_hash": generate_password_hash(fake.password()),
         "profile_picture": generate_base64_profile_picture(),
         "first_name": fake.first_name(),
         "last_name": fake.last_name(),
         "date_created": fake.date_this_decade().isoformat()
     }
+    
     users_data.append(user)
+    email_set.add(email)
+    username_set.add(username)
 
 with open('users.csv', 'w', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=users_data[0].keys())
@@ -84,9 +97,9 @@ posts_data = []
 
 for i in range(1, 4001):
     post = {
-        "user_id": random.randint(1, 100),
+        "user_id": random.randint(1, 1000),
         "post_id": i,
-        "location_id": random.randint(1, 100),
+        "location_id": random.randint(1, 400),
         "description": fake.text(max_nb_chars=200),
         "comments_count": random.randint(0, 1000),
         "image": generate_base64_image(),
@@ -99,14 +112,14 @@ with open('posts.csv', 'w', newline='') as f:
     writer.writeheader()
     writer.writerows(posts_data)
 
-# comments data - 8000
+# comments data - 12000
 comments_data = []
 
-for i in range(1, 8001):
+for i in range(1, 12001):
     comment = {
         "comment_id": i,
-        "post_id": random.randint(1, 1000),
-        "user_id": random.randint(1, 100),
+        "post_id": random.randint(1, 4000),
+        "user_id": random.randint(1, 1000),
         "content": fake.text(max_nb_chars=200),
         "date_created": fake.date_this_decade().isoformat()
     }
@@ -117,14 +130,14 @@ with open('comments.csv', 'w', newline='') as f:
     writer.writeheader()
     writer.writerows(comments_data)
 
-# follows data - 2000
+# follows data - 4000
 follows_data = []
 
-for i in range(1, 2001):
-    follower_id = random.randint(1, 100)
-    followed_id = random.randint(1, 100)
+for i in range(1, 4001):
+    follower_id = random.randint(1, 1000)
+    followed_id = random.randint(1, 1000)
     while follower_id == followed_id:
-        followed_id = random.randint(1, 100)
+        followed_id = random.randint(1, 1000)
 
     follow = {
         "follower_id": follower_id,
@@ -146,8 +159,8 @@ ratings_data = []
 existing_ratings = set()
 
 while len(ratings_data) < 8000:
-    user_id = random.randint(1, 100)
-    location_id = random.randint(1, 100)
+    user_id = random.randint(1, 1000)
+    location_id = random.randint(1, 400)
     rating = random.randint(1, 5)
 
     rating_record = (user_id, location_id)

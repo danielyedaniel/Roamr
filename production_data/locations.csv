@@ -1,401 +1,401 @@
 location_id,latitude,longitude,country,city
-1,75.763314,10.757829,Gibraltar,Robersonbury
-2,80.9662505,9.82619,Russian Federation,North Leslie
-3,-69.2494225,-164.760019,Gabon,Lake Carlhaven
-4,-14.131937,43.957623,Korea,Thomaston
-5,75.2862575,-116.854451,Finland,South Judith
-6,49.7593245,39.539306,Ukraine,Kimberlyview
-7,82.7994925,170.611852,France,North Margaret
-8,44.046158,-29.373976,Antigua and Barbuda,New Catherine
-9,-56.0492315,-80.722626,Fiji,West Lisaside
-10,78.6483315,61.396771,Romania,Alishamouth
-11,32.280072,135.565106,French Southern Territories,Christopherfurt
-12,-34.644015,103.665176,Ukraine,Jonathanmouth
-13,-66.865549,-81.172981,Thailand,Hoffmanhaven
-14,-1.543374,-36.670655,Mexico,Pricefurt
-15,-33.049603,-43.519081,Cayman Islands,Michaelside
-16,-30.8015915,-110.411721,Marshall Islands,Andrewfort
-17,63.8897465,65.127829,Venezuela,South Joyfurt
-18,-20.1167935,-1.145429,Christmas Island,Danielleborough
-19,24.9327695,83.328184,Anguilla,East Matthewchester
-20,20.9161165,-109.815116,Denmark,Michaelview
-21,-35.1821265,137.248573,Cameroon,Lake Matthew
-22,34.335417,-115.978105,Madagascar,East Matthew
-23,13.7973005,-92.210347,Guam,Moraport
-24,-43.131439,-36.970998,Iran,Andersonton
-25,-56.5336675,105.493525,Croatia,New Nicole
-26,-14.0556985,110.545583,Latvia,Reynoldsside
-27,70.910388,-95.753627,Brazil,Port Jessicachester
-28,-82.1327505,14.500868,Somalia,Bobbyberg
-29,51.3007865,-140.652259,Oman,Lake Kaitlyn
-30,3.689692,-123.366432,Falkland Islands (Malvinas),Millerton
-31,-28.2742405,-169.254467,Madagascar,Annside
-32,84.6485055,-163.821352,Guinea-Bissau,Andersonmouth
-33,55.152795,172.840982,Kazakhstan,New Ryan
-34,-21.243817,-15.752371,Falkland Islands (Malvinas),Port Jeffreyton
-35,-33.2798005,-57.652385,Finland,Lake Mitchellbury
-36,34.133844,77.310245,Mongolia,Briggsville
-37,-48.995526,2.211694,Sweden,Port Stevenstad
-38,-83.1107285,118.283567,Cayman Islands,Mallorybury
-39,42.2849365,94.348425,Malta,Lake Christophertown
-40,-37.6437325,-120.96557,French Polynesia,South Anna
-41,36.12388,-51.120366,Tuvalu,Oscarfort
-42,52.8522795,132.165048,Tonga,New Christine
-43,-22.459327,-83.044971,Nepal,Port Raymondton
-44,78.284038,-163.187583,Bermuda,Kerrshire
-45,-88.7153545,88.664099,Netherlands Antilles,Jeffreyside
-46,-52.1322125,130.512366,Mongolia,New Elizabeth
-47,-2.510393,-8.896596,Western Sahara,Davisside
-48,10.2606375,106.617325,Congo,Campbellbury
-49,-66.514376,81.626572,Cape Verde,Lake Daniellefurt
-50,81.0233815,177.788147,Bahamas,North Ernest
-51,66.4315245,37.694624,Tuvalu,Rodriguezland
-52,63.248031,-48.820785,Montenegro,Amandatown
-53,38.265623,-67.935187,Angola,Carrieview
-54,-47.114648,-33.544341,Turks and Caicos Islands,Pinedaport
-55,66.203737,-7.204089,Lao People's Democratic Republic,North Jonathan
-56,-61.935748,-125.002689,Belgium,New Bernard
-57,-22.7906275,-85.715684,Burundi,West Corey
-58,-86.563979,-151.383343,Indonesia,Josephview
-59,-81.912157,60.849067,Ireland,Taylorshire
-60,-64.152139,150.851592,Lao People's Democratic Republic,South April
-61,-80.264099,149.752002,New Caledonia,Simonberg
-62,3.4203605,60.140066,Algeria,Carlsontown
-63,3.8502885,-73.518553,United States of America,Port Brian
-64,-25.7983785,-133.991437,Saint Pierre and Miquelon,Leslieshire
-65,-26.7125605,-116.243665,Guam,Port Michaelburgh
-66,69.701025,179.274633,Liechtenstein,West Randyburgh
-67,-1.012678,30.865494,Equatorial Guinea,East Josehaven
-68,47.9284725,171.597304,Palestinian Territory,South Raymond
-69,-86.6532065,-4.3253,Lesotho,Mirandaberg
-70,22.2644495,-115.123862,Papua New Guinea,Alexismouth
-71,13.5223915,11.886005,Cook Islands,Alanstad
-72,34.5984595,-34.383921,Cyprus,Stephenville
-73,-25.6304525,7.367596,French Southern Territories,South Michael
-74,2.3820495,-146.269564,United States Virgin Islands,Castillochester
-75,35.254851,38.953003,French Southern Territories,Alvaradoburgh
-76,25.878512,101.343239,Zimbabwe,Elizabethborough
-77,-65.5697405,-79.562324,Lithuania,Masonhaven
-78,-47.1167975,-29.136166,Antarctica (the territory South of 60 deg S),Port Danielle
-79,83.198349,66.185197,Austria,Port Christopherfort
-80,74.189579,-123.444251,Zimbabwe,Cynthiaton
-81,6.9516515,-9.542253,India,Moraberg
-82,10.355116,81.334388,Saint Kitts and Nevis,South Tammymouth
-83,45.6456795,54.336222,Guam,North Davidmouth
-84,-7.546472,108.66864,Saint Lucia,Port Justin
-85,56.0974315,22.152667,Croatia,Campbellport
-86,-4.1795235,4.593206,Mongolia,West Nicholas
-87,63.6754885,38.879768,Belarus,East Kennethside
-88,-26.8739785,-92.47093,Slovakia (Slovak Republic),East Christopher
-89,-11.2121095,-153.079562,Macao,West John
-90,40.2279385,-10.242531,Kazakhstan,Lindsayburgh
-91,82.615076,-42.399174,Isle of Man,Matamouth
-92,-32.944997,-150.37683,Guernsey,Jamesmouth
-93,-57.004807,-76.898748,Guadeloupe,Padillaview
-94,-34.5828125,66.779798,Bahrain,Torresburgh
-95,-42.1486765,-172.411366,Bosnia and Herzegovina,Danamouth
-96,63.3874625,-105.572326,Switzerland,Port Robert
-97,80.3753925,-166.050394,Brazil,New Carlfort
-98,-31.5084295,62.202321,Iraq,Port Danielbury
-99,27.3890305,-128.932821,Haiti,East Jorgechester
-100,83.9618445,144.257859,Antigua and Barbuda,Lake Williamview
-101,-9.806406,43.464447,Angola,Michaelhaven
-102,-51.606758,101.0498,Zambia,Cummingsland
-103,-86.9348645,-179.248289,Norfolk Island,West Lindsayhaven
-104,73.441708,154.328102,Cambodia,Port Brittneyfort
-105,-17.773086,-167.992865,Botswana,West Karafort
-106,59.4903245,-55.95316,Uganda,East Sherryfurt
-107,-8.9486205,-76.123675,Turkmenistan,East Cynthia
-108,27.9079055,51.64817,Hong Kong,Daisyberg
-109,63.4891685,77.445746,El Salvador,Harrisside
-110,-50.04983,51.071538,Bhutan,Nancymouth
-111,-34.301223,-30.017426,Sao Tome and Principe,Melindachester
-112,-61.4287945,-139.97632,Brunei Darussalam,Joshuashire
-113,-1.949331,-8.616916,Cook Islands,New James
-114,89.6685885,122.509971,Guyana,North Mackenzieside
-115,86.673786,141.741598,Denmark,North Gary
-116,-65.9032645,24.067073,Russian Federation,Toddborough
-117,60.542932,-147.926856,Nigeria,North Sheilaville
-118,-14.6667325,-100.271756,Burkina Faso,Johnsonport
-119,-82.4289005,131.328131,Slovenia,North Deborahland
-120,40.6352905,40.906851,Chad,Andersonburgh
-121,-0.9073345,165.780675,Spain,Burnettland
-122,-44.3605525,-53.671523,Tanzania,New Cynthiaside
-123,-20.68703,-45.144787,Belize,Port Karen
-124,10.667331,172.347816,Somalia,West Alexis
-125,-53.623744,-94.293155,Belarus,Justinfurt
-126,-52.4383365,120.538233,El Salvador,New Leahmouth
-127,-88.7961835,-83.744327,Seychelles,Alisonstad
-128,87.923518,-38.677437,Estonia,Fordtown
-129,-16.0953195,-136.248006,Guam,Jamesfurt
-130,-39.993259,-138.916409,Pakistan,West Evanview
-131,83.259367,-28.652128,United Arab Emirates,Shawnfurt
-132,-8.387081,130.277844,British Virgin Islands,New Joshua
-133,-89.124297,-64.008409,Czech Republic,Tonyview
-134,54.295686,15.857023,Wallis and Futuna,Turnerton
-135,81.9063215,-173.357565,Cuba,West Ericchester
-136,-53.806022,9.045133,Somalia,Toniborough
-137,57.606556,-52.17346,Andorra,Katieborough
-138,6.39265,-161.600583,Somalia,Lake Taylor
-139,-41.9543815,160.764653,Papua New Guinea,Petersonfurt
-140,6.9389505,19.133833,Tunisia,Edwardsside
-141,-6.2606495,-176.041738,Mongolia,Lake Kimberlyport
-142,46.1359305,107.904121,Mozambique,New Wesley
-143,-27.1145595,-26.635839,Slovenia,Gonzalezstad
-144,19.1749545,-165.387499,Cyprus,East Kaylabury
-145,-28.978498,-25.626518,Niger,East Joshua
-146,41.759385,-99.653553,Barbados,Priceview
-147,-0.865614,51.114304,Mauritius,Garrettview
-148,72.5321135,179.864265,Kyrgyz Republic,North Anthony
-149,17.764968,28.891876,Senegal,Lake Gabriella
-150,17.933733,133.924676,Jersey,South Nicholasland
-151,24.480304,11.527775,Myanmar,Lucasside
-152,-86.5490375,138.65073,Vanuatu,Jeanetteland
-153,-29.6593475,33.162238,Indonesia,Juanfurt
-154,-73.3994465,43.382414,Paraguay,New Stephenfurt
-155,-6.050488,4.964919,Cyprus,West Courtneyton
-156,-35.372698,-101.056516,Georgia,New Daniel
-157,-73.9123125,-35.958424,Guinea,Brandonfurt
-158,87.9970045,-120.263364,Vietnam,Sharichester
-159,-53.1029405,-113.240729,Martinique,West John
-160,-2.573322,-5.001796,Slovakia (Slovak Republic),Lake Ericshire
-161,31.4991315,-94.874304,Germany,Lynnshire
-162,21.507707,-101.211261,Norway,Jeremyton
-163,-22.1223915,-162.261134,Macao,Jamesborough
-164,-48.352288,-64.249083,Swaziland,North Jamesfort
-165,19.665819,-43.242681,United States Minor Outlying Islands,West Rebecca
-166,-82.78856,-103.849247,Austria,Elizabethland
-167,77.074465,129.931095,Palau,Riosstad
-168,2.2623255,-166.064106,Grenada,Lawsonbury
-169,-47.2967465,55.698205,Congo,Lake Paula
-170,-82.4384245,-178.530207,Mongolia,Navarromouth
-171,62.1255115,143.025426,Maldives,Derekmouth
-172,56.7298105,98.892537,Nicaragua,West Catherine
-173,58.777534,-14.814412,Croatia,South Seanhaven
-174,46.374201,157.35551,Dominican Republic,Martinezbury
-175,-12.156073,157.132721,Guadeloupe,New Kristinchester
-176,-14.899671,157.723372,Finland,New Clifford
-177,-52.3375875,-147.895333,Costa Rica,Martinezchester
-178,-33.1375545,135.34109,United States of America,Smithshire
-179,-89.1887885,-152.948819,Malta,North Nicholastown
-180,3.865854,46.957324,Togo,Mcgeeville
-181,-57.8499085,10.076583,Iran,South Ryanside
-182,43.7812705,-74.785555,Croatia,Donnaport
-183,-75.9739825,-84.008873,Palau,Williamhaven
-184,-29.162916,-14.306265,Guinea-Bissau,Smithbury
-185,-11.0204355,-51.280999,New Zealand,Braunton
-186,-70.6133735,-22.476767,Bouvet Island (Bouvetoya),Port Nathanshire
-187,68.147638,64.477931,Kenya,Stephenchester
-188,-16.359308,-100.893264,Albania,South Thomasshire
-189,58.9722675,-83.582778,Portugal,Stanleyview
-190,-21.9929525,16.153677,Bahamas,Mendozafort
-191,28.4536455,121.3692,Cote d'Ivoire,Vargasland
-192,-6.405035,145.467895,Ghana,North Jennifer
-193,-19.197379,118.340787,Malaysia,North Mary
-194,-80.334535,-0.629377,United States Minor Outlying Islands,West John
-195,-42.6759865,-72.417059,Niue,South Collinborough
-196,53.322463,97.625289,Cape Verde,Port Terry
-197,-3.75733,54.223064,Hong Kong,South Jeanetteshire
-198,61.7447515,122.420388,Ecuador,Dustinside
-199,59.979166,96.278366,Palau,New Justinville
-200,82.768998,173.759596,Iraq,Port Tanyashire
-201,-68.5800545,-21.660809,Burundi,Ericaport
-202,2.9840245,133.665929,Hungary,Lake Jenniferberg
-203,13.478416,-172.432603,Croatia,Davisborough
-204,-13.3075065,-11.536605,United Arab Emirates,Davidview
-205,-2.1888375,-16.59826,Saint Vincent and the Grenadines,Marilynfort
-206,-47.8068235,105.136287,Indonesia,Nicholasview
-207,50.554012,77.920485,Indonesia,Floresville
-208,86.0016895,-42.080994,Micronesia,Thompsontown
-209,39.384382,16.709127,French Southern Territories,North Douglas
-210,47.0885115,-135.314507,Paraguay,Lake Justintown
-211,-63.589371,22.361864,Mozambique,Conniebury
-212,20.105016,165.172086,Wallis and Futuna,Lake Matthewtown
-213,50.3475755,104.644808,Nigeria,Parkerberg
-214,36.6475435,56.055607,Ukraine,Connerborough
-215,-64.888436,9.540836,Brunei Darussalam,West Stephanie
-216,20.871146,-89.98089,Cuba,Port Devinside
-217,74.3959645,-24.551336,Mauritius,New John
-218,69.5924405,-115.275978,Tunisia,New Michelleland
-219,-44.7901645,82.074508,Dominica,Markmouth
-220,-86.51575,-46.663498,Vanuatu,Markport
-221,-48.2414855,-114.018249,United Kingdom,South Jenniferside
-222,-46.4300795,-120.273811,American Samoa,Port Michelle
-223,69.2441065,172.464644,Equatorial Guinea,West Jessicaland
-224,-2.8877475,-46.313358,Mozambique,North Jeff
-225,71.8360045,-24.21957,Liechtenstein,Lake Michael
-226,12.7329135,-59.594412,Martinique,North Joseph
-227,51.077953,11.674122,Tonga,Annettefurt
-228,26.7367285,-147.317544,Qatar,Port Angie
-229,-14.276126,-88.237277,Finland,Susanburgh
-230,16.358672,14.861617,Switzerland,Travistown
-231,-23.384398,-37.66001,Haiti,Princetown
-232,0.1901735,-2.784787,Thailand,Port Michaelland
-233,49.2005885,131.811211,Lithuania,Murphyhaven
-234,80.191157,-2.623076,Slovakia (Slovak Republic),Melendezshire
-235,24.5701625,-149.156694,Antigua and Barbuda,Benjaminton
-236,41.9081575,163.216145,United States of America,Lake Erikaview
-237,10.454881,143.147776,Uruguay,Goodmanchester
-238,11.055738,-164.755421,El Salvador,Susanborough
-239,-52.6410095,-29.559937,Brazil,Erikamouth
-240,58.914069,19.115716,Western Sahara,Laurachester
-241,-32.044771,-80.861901,New Zealand,East Regina
-242,87.459565,118.555223,Solomon Islands,Lake Donnaport
-243,-6.8029425,159.102809,Saint Kitts and Nevis,Mccormickshire
-244,54.708951,-90.683949,Cyprus,Jeffshire
-245,-61.7654855,-140.357136,Honduras,Nancyborough
-246,-84.6441095,-41.408393,Tajikistan,Port Jasmine
-247,-35.077458,113.791824,New Zealand,Lake Johnland
-248,21.775057,81.871463,Sudan,New Elizabeth
-249,-41.2378265,-153.105812,Finland,New Randy
-250,15.792517,-163.451525,Liechtenstein,Port Terrifurt
-251,-33.6303065,-76.483983,Tanzania,West Jessica
-252,-66.5631625,-176.2485,Bouvet Island (Bouvetoya),Kellyburgh
-253,-47.570751,-90.184273,Italy,Henryside
-254,-41.619673,172.374198,Kiribati,Richardfurt
-255,63.768756,95.15728,Palau,Royhaven
-256,-32.471541,-17.931495,Montenegro,East Tracyborough
-257,87.0752565,-105.676159,Saint Martin,Theodorestad
-258,-82.5829965,42.796662,Jordan,South Kellyborough
-259,47.921257,22.945787,El Salvador,Port Dustinmouth
-260,70.128047,-31.434307,Antarctica (the territory South of 60 deg S),Frankville
-261,-31.7235355,53.874073,Saint Martin,South Alan
-262,65.002827,160.337335,Croatia,Port Gabrielashire
-263,38.4321295,-51.540639,Antigua and Barbuda,Karenside
-264,-89.7926765,177.004307,Nicaragua,East David
-265,-73.0405785,-121.334885,Falkland Islands (Malvinas),New Stephanie
-266,-5.1124805,103.842822,Tonga,Port Katieland
-267,35.0832505,139.697217,Tokelau,Ramosport
-268,-88.652675,161.126208,El Salvador,Anamouth
-269,-64.39285,158.283643,Bangladesh,Munozhaven
-270,63.14242,-150.593206,French Polynesia,Collinsfurt
-271,-59.2352385,101.193127,United States Minor Outlying Islands,Gomezland
-272,81.1331445,-123.248478,Croatia,Millerside
-273,-26.6013545,-51.982724,Reunion,South Ryanmouth
-274,5.4377715,29.725997,Cuba,Macdonaldshire
-275,43.996732,131.449797,Andorra,East Robyn
-276,-37.620984,4.396318,Japan,East Kathrynland
-277,46.881211,-103.996919,Albania,Villaview
-278,0.1422665,72.600507,Dominican Republic,Juanport
-279,-82.511292,104.200923,Jordan,West Andrewfurt
-280,-38.7745255,-108.336219,Romania,Crystalstad
-281,-60.2533285,22.785997,Swaziland,Seanshire
-282,88.5894205,174.760447,Aruba,Lake Ryanview
-283,48.0194345,0.502174,Seychelles,East Jerryland
-284,83.4755105,-77.429988,El Salvador,Kevinfurt
-285,26.4471375,30.391546,Myanmar,Kellermouth
-286,24.4622745,100.54488,Saint Martin,North Carl
-287,-45.359376,172.763984,Mexico,Lake Troyberg
-288,-62.4867505,44.380445,Zimbabwe,West Laura
-289,-1.587596,33.85179,Brazil,Langchester
-290,32.043372,34.736733,Botswana,Byrdland
-291,66.975825,-51.537107,South Africa,Ortizton
-292,62.4126225,110.475539,Libyan Arab Jamahiriya,Parksmouth
-293,-5.3767065,-31.09087,Netherlands Antilles,East Cassandra
-294,-34.646743,156.697721,Niue,North Todd
-295,38.967562,-131.4786,Liechtenstein,Smithton
-296,-77.8559105,68.681996,Seychelles,West Cynthia
-297,-74.102061,119.989646,Saint Helena,South Michelleshire
-298,79.330475,10.977446,Martinique,Davidside
-299,-40.180831,175.180879,Kuwait,Maloneton
-300,-43.7622035,-151.991433,Eritrea,East Angela
-301,-32.006786,-144.499859,Bolivia,North Nicholasland
-302,32.123443,111.581826,Lesotho,East Trevorchester
-303,-3.5251385,55.082485,Slovakia (Slovak Republic),South Christopher
-304,-7.4773435,-61.90423,Fiji,Ambertown
-305,80.763219,9.341106,Greenland,East Patrick
-306,-2.57785,-167.571061,French Southern Territories,Terryberg
-307,-33.611163,87.623068,Faroe Islands,South Benjamin
-308,-63.279386,25.618283,Reunion,Lake Jason
-309,41.213879,111.996911,Brunei Darussalam,Hollyton
-310,11.2483905,72.277912,Gibraltar,East Carrie
-311,-7.1210855,120.174788,Niger,South Meganmouth
-312,11.4677985,72.485502,Somalia,Sanchezchester
-313,12.9278585,99.412224,Tajikistan,Emilyborough
-314,53.745167,-41.035845,Trinidad and Tobago,Nguyenfort
-315,-20.855205,-176.935051,United Arab Emirates,Sellersland
-316,12.933534,114.324175,Nigeria,Turnerland
-317,19.283766,-109.6089,Antarctica (the territory South of 60 deg S),Lake Allen
-318,-7.681669,58.993201,Afghanistan,Rogersport
-319,-76.866685,-168.753719,Belarus,Sarahmouth
-320,-71.4929135,138.343594,Guyana,East Steven
-321,83.207325,102.863456,Malaysia,Nathanview
-322,-85.552698,58.668592,Maldives,North Sandra
-323,13.8680595,137.634636,Aruba,Mayburgh
-324,-86.618471,97.226818,Canada,East Amyside
-325,82.1391325,-154.046529,Guadeloupe,Port Kylestad
-326,81.2984685,80.2852,Guam,North Danielshire
-327,-29.820838,-151.925144,Guernsey,Michaelton
-328,-44.3716935,80.491215,Tanzania,Collinsmouth
-329,-83.718006,-130.676378,Cocos (Keeling) Islands,South Victoria
-330,-48.1180965,145.874591,Italy,Port Marcusberg
-331,33.031575,88.720682,Azerbaijan,Walkerfurt
-332,-70.6886945,108.032233,Canada,Sarahton
-333,17.836512,-68.295239,Montenegro,Anthonyport
-334,-40.729704,-159.067793,Finland,Lake Catherinetown
-335,-36.1301475,0.749498,Spain,East Jonathan
-336,-38.951923,-53.417144,French Southern Territories,Port Paul
-337,-48.279189,-127.681259,Libyan Arab Jamahiriya,East Jerry
-338,13.9864095,1.890571,Norfolk Island,Laurenhaven
-339,-65.5220075,-95.628391,New Zealand,Gonzalezburgh
-340,14.442911,-139.243519,Rwanda,South Peterport
-341,66.974922,169.413606,Monaco,West Maurice
-342,-12.205104,-79.083317,United Arab Emirates,Jensenfurt
-343,25.1292875,-50.799373,Afghanistan,Lake Martha
-344,89.978444,-62.637791,Mexico,East Joseph
-345,-11.664499,155.19347,Moldova,New Robert
-346,-35.746282,19.893815,Dominica,Jacobchester
-347,-30.1187035,65.280787,Falkland Islands (Malvinas),North Vincentside
-348,-21.621331,-8.947275,Vietnam,Lake Amy
-349,-21.0976195,38.074269,Israel,North Tammyfurt
-350,2.4506195,-41.977728,Angola,West Jamesfurt
-351,-6.4189465,52.232222,Denmark,Mercerview
-352,-81.1800855,-95.088985,New Caledonia,West Matthew
-353,-5.435183,-141.508554,Belize,West Kyle
-354,-32.5735655,-176.710573,Uganda,Port Lindafort
-355,-67.6679145,-79.473209,Sierra Leone,New Carla
-356,-86.311717,-146.486003,Guam,Lake Amandabury
-357,-40.6834215,53.974502,Austria,Monroebury
-358,9.6932275,165.019039,Antarctica (the territory South of 60 deg S),Smithton
-359,-78.9529895,70.913875,Italy,Yorkberg
-360,17.4207165,-59.769471,Swaziland,Port Johnchester
-361,-24.6064365,53.125106,Australia,Tuckershire
-362,-31.605256,-123.168481,Nauru,Port Courtneyside
-363,-80.1247275,-142.882442,Antarctica (the territory South of 60 deg S),Kimport
-364,-81.831468,-6.625126,Estonia,North Christopherland
-365,-82.648746,-17.36,Dominica,West Riley
-366,-74.4185655,137.424773,Guinea,Lake Hunterfurt
-367,42.6815715,-130.382201,Mayotte,South Courtney
-368,67.5567515,-30.700312,Lebanon,Whitneytown
-369,56.960522,-170.477598,Aruba,Ayalashire
-370,69.227929,134.010905,Yemen,Codychester
-371,-10.641744,57.990316,Swaziland,Hernandezmouth
-372,-79.2739405,68.784134,Nauru,New Peter
-373,51.2090585,-142.545502,Suriname,East Brian
-374,-71.244116,125.122559,Korea,West Eriktown
-375,-59.5638175,123.313578,Bolivia,North Robert
-376,-0.722985,82.478982,Nigeria,Castroport
-377,-26.5526875,106.78086,Syrian Arab Republic,Port Johnny
-378,-69.647771,123.153336,Belarus,Lutzland
-379,70.7268145,44.380501,Myanmar,Emilyport
-380,-12.9399515,-88.673695,Cayman Islands,Billyland
-381,-12.3139365,56.53986,India,West Scott
-382,-77.490788,31.340696,Eritrea,Tammyland
-383,-42.066773,-1.00311,French Polynesia,Justinton
-384,58.443856,75.409176,New Zealand,Thomasmouth
-385,-38.671971,-100.69227,Cambodia,Kevinport
-386,-48.373981,88.657719,Cook Islands,Lawrencefort
-387,-46.0802645,-45.674348,Guinea,East Diana
-388,61.2915865,-78.723163,Austria,South Davidmouth
-389,-56.181824,-155.001813,Vietnam,Lake Brandon
-390,87.840384,13.822238,Falkland Islands (Malvinas),Fordfort
-391,-8.3719455,-53.223014,Congo,Monicatown
-392,-73.4844545,-70.392602,Australia,East Michaelfort
-393,72.7215555,101.212136,Saint Pierre and Miquelon,South Jamieland
-394,15.5768945,75.633754,Costa Rica,Kristintown
-395,89.632174,-12.806856,Mayotte,Smithborough
-396,-31.568058,115.358188,Dominican Republic,East James
-397,77.749641,177.099043,Tokelau,East Mariaview
-398,-9.290344,-98.00656,Albania,Kathleenchester
-399,-53.4434565,-20.990866,Cyprus,Port Patrick
-400,-73.127413,117.497186,Liberia,Reyesview
+1,-63.302408,-6.721735,Dominican Republic,Arroyoton
+2,-59.3462305,119.208388,San Marino,North Elizabethshire
+3,77.451903,106.722873,Gambia,North Peterborough
+4,-44.577669,-106.446605,Austria,South Garyberg
+5,-43.645994,168.322808,Zimbabwe,North Amandatown
+6,61.585541,156.780233,Kenya,Port Christopher
+7,-76.007848,-127.031881,Madagascar,North Joseph
+8,-86.860736,13.301273,Heard Island and McDonald Islands,West Colin
+9,-17.0703915,93.731181,Iraq,South Crystal
+10,84.701661,138.889811,Slovenia,Meganhaven
+11,-45.27658,52.350211,Morocco,Everettton
+12,9.11476,117.906684,Western Sahara,Danielleshire
+13,-42.232483,174.672581,Moldova,South Devinchester
+14,-15.892451,-99.268272,Cape Verde,Ramseyside
+15,1.6232385,9.237544,France,East Damonhaven
+16,-89.50643,171.05302,Northern Mariana Islands,South Douglasberg
+17,16.991123,45.205045,Uganda,South Peterberg
+18,-28.5835835,128.115186,Bhutan,Lake Dennis
+19,-46.8797405,-164.611496,Turks and Caicos Islands,Port Alyssa
+20,-79.1155595,-141.136394,Luxembourg,Petersborough
+21,-22.9755885,-142.175899,Myanmar,West Ronniemouth
+22,-54.4688555,-86.813003,Greenland,Jamieland
+23,57.074416,84.958633,Saudi Arabia,West Melanie
+24,-12.599824,15.599367,Chile,Hollyborough
+25,85.155657,142.520055,Aruba,East Timothyside
+26,59.7567855,-100.433656,Korea,East Derek
+27,-55.695479,-117.522789,Thailand,Carrollshire
+28,-55.08117,-165.693492,Greece,East Heather
+29,79.4908135,57.204916,Morocco,South Stephenburgh
+30,-13.4886575,-106.900828,Senegal,East Krista
+31,75.2628175,-46.350847,Korea,West Jacobmouth
+32,76.98359,-47.759486,Belarus,Bakershire
+33,-18.9876665,71.238323,United States of America,Cruzland
+34,-35.7259655,-108.957513,Trinidad and Tobago,West Davidstad
+35,-79.76006,-64.367385,Cuba,East Feliciahaven
+36,-43.0433215,-53.783222,Niue,East Johnmouth
+37,5.522734,126.175035,Jamaica,South Debra
+38,19.06152,152.960642,Liberia,Adamland
+39,77.042401,5.684489,Costa Rica,Choiview
+40,-39.732479,68.706649,Congo,North Michelle
+41,8.98912,-35.114438,Estonia,New Christinaberg
+42,50.0912295,-64.791508,Turkmenistan,Matthewton
+43,-60.5649365,144.783081,Zimbabwe,Port Brendashire
+44,-15.17293,46.304356,Sri Lanka,East Shawn
+45,63.769526,-41.572493,South Africa,Port Christopherborough
+46,-56.6318275,-122.600423,Madagascar,Harrishaven
+47,-22.1452025,138.199529,Kuwait,North Lisamouth
+48,9.0792175,16.606227,French Southern Territories,Taylorshire
+49,9.2496205,-172.649716,Netherlands,Port Linda
+50,-33.199624,169.759863,Italy,Tonyatown
+51,-9.505931,-91.944222,Indonesia,Shawfort
+52,-13.611383,39.177945,Nicaragua,North Derek
+53,41.2863465,69.525707,Mongolia,North Matthewfort
+54,-58.4980135,146.666378,Cayman Islands,Port Kimberlyberg
+55,18.200763,121.349468,Congo,Marychester
+56,7.332546,-20.099956,Zimbabwe,Brookefurt
+57,-56.4397275,115.042355,Saint Martin,Romeroshire
+58,27.7337925,-91.452079,Bhutan,New Zachary
+59,57.985694,45.710298,Croatia,Deanton
+60,-3.008963,98.910029,Ghana,South Jeffland
+61,56.4157715,-72.339862,Taiwan,Lake Amber
+62,-86.286289,136.089227,Kenya,New Emilychester
+63,48.4391055,-132.917339,Cocos (Keeling) Islands,Adriantown
+64,37.8161785,-84.410297,Ethiopia,West Sean
+65,70.788025,-145.184545,Tajikistan,West Louis
+66,79.266383,-46.649135,Puerto Rico,Sherifort
+67,2.616714,27.964316,Croatia,North Brooketon
+68,-37.701384,45.309969,Uzbekistan,Jenniferside
+69,45.215529,-68.498494,Netherlands Antilles,North Ianhaven
+70,-60.2988595,-16.728891,Martinique,Lake Ralph
+71,1.992779,-86.088374,Antigua and Barbuda,Kennethfurt
+72,47.176582,172.420145,Cyprus,West Jeffreyville
+73,-49.575225,13.642699,Comoros,Benjaminport
+74,8.49685,117.035552,Fiji,Kimberlytown
+75,63.241113,-42.535342,Mauritius,North Amberstad
+76,-3.0643745,118.76691,Denmark,Port Stephaniefurt
+77,-7.4329035,-144.811866,Azerbaijan,Lake Juliestad
+78,3.9658845,-118.837302,Guatemala,Lake Kimberlychester
+79,-35.1399965,-138.927088,Central African Republic,South Kimberlymouth
+80,73.185742,11.984272,New Zealand,Heatherberg
+81,-22.093738,-101.874034,Brazil,Rosalesmouth
+82,-0.06291,108.004971,United Arab Emirates,West Frank
+83,60.849637,-89.115715,Benin,Bishopshire
+84,-8.7510145,-149.044846,France,Daviston
+85,84.6776715,-16.699054,Guinea-Bissau,East Rachael
+86,57.9178815,-124.656385,Argentina,North Ashleytown
+87,11.217821,20.885798,Jordan,Nathanshire
+88,52.8081745,7.332937,Martinique,Jasonhaven
+89,-71.1746495,51.458859,Micronesia,Jenniferborough
+90,-55.750538,-29.849221,Gambia,West Ianport
+91,-29.1628895,-16.970599,Barbados,Darrenmouth
+92,61.920705,129.86106,Uzbekistan,Roseshire
+93,-48.566137,-151.569112,Panama,Westside
+94,0.502795,-26.764976,Anguilla,Michaelport
+95,-14.618909,-146.069393,Egypt,North Matthewchester
+96,86.276065,-44.233777,Montenegro,Sethshire
+97,-48.044952,-18.308996,Cameroon,South Kathryn
+98,-74.4853945,139.005413,Gambia,Lake Patrickberg
+99,71.8493065,146.019557,Saint Helena,East Stevenburgh
+100,55.6593585,-90.34018,Canada,Alanbury
+101,-42.7561945,-144.137958,Hungary,Johnbury
+102,71.868338,-46.059459,Liberia,Port Matthew
+103,24.1188305,126.943976,Algeria,Hendricksberg
+104,-52.164361,176.856167,Gabon,Lake Albert
+105,-9.2278345,-176.153974,Mozambique,Davidfort
+106,-82.9348245,-71.57836,Kenya,Waltermouth
+107,39.0680795,-178.588123,Korea,Jamesside
+108,-88.8197185,-63.790127,New Zealand,West Kristiberg
+109,-10.3952585,164.361861,Mongolia,Rachelshire
+110,-33.413905,155.995916,Jordan,South Gwendolyn
+111,-29.714006,-163.054468,Burundi,Lake Sarashire
+112,-6.5763105,55.971036,Greece,New James
+113,15.3733145,153.500732,Timor-Leste,West Rachel
+114,-28.606752,33.057174,Ecuador,West Francesfurt
+115,-86.6863695,-20.276372,Gabon,North Evanhaven
+116,28.9086375,61.935013,Slovakia (Slovak Republic),Tinaburgh
+117,-9.323127,-20.35102,Italy,Port Emily
+118,-25.822593,176.300045,Christmas Island,West Heatherberg
+119,75.7489535,-147.162149,Bhutan,Deannastad
+120,-57.366722,13.706449,Niue,Kristinashire
+121,-0.546195,161.144143,Aruba,Jessicaport
+122,-70.26529,-116.952852,Bangladesh,East Austin
+123,59.985968,126.599429,Timor-Leste,East Jennifermouth
+124,61.042503,101.499677,Bermuda,New Brittney
+125,-85.740093,-9.973929,Somalia,Lake Kristinabury
+126,-41.9606295,137.002501,Nepal,Aguirrehaven
+127,-88.6798155,76.032639,Tunisia,New Eileen
+128,15.8568105,-87.045915,Holy See (Vatican City State),Reedhaven
+129,-9.827967,142.765489,Myanmar,East Emilyfort
+130,22.731041,24.441932,Jordan,Jenniferstad
+131,45.718749,37.341238,Saint Vincent and the Grenadines,West Alanbury
+132,-81.0683605,94.409895,Turks and Caicos Islands,Lake Sarahville
+133,-27.731785,65.889885,Pitcairn Islands,Rodgersberg
+134,49.125745,67.697079,Colombia,New Michael
+135,-76.2419315,7.768702,Mayotte,Kingfurt
+136,-41.200111,4.771216,Grenada,Olsonhaven
+137,50.427272,-9.549228,Malawi,New Aaron
+138,-76.2599325,164.604452,Sweden,Daviston
+139,31.893433,89.334498,Congo,West Coreychester
+140,-85.0795615,-9.000895,Denmark,Howardmouth
+141,38.1031995,-146.098,Tanzania,East Ryanbury
+142,76.816218,71.490912,Cameroon,South Mistychester
+143,-63.17707,139.811957,Cote d'Ivoire,West Adamton
+144,14.2776325,-88.779275,Paraguay,Lake Andrewshire
+145,-68.8953425,127.336907,Mozambique,New Jamesview
+146,72.4623915,-103.008369,Zambia,Hendersonmouth
+147,35.4055625,5.548984,Indonesia,Brooksport
+148,-24.0999165,-4.515226,Uzbekistan,Delgadomouth
+149,-51.0306785,110.701475,Nicaragua,East Christianmouth
+150,61.331066,140.194099,Swaziland,North Jessicaborough
+151,62.1086545,48.368055,Belgium,Hillchester
+152,-26.814287,110.02587,Barbados,Laurenton
+153,55.6408215,-101.179217,Gambia,East Timothyberg
+154,77.696923,145.060914,Lesotho,Elizabethberg
+155,57.1229405,-104.175987,Bahamas,Dorseyview
+156,43.9793085,128.261322,Austria,East Josephburgh
+157,-39.080762,58.717791,Cameroon,Port Denise
+158,85.395231,77.677733,Svalbard & Jan Mayen Islands,New Juan
+159,-22.5561275,-94.002595,Liechtenstein,Kaitlynton
+160,-34.3735075,-69.09021,Uganda,East Christopherton
+161,-35.677714,-104.070042,Gabon,Smithport
+162,-60.2231935,22.536579,Brunei Darussalam,Sheenastad
+163,-86.859076,36.777334,Ghana,Woodville
+164,-41.559349,-14.354282,Niue,Foxshire
+165,47.751935,-149.494838,Aruba,South Reneefort
+166,-19.4996375,-177.790911,Fiji,Robertsbury
+167,-58.9200265,-28.208073,Ethiopia,Port Nicoleland
+168,60.007754,71.986783,Australia,Deborahmouth
+169,35.943615,-76.076526,Cote d'Ivoire,Ralphchester
+170,-45.8336675,-58.832347,Uzbekistan,Olsonview
+171,73.8950145,-65.886018,Saint Kitts and Nevis,Starkside
+172,-42.334726,-28.805152,Luxembourg,West Michele
+173,78.772379,50.517479,Tunisia,Brianaborough
+174,44.833721,-60.415125,Croatia,Christopherside
+175,31.4094265,68.527015,Cook Islands,Bradleyborough
+176,-20.275266,86.300222,Canada,Bennettmouth
+177,-35.8657345,125.134534,Cocos (Keeling) Islands,Rogersville
+178,-51.1833105,50.066458,Ukraine,East Tracy
+179,-79.5239885,33.206555,Kuwait,Nicoleland
+180,-15.2233095,15.488904,Equatorial Guinea,Wilsonport
+181,47.703644,131.724524,Ghana,New Brendatown
+182,-82.3104905,98.154549,Finland,East Cole
+183,44.389903,147.708259,Pitcairn Islands,West Elizabethburgh
+184,27.8749585,-65.914274,American Samoa,Cunninghamport
+185,-58.6730285,-70.811597,Kenya,Lake Tammy
+186,-73.7841375,-113.714656,Saint Vincent and the Grenadines,Nobleville
+187,-71.2745885,40.595302,Algeria,Port Joshua
+188,-42.754863,-130.348222,Malta,South Christine
+189,-55.586724,-3.746376,Estonia,North Karen
+190,11.768275,68.63421,Cameroon,North Aliceside
+191,62.670806,-21.976388,Cayman Islands,Port Thomasmouth
+192,-46.5687615,-171.028496,Turkmenistan,South Amandafurt
+193,-29.649429,-37.593338,Guadeloupe,New Kelly
+194,77.551909,-88.162945,Yemen,West Shaneland
+195,60.766595,-35.583373,Lao People's Democratic Republic,Reyesburgh
+196,-8.732739,-149.216494,New Caledonia,Port Lauraside
+197,18.7580695,-167.245621,Montserrat,East Nicoletown
+198,-62.669997,128.577008,Singapore,North Wendy
+199,-16.4194425,176.641013,Malaysia,Bellmouth
+200,-4.798867,-21.021011,Gabon,North Brendatown
+201,-26.2571095,-105.402793,Vietnam,East Jason
+202,-27.7774585,-130.592824,Palestinian Territory,New Tiffanyville
+203,-61.4156385,135.573425,Kiribati,Gibsonstad
+204,6.5396465,20.290993,Croatia,Brianfort
+205,57.6706595,50.711478,Maldives,North Katherine
+206,86.368829,-68.189887,Turkmenistan,Erinside
+207,-4.894781,-177.656911,Spain,Michaelview
+208,52.4335165,-21.431021,India,Youngfurt
+209,67.3086265,118.303465,Central African Republic,South Williamland
+210,-61.3408285,-93.883351,Eritrea,Annland
+211,-23.661269,-127.623306,Palau,Jasonshire
+212,-74.113321,-3.851531,Pakistan,Howardmouth
+213,34.8676825,-129.549962,Qatar,West Travis
+214,-79.877369,90.956224,Kyrgyz Republic,Nancymouth
+215,17.0136295,151.690312,Bulgaria,East Gregory
+216,-55.024807,-10.244929,Dominican Republic,Nicholasmouth
+217,61.755559,-138.861777,Wallis and Futuna,Patrickborough
+218,-41.77536,108.540872,Comoros,North Debrashire
+219,-13.811477,-142.347466,Saint Pierre and Miquelon,Garcialand
+220,15.6434785,-140.48506,Congo,Kevinchester
+221,82.7502655,-53.143952,Canada,Lake Stephenmouth
+222,-74.301886,110.27427,Iran,Sanchezfurt
+223,63.565876,-83.551087,Wallis and Futuna,Pearsonview
+224,-49.2104385,172.318666,Somalia,West Lori
+225,70.105739,-34.198915,Eritrea,Robertberg
+226,-30.2440335,169.592285,Bahamas,Zavalachester
+227,-20.8209785,-52.189299,Maldives,Webbtown
+228,32.5253685,-165.407173,Tokelau,Brianbury
+229,19.422282,-25.6038,Iceland,Joannaport
+230,-16.3338215,115.992863,Djibouti,Port Steven
+231,-69.894159,75.944485,Falkland Islands (Malvinas),North Deborah
+232,35.256622,172.019309,Sweden,Claytonview
+233,2.3623165,-62.343254,Lebanon,Kristichester
+234,-55.689616,-78.271957,Nauru,Port Traci
+235,76.0086175,-50.91384,Kuwait,Port Karashire
+236,-85.5311745,-28.761158,Djibouti,Matthewschester
+237,-3.371657,131.890799,Suriname,Guerrerofort
+238,46.62399,-152.72697,Croatia,South Danielport
+239,49.5422705,-114.907246,Anguilla,North Michaelhaven
+240,-66.593687,136.072196,Botswana,East Stevenborough
+241,88.637141,29.394993,Iceland,New Larry
+242,40.5085855,-158.087962,Cyprus,Port Matthewburgh
+243,11.950851,1.698639,Falkland Islands (Malvinas),Fordmouth
+244,-15.220938,-82.186734,Poland,New Josephstad
+245,-40.0571485,106.84424,Tokelau,Hoganbury
+246,-82.340488,-130.400115,Nigeria,Port Laura
+247,-65.138953,96.969466,United Arab Emirates,New William
+248,6.8394035,-37.431078,Bhutan,New Angelicaton
+249,-55.17782,-40.466569,Norfolk Island,New Joannaside
+250,-62.974448,95.504436,Greece,South Christopher
+251,-55.69283,-149.771735,Romania,East Jeremyburgh
+252,-39.050328,158.917229,Taiwan,Howehaven
+253,-67.965091,-94.780976,Slovenia,Fisherfort
+254,0.4777975,-150.693016,Mali,Lake Calvinton
+255,-32.294341,-64.798657,Mongolia,Lake Zacharyberg
+256,-22.445876,-87.828422,Benin,New Greg
+257,11.4900225,27.872973,Jordan,West Danielstad
+258,50.748663,83.34933,Grenada,Shawnbury
+259,26.175904,10.076031,Comoros,Cindymouth
+260,-48.0799775,48.289231,Korea,South Kennethburgh
+261,-37.9204715,74.34094,Syrian Arab Republic,Nelsonton
+262,86.965552,-28.550062,Gambia,East Yolanda
+263,-4.4395645,-159.734243,Niue,Harrisville
+264,67.4664565,-9.262605,Anguilla,North Sandra
+265,88.389364,158.548277,Turkey,Brandonshire
+266,-54.0251525,68.492413,Guernsey,Port Brittanyland
+267,-77.509229,-149.77989,Croatia,Chaseville
+268,4.529508,40.383144,Isle of Man,East Michael
+269,53.003097,-0.856757,Uganda,Nguyenton
+270,-13.2071125,10.904994,United States Virgin Islands,West Ashleyfurt
+271,75.2218615,101.282188,New Zealand,Christinabury
+272,70.6631085,-7.223293,Bhutan,East Edwardchester
+273,87.444136,114.884478,Mongolia,Adamborough
+274,-70.235438,-154.138545,Saint Lucia,Dillonfurt
+275,-48.6752285,-130.616967,Saint Martin,Lisafort
+276,-85.860089,-15.833793,Namibia,Victoriatown
+277,84.672232,144.431482,Cote d'Ivoire,Lake Craigville
+278,-85.1317385,7.793811,Falkland Islands (Malvinas),Port Lisaborough
+279,7.7509805,41.140225,Martinique,West Scott
+280,62.278519,-103.851468,French Polynesia,Thomasshire
+281,63.549679,-79.509886,French Southern Territories,Carlaton
+282,-86.719089,-173.211076,Mauritius,Jennifershire
+283,-40.344555,-40.246233,Bangladesh,Ericside
+284,37.1120575,153.891982,Lebanon,Belltown
+285,-43.485307,-6.741623,Trinidad and Tobago,Port Paulburgh
+286,-85.4198615,19.953034,Kenya,Scotthaven
+287,55.0157335,-15.388747,Ethiopia,Jamesmouth
+288,-70.946378,-144.510379,Timor-Leste,Morganchester
+289,69.4997995,12.919894,Mali,Joeside
+290,30.0010635,-123.536332,Antigua and Barbuda,Samanthaborough
+291,53.206191,-162.070241,Bangladesh,Michealton
+292,85.6555965,29.408546,Oman,New Alan
+293,-8.1428625,-160.916995,Canada,Donnachester
+294,-13.3824575,119.774938,Lao People's Democratic Republic,Greenshire
+295,9.019895,-175.401489,Tuvalu,Jillview
+296,37.325054,-41.07237,Maldives,Stephaniefurt
+297,21.6147675,-129.186158,Slovakia (Slovak Republic),Port Andrewshire
+298,15.327141,164.901427,Oman,Susanborough
+299,-6.270209,-137.916865,Tanzania,Glennton
+300,59.777296,-164.153123,Armenia,West Timothy
+301,64.5816625,102.129499,Guinea-Bissau,East Stephanie
+302,5.0278265,-158.582672,Taiwan,Port Julieland
+303,3.8015315,-157.673674,Marshall Islands,Macdonaldstad
+304,-81.5260365,-32.972663,Fiji,Jonathanborough
+305,0.9101875,146.214532,Zambia,New Cheryl
+306,46.409942,-45.876263,Morocco,Guyton
+307,-47.7622885,67.316125,Bouvet Island (Bouvetoya),Chadhaven
+308,26.341605,-111.684516,Peru,South Dianeshire
+309,-62.4323405,-8.18746,Bouvet Island (Bouvetoya),North Jimmy
+310,-29.9701895,-21.933481,Bouvet Island (Bouvetoya),Carneyfort
+311,-76.5220295,1.256691,Andorra,Alishaberg
+312,40.455607,123.396941,Ukraine,Phammouth
+313,-3.442659,129.972204,Eritrea,Masonfort
+314,-81.0859695,-168.504487,Equatorial Guinea,Elizabethville
+315,7.065103,112.954831,Micronesia,West Laurenshire
+316,61.372354,119.515876,Vietnam,Lake Alyssaview
+317,-27.340455,-75.490694,Cuba,Baileyport
+318,-70.7465865,-131.974942,Algeria,North Ronaldbury
+319,-44.6250545,-44.410817,Australia,North Jeffrey
+320,44.157748,13.642786,Cameroon,South Caitlynville
+321,-12.1623975,-11.146988,Taiwan,Allenmouth
+322,-77.1204595,63.969149,Vietnam,Meaganburgh
+323,-56.441277,65.679124,South Georgia and the South Sandwich Islands,Sandovalchester
+324,-81.5715555,-36.341961,Thailand,West Mary
+325,8.7565435,-171.077732,Egypt,Port Ian
+326,44.773501,152.252805,Faroe Islands,Catherineberg
+327,85.1370715,-166.481207,Croatia,Maddoxfurt
+328,29.5767915,114.602053,Guernsey,Richardburgh
+329,-55.422169,40.596847,Tanzania,New Richardshire
+330,-51.917822,-152.20753,Cambodia,Vincentville
+331,58.6658945,-29.340159,Palau,Jasmineburgh
+332,51.3963125,169.751576,Haiti,North Jeremy
+333,37.4075595,-113.35614,Korea,West Ann
+334,-78.1623025,-115.626456,Serbia,Robinsonburgh
+335,25.5327195,84.841165,Senegal,New James
+336,45.208911,172.76751,Vietnam,Alecfort
+337,66.015368,92.298973,Antigua and Barbuda,Port Dawnfurt
+338,-9.1983285,40.152653,Poland,East Keithfurt
+339,76.013524,-174.199894,French Guiana,Manuelmouth
+340,-76.539803,-42.317076,Canada,Clarkview
+341,3.764777,5.69806,Canada,Port John
+342,30.388659,30.303309,Palestinian Territory,East Jane
+343,74.808131,-27.243958,Congo,New Deanchester
+344,-82.5587045,126.92982,Dominica,Zacharystad
+345,-65.3291615,102.438138,Liberia,Port Roy
+346,17.587907,169.801118,Saint Kitts and Nevis,Lake Lisaborough
+347,-85.885809,-10.793484,Venezuela,Georgefort
+348,88.199134,1.975291,New Caledonia,Russellmouth
+349,16.669775,-128.860562,Guinea,Joelberg
+350,-65.404211,8.209857,Grenada,Port Michellemouth
+351,-0.7718235,-52.828757,Tonga,East Carlachester
+352,53.4447185,-122.764543,Tajikistan,Lake Meghanborough
+353,62.4237555,-170.962075,Qatar,Ryanberg
+354,-46.159965,139.433318,India,Hayesview
+355,26.054988,-102.087941,Anguilla,Amyside
+356,-39.947819,-8.822777,French Polynesia,Loritown
+357,-8.51681,133.863212,Saint Lucia,West Brianburgh
+358,89.2548415,-93.370776,Comoros,Alvaradoborough
+359,81.3874815,11.063162,Svalbard & Jan Mayen Islands,Michaelchester
+360,-77.0854775,16.018574,Bouvet Island (Bouvetoya),Hallfort
+361,16.2399105,37.695981,Spain,Markview
+362,76.5922,125.67944,Afghanistan,Gregorystad
+363,-61.244788,-152.250717,Colombia,Port Sharon
+364,-21.186669,-34.62396,Latvia,Rebeccashire
+365,61.5157395,112.509483,American Samoa,North Shannonport
+366,-20.633772,19.745481,Moldova,Morrisbury
+367,-7.404459,126.428934,Fiji,Angelaview
+368,63.420597,-68.012195,Svalbard & Jan Mayen Islands,Mossmouth
+369,-31.943422,-58.430508,Ecuador,New Ashley
+370,52.6829705,-127.608596,China,North Michael
+371,-66.747865,41.837571,French Guiana,Floresville
+372,4.7607055,78.053348,Eritrea,Pattersonville
+373,14.809675,149.799638,Ethiopia,North Daniel
+374,85.8492075,38.516976,Saudi Arabia,East Austinland
+375,-34.612015,-8.844585,Sri Lanka,Brownhaven
+376,85.41642,139.07756,Croatia,Isaiahshire
+377,57.5035705,-177.513318,Malawi,West Jennifer
+378,-67.131297,61.902774,Martinique,Lake Tracey
+379,-35.520362,125.34984,Saint Kitts and Nevis,West Billy
+380,-75.149246,-0.805465,Ecuador,Debbiefurt
+381,11.5762505,-56.136017,Bolivia,South Charlesside
+382,35.1985965,169.057425,Western Sahara,South Katherine
+383,-71.193212,43.272758,Iran,Lake Rhonda
+384,13.110774,70.060326,Reunion,Port Summerbury
+385,-40.4920335,-101.787095,Afghanistan,Reyesmouth
+386,61.018479,47.036217,Kuwait,Port Daltonmouth
+387,-67.155436,44.594983,Oman,Garciastad
+388,-65.6881045,-119.758822,Colombia,North Nancyport
+389,20.409375,64.55702,Nauru,Lake Charlesview
+390,-22.5710405,156.762662,Sudan,New Claudia
+391,21.223768,163.444021,Turkmenistan,Lake Rachel
+392,-79.5997265,56.022104,American Samoa,Dyerville
+393,-59.7343625,46.227023,Burundi,Lake Rebeccaberg
+394,-39.7477605,3.373458,Czech Republic,Stephaniefort
+395,74.197719,-124.561676,Austria,Tannerfurt
+396,63.4110745,-69.917278,Tunisia,New Samanthastad
+397,-72.293391,-133.166332,Timor-Leste,Prestonburgh
+398,89.795105,26.437423,Micronesia,Lake Patricia
+399,77.1290055,-127.320199,Pitcairn Islands,Collinsmouth
+400,-32.2823395,-5.386907,Mauritius,Lake Aaronberg

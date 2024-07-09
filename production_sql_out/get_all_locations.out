@@ -1,0 +1,405 @@
+ location_id |                   country                    |          city           |  latitude   |  longitude  
+-------------+----------------------------------------------+-------------------------+-------------+-------------
+           1 | Dominican Republic                           | Arroyoton               |  -63.302408 |   -6.721735
+           2 | San Marino                                   | North Elizabethshire    | -59.3462305 |  119.208388
+           3 | Gambia                                       | North Peterborough      |   77.451903 |  106.722873
+           4 | Austria                                      | South Garyberg          |  -44.577669 | -106.446605
+           5 | Zimbabwe                                     | North Amandatown        |  -43.645994 |  168.322808
+           6 | Kenya                                        | Port Christopher        |   61.585541 |  156.780233
+           7 | Madagascar                                   | North Joseph            |  -76.007848 | -127.031881
+           8 | Heard Island and McDonald Islands            | West Colin              |  -86.860736 |   13.301273
+           9 | Iraq                                         | South Crystal           | -17.0703915 |   93.731181
+          10 | Slovenia                                     | Meganhaven              |   84.701661 |  138.889811
+          11 | Morocco                                      | Everettton              |   -45.27658 |   52.350211
+          12 | Western Sahara                               | Danielleshire           |     9.11476 |  117.906684
+          13 | Moldova                                      | South Devinchester      |  -42.232483 |  174.672581
+          14 | Cape Verde                                   | Ramseyside              |  -15.892451 |  -99.268272
+          15 | France                                       | East Damonhaven         |   1.6232385 |    9.237544
+          16 | Northern Mariana Islands                     | South Douglasberg       |   -89.50643 |   171.05302
+          17 | Uganda                                       | South Peterberg         |   16.991123 |   45.205045
+          18 | Bhutan                                       | Lake Dennis             | -28.5835835 |  128.115186
+          19 | Turks and Caicos Islands                     | Port Alyssa             | -46.8797405 | -164.611496
+          20 | Luxembourg                                   | Petersborough           | -79.1155595 | -141.136394
+          21 | Myanmar                                      | West Ronniemouth        | -22.9755885 | -142.175899
+          22 | Greenland                                    | Jamieland               | -54.4688555 |  -86.813003
+          23 | Saudi Arabia                                 | West Melanie            |   57.074416 |   84.958633
+          24 | Chile                                        | Hollyborough            |  -12.599824 |   15.599367
+          25 | Aruba                                        | East Timothyside        |   85.155657 |  142.520055
+          26 | Korea                                        | East Derek              |  59.7567855 | -100.433656
+          27 | Thailand                                     | Carrollshire            |  -55.695479 | -117.522789
+          28 | Greece                                       | East Heather            |   -55.08117 | -165.693492
+          29 | Morocco                                      | South Stephenburgh      |  79.4908135 |   57.204916
+          30 | Senegal                                      | East Krista             | -13.4886575 | -106.900828
+          31 | Korea                                        | West Jacobmouth         |  75.2628175 |  -46.350847
+          32 | Belarus                                      | Bakershire              |    76.98359 |  -47.759486
+          33 | United States of America                     | Cruzland                | -18.9876665 |   71.238323
+          34 | Trinidad and Tobago                          | West Davidstad          | -35.7259655 | -108.957513
+          35 | Cuba                                         | East Feliciahaven       |   -79.76006 |  -64.367385
+          36 | Niue                                         | East Johnmouth          | -43.0433215 |  -53.783222
+          37 | Jamaica                                      | South Debra             |    5.522734 |  126.175035
+          38 | Liberia                                      | Adamland                |    19.06152 |  152.960642
+          39 | Costa Rica                                   | Choiview                |   77.042401 |    5.684489
+          40 | Congo                                        | North Michelle          |  -39.732479 |   68.706649
+          41 | Estonia                                      | New Christinaberg       |     8.98912 |  -35.114438
+          42 | Turkmenistan                                 | Matthewton              |  50.0912295 |  -64.791508
+          43 | Zimbabwe                                     | Port Brendashire        | -60.5649365 |  144.783081
+          44 | Sri Lanka                                    | East Shawn              |   -15.17293 |   46.304356
+          45 | South Africa                                 | Port Christopherborough |   63.769526 |  -41.572493
+          46 | Madagascar                                   | Harrishaven             | -56.6318275 | -122.600423
+          47 | Kuwait                                       | North Lisamouth         | -22.1452025 |  138.199529
+          48 | French Southern Territories                  | Taylorshire             |   9.0792175 |   16.606227
+          49 | Netherlands                                  | Port Linda              |   9.2496205 | -172.649716
+          50 | Italy                                        | Tonyatown               |  -33.199624 |  169.759863
+          51 | Indonesia                                    | Shawfort                |   -9.505931 |  -91.944222
+          52 | Nicaragua                                    | North Derek             |  -13.611383 |   39.177945
+          53 | Mongolia                                     | North Matthewfort       |  41.2863465 |   69.525707
+          54 | Cayman Islands                               | Port Kimberlyberg       | -58.4980135 |  146.666378
+          55 | Congo                                        | Marychester             |   18.200763 |  121.349468
+          56 | Zimbabwe                                     | Brookefurt              |    7.332546 |  -20.099956
+          57 | Saint Martin                                 | Romeroshire             | -56.4397275 |  115.042355
+          58 | Bhutan                                       | New Zachary             |  27.7337925 |  -91.452079
+          59 | Croatia                                      | Deanton                 |   57.985694 |   45.710298
+          60 | Ghana                                        | South Jeffland          |   -3.008963 |   98.910029
+          61 | Taiwan                                       | Lake Amber              |  56.4157715 |  -72.339862
+          62 | Kenya                                        | New Emilychester        |  -86.286289 |  136.089227
+          63 | Cocos (Keeling) Islands                      | Adriantown              |  48.4391055 | -132.917339
+          64 | Ethiopia                                     | West Sean               |  37.8161785 |  -84.410297
+          65 | Tajikistan                                   | West Louis              |   70.788025 | -145.184545
+          66 | Puerto Rico                                  | Sherifort               |   79.266383 |  -46.649135
+          67 | Croatia                                      | North Brooketon         |    2.616714 |   27.964316
+          68 | Uzbekistan                                   | Jenniferside            |  -37.701384 |   45.309969
+          69 | Netherlands Antilles                         | North Ianhaven          |   45.215529 |  -68.498494
+          70 | Martinique                                   | Lake Ralph              | -60.2988595 |  -16.728891
+          71 | Antigua and Barbuda                          | Kennethfurt             |    1.992779 |  -86.088374
+          72 | Cyprus                                       | West Jeffreyville       |   47.176582 |  172.420145
+          73 | Comoros                                      | Benjaminport            |  -49.575225 |   13.642699
+          74 | Fiji                                         | Kimberlytown            |     8.49685 |  117.035552
+          75 | Mauritius                                    | North Amberstad         |   63.241113 |  -42.535342
+          76 | Denmark                                      | Port Stephaniefurt      |  -3.0643745 |   118.76691
+          77 | Azerbaijan                                   | Lake Juliestad          |  -7.4329035 | -144.811866
+          78 | Guatemala                                    | Lake Kimberlychester    |   3.9658845 | -118.837302
+          79 | Central African Republic                     | South Kimberlymouth     | -35.1399965 | -138.927088
+          80 | New Zealand                                  | Heatherberg             |   73.185742 |   11.984272
+          81 | Brazil                                       | Rosalesmouth            |  -22.093738 | -101.874034
+          82 | United Arab Emirates                         | West Frank              |    -0.06291 |  108.004971
+          83 | Benin                                        | Bishopshire             |   60.849637 |  -89.115715
+          84 | France                                       | Daviston                |  -8.7510145 | -149.044846
+          85 | Guinea-Bissau                                | East Rachael            |  84.6776715 |  -16.699054
+          86 | Argentina                                    | North Ashleytown        |  57.9178815 | -124.656385
+          87 | Jordan                                       | Nathanshire             |   11.217821 |   20.885798
+          88 | Martinique                                   | Jasonhaven              |  52.8081745 |    7.332937
+          89 | Micronesia                                   | Jenniferborough         | -71.1746495 |   51.458859
+          90 | Gambia                                       | West Ianport            |  -55.750538 |  -29.849221
+          91 | Barbados                                     | Darrenmouth             | -29.1628895 |  -16.970599
+          92 | Uzbekistan                                   | Roseshire               |   61.920705 |   129.86106
+          93 | Panama                                       | Westside                |  -48.566137 | -151.569112
+          94 | Anguilla                                     | Michaelport             |    0.502795 |  -26.764976
+          95 | Egypt                                        | North Matthewchester    |  -14.618909 | -146.069393
+          96 | Montenegro                                   | Sethshire               |   86.276065 |  -44.233777
+          97 | Cameroon                                     | South Kathryn           |  -48.044952 |  -18.308996
+          98 | Gambia                                       | Lake Patrickberg        | -74.4853945 |  139.005413
+          99 | Saint Helena                                 | East Stevenburgh        |  71.8493065 |  146.019557
+         100 | Canada                                       | Alanbury                |  55.6593585 |   -90.34018
+         101 | Hungary                                      | Johnbury                | -42.7561945 | -144.137958
+         102 | Liberia                                      | Port Matthew            |   71.868338 |  -46.059459
+         103 | Algeria                                      | Hendricksberg           |  24.1188305 |  126.943976
+         104 | Gabon                                        | Lake Albert             |  -52.164361 |  176.856167
+         105 | Mozambique                                   | Davidfort               |  -9.2278345 | -176.153974
+         106 | Kenya                                        | Waltermouth             | -82.9348245 |   -71.57836
+         107 | Korea                                        | Jamesside               |  39.0680795 | -178.588123
+         108 | New Zealand                                  | West Kristiberg         | -88.8197185 |  -63.790127
+         109 | Mongolia                                     | Rachelshire             | -10.3952585 |  164.361861
+         110 | Jordan                                       | South Gwendolyn         |  -33.413905 |  155.995916
+         111 | Burundi                                      | Lake Sarashire          |  -29.714006 | -163.054468
+         112 | Greece                                       | New James               |  -6.5763105 |   55.971036
+         113 | Timor-Leste                                  | West Rachel             |  15.3733145 |  153.500732
+         114 | Ecuador                                      | West Francesfurt        |  -28.606752 |   33.057174
+         115 | Gabon                                        | North Evanhaven         | -86.6863695 |  -20.276372
+         116 | Slovakia (Slovak Republic)                   | Tinaburgh               |  28.9086375 |   61.935013
+         117 | Italy                                        | Port Emily              |   -9.323127 |   -20.35102
+         118 | Christmas Island                             | West Heatherberg        |  -25.822593 |  176.300045
+         119 | Bhutan                                       | Deannastad              |  75.7489535 | -147.162149
+         120 | Niue                                         | Kristinashire           |  -57.366722 |   13.706449
+         121 | Aruba                                        | Jessicaport             |   -0.546195 |  161.144143
+         122 | Bangladesh                                   | East Austin             |   -70.26529 | -116.952852
+         123 | Timor-Leste                                  | East Jennifermouth      |   59.985968 |  126.599429
+         124 | Bermuda                                      | New Brittney            |   61.042503 |  101.499677
+         125 | Somalia                                      | Lake Kristinabury       |  -85.740093 |   -9.973929
+         126 | Nepal                                        | Aguirrehaven            | -41.9606295 |  137.002501
+         127 | Tunisia                                      | New Eileen              | -88.6798155 |   76.032639
+         128 | Holy See (Vatican City State)                | Reedhaven               |  15.8568105 |  -87.045915
+         129 | Myanmar                                      | East Emilyfort          |   -9.827967 |  142.765489
+         130 | Jordan                                       | Jenniferstad            |   22.731041 |   24.441932
+         131 | Saint Vincent and the Grenadines             | West Alanbury           |   45.718749 |   37.341238
+         132 | Turks and Caicos Islands                     | Lake Sarahville         | -81.0683605 |   94.409895
+         133 | Pitcairn Islands                             | Rodgersberg             |  -27.731785 |   65.889885
+         134 | Colombia                                     | New Michael             |   49.125745 |   67.697079
+         135 | Mayotte                                      | Kingfurt                | -76.2419315 |    7.768702
+         136 | Grenada                                      | Olsonhaven              |  -41.200111 |    4.771216
+         137 | Malawi                                       | New Aaron               |   50.427272 |   -9.549228
+         138 | Sweden                                       | Daviston                | -76.2599325 |  164.604452
+         139 | Congo                                        | West Coreychester       |   31.893433 |   89.334498
+         140 | Denmark                                      | Howardmouth             | -85.0795615 |   -9.000895
+         141 | Tanzania                                     | East Ryanbury           |  38.1031995 |    -146.098
+         142 | Cameroon                                     | South Mistychester      |   76.816218 |   71.490912
+         143 | Cote d'Ivoire                                | West Adamton            |   -63.17707 |  139.811957
+         144 | Paraguay                                     | Lake Andrewshire        |  14.2776325 |  -88.779275
+         145 | Mozambique                                   | New Jamesview           | -68.8953425 |  127.336907
+         146 | Zambia                                       | Hendersonmouth          |  72.4623915 | -103.008369
+         147 | Indonesia                                    | Brooksport              |  35.4055625 |    5.548984
+         148 | Uzbekistan                                   | Delgadomouth            | -24.0999165 |   -4.515226
+         149 | Nicaragua                                    | East Christianmouth     | -51.0306785 |  110.701475
+         150 | Swaziland                                    | North Jessicaborough    |   61.331066 |  140.194099
+         151 | Belgium                                      | Hillchester             |  62.1086545 |   48.368055
+         152 | Barbados                                     | Laurenton               |  -26.814287 |   110.02587
+         153 | Gambia                                       | East Timothyberg        |  55.6408215 | -101.179217
+         154 | Lesotho                                      | Elizabethberg           |   77.696923 |  145.060914
+         155 | Bahamas                                      | Dorseyview              |  57.1229405 | -104.175987
+         156 | Austria                                      | East Josephburgh        |  43.9793085 |  128.261322
+         157 | Cameroon                                     | Port Denise             |  -39.080762 |   58.717791
+         158 | Svalbard & Jan Mayen Islands                 | New Juan                |   85.395231 |   77.677733
+         159 | Liechtenstein                                | Kaitlynton              | -22.5561275 |  -94.002595
+         160 | Uganda                                       | East Christopherton     | -34.3735075 |   -69.09021
+         161 | Gabon                                        | Smithport               |  -35.677714 | -104.070042
+         162 | Brunei Darussalam                            | Sheenastad              | -60.2231935 |   22.536579
+         163 | Ghana                                        | Woodville               |  -86.859076 |   36.777334
+         164 | Niue                                         | Foxshire                |  -41.559349 |  -14.354282
+         165 | Aruba                                        | South Reneefort         |   47.751935 | -149.494838
+         166 | Fiji                                         | Robertsbury             | -19.4996375 | -177.790911
+         167 | Ethiopia                                     | Port Nicoleland         | -58.9200265 |  -28.208073
+         168 | Australia                                    | Deborahmouth            |   60.007754 |   71.986783
+         169 | Cote d'Ivoire                                | Ralphchester            |   35.943615 |  -76.076526
+         170 | Uzbekistan                                   | Olsonview               | -45.8336675 |  -58.832347
+         171 | Saint Kitts and Nevis                        | Starkside               |  73.8950145 |  -65.886018
+         172 | Luxembourg                                   | West Michele            |  -42.334726 |  -28.805152
+         173 | Tunisia                                      | Brianaborough           |   78.772379 |   50.517479
+         174 | Croatia                                      | Christopherside         |   44.833721 |  -60.415125
+         175 | Cook Islands                                 | Bradleyborough          |  31.4094265 |   68.527015
+         176 | Canada                                       | Bennettmouth            |  -20.275266 |   86.300222
+         177 | Cocos (Keeling) Islands                      | Rogersville             | -35.8657345 |  125.134534
+         178 | Ukraine                                      | East Tracy              | -51.1833105 |   50.066458
+         179 | Kuwait                                       | Nicoleland              | -79.5239885 |   33.206555
+         180 | Equatorial Guinea                            | Wilsonport              | -15.2233095 |   15.488904
+         181 | Ghana                                        | New Brendatown          |   47.703644 |  131.724524
+         182 | Finland                                      | East Cole               | -82.3104905 |   98.154549
+         183 | Pitcairn Islands                             | West Elizabethburgh     |   44.389903 |  147.708259
+         184 | American Samoa                               | Cunninghamport          |  27.8749585 |  -65.914274
+         185 | Kenya                                        | Lake Tammy              | -58.6730285 |  -70.811597
+         186 | Saint Vincent and the Grenadines             | Nobleville              | -73.7841375 | -113.714656
+         187 | Algeria                                      | Port Joshua             | -71.2745885 |   40.595302
+         188 | Malta                                        | South Christine         |  -42.754863 | -130.348222
+         189 | Estonia                                      | North Karen             |  -55.586724 |   -3.746376
+         190 | Cameroon                                     | North Aliceside         |   11.768275 |    68.63421
+         191 | Cayman Islands                               | Port Thomasmouth        |   62.670806 |  -21.976388
+         192 | Turkmenistan                                 | South Amandafurt        | -46.5687615 | -171.028496
+         193 | Guadeloupe                                   | New Kelly               |  -29.649429 |  -37.593338
+         194 | Yemen                                        | West Shaneland          |   77.551909 |  -88.162945
+         195 | Lao People's Democratic Republic             | Reyesburgh              |   60.766595 |  -35.583373
+         196 | New Caledonia                                | Port Lauraside          |   -8.732739 | -149.216494
+         197 | Montserrat                                   | East Nicoletown         |  18.7580695 | -167.245621
+         198 | Singapore                                    | North Wendy             |  -62.669997 |  128.577008
+         199 | Malaysia                                     | Bellmouth               | -16.4194425 |  176.641013
+         200 | Gabon                                        | North Brendatown        |   -4.798867 |  -21.021011
+         201 | Vietnam                                      | East Jason              | -26.2571095 | -105.402793
+         202 | Palestinian Territory                        | New Tiffanyville        | -27.7774585 | -130.592824
+         203 | Kiribati                                     | Gibsonstad              | -61.4156385 |  135.573425
+         204 | Croatia                                      | Brianfort               |   6.5396465 |   20.290993
+         205 | Maldives                                     | North Katherine         |  57.6706595 |   50.711478
+         206 | Turkmenistan                                 | Erinside                |   86.368829 |  -68.189887
+         207 | Spain                                        | Michaelview             |   -4.894781 | -177.656911
+         208 | India                                        | Youngfurt               |  52.4335165 |  -21.431021
+         209 | Central African Republic                     | South Williamland       |  67.3086265 |  118.303465
+         210 | Eritrea                                      | Annland                 | -61.3408285 |  -93.883351
+         211 | Palau                                        | Jasonshire              |  -23.661269 | -127.623306
+         212 | Pakistan                                     | Howardmouth             |  -74.113321 |   -3.851531
+         213 | Qatar                                        | West Travis             |  34.8676825 | -129.549962
+         214 | Kyrgyz Republic                              | Nancymouth              |  -79.877369 |   90.956224
+         215 | Bulgaria                                     | East Gregory            |  17.0136295 |  151.690312
+         216 | Dominican Republic                           | Nicholasmouth           |  -55.024807 |  -10.244929
+         217 | Wallis and Futuna                            | Patrickborough          |   61.755559 | -138.861777
+         218 | Comoros                                      | North Debrashire        |   -41.77536 |  108.540872
+         219 | Saint Pierre and Miquelon                    | Garcialand              |  -13.811477 | -142.347466
+         220 | Congo                                        | Kevinchester            |  15.6434785 |  -140.48506
+         221 | Canada                                       | Lake Stephenmouth       |  82.7502655 |  -53.143952
+         222 | Iran                                         | Sanchezfurt             |  -74.301886 |   110.27427
+         223 | Wallis and Futuna                            | Pearsonview             |   63.565876 |  -83.551087
+         224 | Somalia                                      | West Lori               | -49.2104385 |  172.318666
+         225 | Eritrea                                      | Robertberg              |   70.105739 |  -34.198915
+         226 | Bahamas                                      | Zavalachester           | -30.2440335 |  169.592285
+         227 | Maldives                                     | Webbtown                | -20.8209785 |  -52.189299
+         228 | Tokelau                                      | Brianbury               |  32.5253685 | -165.407173
+         229 | Iceland                                      | Joannaport              |   19.422282 |    -25.6038
+         230 | Djibouti                                     | Port Steven             | -16.3338215 |  115.992863
+         231 | Falkland Islands (Malvinas)                  | North Deborah           |  -69.894159 |   75.944485
+         232 | Sweden                                       | Claytonview             |   35.256622 |  172.019309
+         233 | Lebanon                                      | Kristichester           |   2.3623165 |  -62.343254
+         234 | Nauru                                        | Port Traci              |  -55.689616 |  -78.271957
+         235 | Kuwait                                       | Port Karashire          |  76.0086175 |   -50.91384
+         236 | Djibouti                                     | Matthewschester         | -85.5311745 |  -28.761158
+         237 | Suriname                                     | Guerrerofort            |   -3.371657 |  131.890799
+         238 | Croatia                                      | South Danielport        |    46.62399 |  -152.72697
+         239 | Anguilla                                     | North Michaelhaven      |  49.5422705 | -114.907246
+         240 | Botswana                                     | East Stevenborough      |  -66.593687 |  136.072196
+         241 | Iceland                                      | New Larry               |   88.637141 |   29.394993
+         242 | Cyprus                                       | Port Matthewburgh       |  40.5085855 | -158.087962
+         243 | Falkland Islands (Malvinas)                  | Fordmouth               |   11.950851 |    1.698639
+         244 | Poland                                       | New Josephstad          |  -15.220938 |  -82.186734
+         245 | Tokelau                                      | Hoganbury               | -40.0571485 |   106.84424
+         246 | Nigeria                                      | Port Laura              |  -82.340488 | -130.400115
+         247 | United Arab Emirates                         | New William             |  -65.138953 |   96.969466
+         248 | Bhutan                                       | New Angelicaton         |   6.8394035 |  -37.431078
+         249 | Norfolk Island                               | New Joannaside          |   -55.17782 |  -40.466569
+         250 | Greece                                       | South Christopher       |  -62.974448 |   95.504436
+         251 | Romania                                      | East Jeremyburgh        |   -55.69283 | -149.771735
+         252 | Taiwan                                       | Howehaven               |  -39.050328 |  158.917229
+         253 | Slovenia                                     | Fisherfort              |  -67.965091 |  -94.780976
+         254 | Mali                                         | Lake Calvinton          |   0.4777975 | -150.693016
+         255 | Mongolia                                     | Lake Zacharyberg        |  -32.294341 |  -64.798657
+         256 | Benin                                        | New Greg                |  -22.445876 |  -87.828422
+         257 | Jordan                                       | West Danielstad         |  11.4900225 |   27.872973
+         258 | Grenada                                      | Shawnbury               |   50.748663 |    83.34933
+         259 | Comoros                                      | Cindymouth              |   26.175904 |   10.076031
+         260 | Korea                                        | South Kennethburgh      | -48.0799775 |   48.289231
+         261 | Syrian Arab Republic                         | Nelsonton               | -37.9204715 |    74.34094
+         262 | Gambia                                       | East Yolanda            |   86.965552 |  -28.550062
+         263 | Niue                                         | Harrisville             |  -4.4395645 | -159.734243
+         264 | Anguilla                                     | North Sandra            |  67.4664565 |   -9.262605
+         265 | Turkey                                       | Brandonshire            |   88.389364 |  158.548277
+         266 | Guernsey                                     | Port Brittanyland       | -54.0251525 |   68.492413
+         267 | Croatia                                      | Chaseville              |  -77.509229 |  -149.77989
+         268 | Isle of Man                                  | East Michael            |    4.529508 |   40.383144
+         269 | Uganda                                       | Nguyenton               |   53.003097 |   -0.856757
+         270 | United States Virgin Islands                 | West Ashleyfurt         | -13.2071125 |   10.904994
+         271 | New Zealand                                  | Christinabury           |  75.2218615 |  101.282188
+         272 | Bhutan                                       | East Edwardchester      |  70.6631085 |   -7.223293
+         273 | Mongolia                                     | Adamborough             |   87.444136 |  114.884478
+         274 | Saint Lucia                                  | Dillonfurt              |  -70.235438 | -154.138545
+         275 | Saint Martin                                 | Lisafort                | -48.6752285 | -130.616967
+         276 | Namibia                                      | Victoriatown            |  -85.860089 |  -15.833793
+         277 | Cote d'Ivoire                                | Lake Craigville         |   84.672232 |  144.431482
+         278 | Falkland Islands (Malvinas)                  | Port Lisaborough        | -85.1317385 |    7.793811
+         279 | Martinique                                   | West Scott              |   7.7509805 |   41.140225
+         280 | French Polynesia                             | Thomasshire             |   62.278519 | -103.851468
+         281 | French Southern Territories                  | Carlaton                |   63.549679 |  -79.509886
+         282 | Mauritius                                    | Jennifershire           |  -86.719089 | -173.211076
+         283 | Bangladesh                                   | Ericside                |  -40.344555 |  -40.246233
+         284 | Lebanon                                      | Belltown                |  37.1120575 |  153.891982
+         285 | Trinidad and Tobago                          | Port Paulburgh          |  -43.485307 |   -6.741623
+         286 | Kenya                                        | Scotthaven              | -85.4198615 |   19.953034
+         287 | Ethiopia                                     | Jamesmouth              |  55.0157335 |  -15.388747
+         288 | Timor-Leste                                  | Morganchester           |  -70.946378 | -144.510379
+         289 | Mali                                         | Joeside                 |  69.4997995 |   12.919894
+         290 | Antigua and Barbuda                          | Samanthaborough         |  30.0010635 | -123.536332
+         291 | Bangladesh                                   | Michealton              |   53.206191 | -162.070241
+         292 | Oman                                         | New Alan                |  85.6555965 |   29.408546
+         293 | Canada                                       | Donnachester            |  -8.1428625 | -160.916995
+         294 | Lao People's Democratic Republic             | Greenshire              | -13.3824575 |  119.774938
+         295 | Tuvalu                                       | Jillview                |    9.019895 | -175.401489
+         296 | Maldives                                     | Stephaniefurt           |   37.325054 |   -41.07237
+         297 | Slovakia (Slovak Republic)                   | Port Andrewshire        |  21.6147675 | -129.186158
+         298 | Oman                                         | Susanborough            |   15.327141 |  164.901427
+         299 | Tanzania                                     | Glennton                |   -6.270209 | -137.916865
+         300 | Armenia                                      | West Timothy            |   59.777296 | -164.153123
+         301 | Guinea-Bissau                                | East Stephanie          |  64.5816625 |  102.129499
+         302 | Taiwan                                       | Port Julieland          |   5.0278265 | -158.582672
+         303 | Marshall Islands                             | Macdonaldstad           |   3.8015315 | -157.673674
+         304 | Fiji                                         | Jonathanborough         | -81.5260365 |  -32.972663
+         305 | Zambia                                       | New Cheryl              |   0.9101875 |  146.214532
+         306 | Morocco                                      | Guyton                  |   46.409942 |  -45.876263
+         307 | Bouvet Island (Bouvetoya)                    | Chadhaven               | -47.7622885 |   67.316125
+         308 | Peru                                         | South Dianeshire        |   26.341605 | -111.684516
+         309 | Bouvet Island (Bouvetoya)                    | North Jimmy             | -62.4323405 |    -8.18746
+         310 | Bouvet Island (Bouvetoya)                    | Carneyfort              | -29.9701895 |  -21.933481
+         311 | Andorra                                      | Alishaberg              | -76.5220295 |    1.256691
+         312 | Ukraine                                      | Phammouth               |   40.455607 |  123.396941
+         313 | Eritrea                                      | Masonfort               |   -3.442659 |  129.972204
+         314 | Equatorial Guinea                            | Elizabethville          | -81.0859695 | -168.504487
+         315 | Micronesia                                   | West Laurenshire        |    7.065103 |  112.954831
+         316 | Vietnam                                      | Lake Alyssaview         |   61.372354 |  119.515876
+         317 | Cuba                                         | Baileyport              |  -27.340455 |  -75.490694
+         318 | Algeria                                      | North Ronaldbury        | -70.7465865 | -131.974942
+         319 | Australia                                    | North Jeffrey           | -44.6250545 |  -44.410817
+         320 | Cameroon                                     | South Caitlynville      |   44.157748 |   13.642786
+         321 | Taiwan                                       | Allenmouth              | -12.1623975 |  -11.146988
+         322 | Vietnam                                      | Meaganburgh             | -77.1204595 |   63.969149
+         323 | South Georgia and the South Sandwich Islands | Sandovalchester         |  -56.441277 |   65.679124
+         324 | Thailand                                     | West Mary               | -81.5715555 |  -36.341961
+         325 | Egypt                                        | Port Ian                |   8.7565435 | -171.077732
+         326 | Faroe Islands                                | Catherineberg           |   44.773501 |  152.252805
+         327 | Croatia                                      | Maddoxfurt              |  85.1370715 | -166.481207
+         328 | Guernsey                                     | Richardburgh            |  29.5767915 |  114.602053
+         329 | Tanzania                                     | New Richardshire        |  -55.422169 |   40.596847
+         330 | Cambodia                                     | Vincentville            |  -51.917822 |  -152.20753
+         331 | Palau                                        | Jasmineburgh            |  58.6658945 |  -29.340159
+         332 | Haiti                                        | North Jeremy            |  51.3963125 |  169.751576
+         333 | Korea                                        | West Ann                |  37.4075595 |  -113.35614
+         334 | Serbia                                       | Robinsonburgh           | -78.1623025 | -115.626456
+         335 | Senegal                                      | New James               |  25.5327195 |   84.841165
+         336 | Vietnam                                      | Alecfort                |   45.208911 |   172.76751
+         337 | Antigua and Barbuda                          | Port Dawnfurt           |   66.015368 |   92.298973
+         338 | Poland                                       | East Keithfurt          |  -9.1983285 |   40.152653
+         339 | French Guiana                                | Manuelmouth             |   76.013524 | -174.199894
+         340 | Canada                                       | Clarkview               |  -76.539803 |  -42.317076
+         341 | Canada                                       | Port John               |    3.764777 |     5.69806
+         342 | Palestinian Territory                        | East Jane               |   30.388659 |   30.303309
+         343 | Congo                                        | New Deanchester         |   74.808131 |  -27.243958
+         344 | Dominica                                     | Zacharystad             | -82.5587045 |   126.92982
+         345 | Liberia                                      | Port Roy                | -65.3291615 |  102.438138
+         346 | Saint Kitts and Nevis                        | Lake Lisaborough        |   17.587907 |  169.801118
+         347 | Venezuela                                    | Georgefort              |  -85.885809 |  -10.793484
+         348 | New Caledonia                                | Russellmouth            |   88.199134 |    1.975291
+         349 | Guinea                                       | Joelberg                |   16.669775 | -128.860562
+         350 | Grenada                                      | Port Michellemouth      |  -65.404211 |    8.209857
+         351 | Tonga                                        | East Carlachester       |  -0.7718235 |  -52.828757
+         352 | Tajikistan                                   | Lake Meghanborough      |  53.4447185 | -122.764543
+         353 | Qatar                                        | Ryanberg                |  62.4237555 | -170.962075
+         354 | India                                        | Hayesview               |  -46.159965 |  139.433318
+         355 | Anguilla                                     | Amyside                 |   26.054988 | -102.087941
+         356 | French Polynesia                             | Loritown                |  -39.947819 |   -8.822777
+         357 | Saint Lucia                                  | West Brianburgh         |    -8.51681 |  133.863212
+         358 | Comoros                                      | Alvaradoborough         |  89.2548415 |  -93.370776
+         359 | Svalbard & Jan Mayen Islands                 | Michaelchester          |  81.3874815 |   11.063162
+         360 | Bouvet Island (Bouvetoya)                    | Hallfort                | -77.0854775 |   16.018574
+         361 | Spain                                        | Markview                |  16.2399105 |   37.695981
+         362 | Afghanistan                                  | Gregorystad             |     76.5922 |   125.67944
+         363 | Colombia                                     | Port Sharon             |  -61.244788 | -152.250717
+         364 | Latvia                                       | Rebeccashire            |  -21.186669 |   -34.62396
+         365 | American Samoa                               | North Shannonport       |  61.5157395 |  112.509483
+         366 | Moldova                                      | Morrisbury              |  -20.633772 |   19.745481
+         367 | Fiji                                         | Angelaview              |   -7.404459 |  126.428934
+         368 | Svalbard & Jan Mayen Islands                 | Mossmouth               |   63.420597 |  -68.012195
+         369 | Ecuador                                      | New Ashley              |  -31.943422 |  -58.430508
+         370 | China                                        | North Michael           |  52.6829705 | -127.608596
+         371 | French Guiana                                | Floresville             |  -66.747865 |   41.837571
+         372 | Eritrea                                      | Pattersonville          |   4.7607055 |   78.053348
+         373 | Ethiopia                                     | North Daniel            |   14.809675 |  149.799638
+         374 | Saudi Arabia                                 | East Austinland         |  85.8492075 |   38.516976
+         375 | Sri Lanka                                    | Brownhaven              |  -34.612015 |   -8.844585
+         376 | Croatia                                      | Isaiahshire             |    85.41642 |   139.07756
+         377 | Malawi                                       | West Jennifer           |  57.5035705 | -177.513318
+         378 | Martinique                                   | Lake Tracey             |  -67.131297 |   61.902774
+         379 | Saint Kitts and Nevis                        | West Billy              |  -35.520362 |   125.34984
+         380 | Ecuador                                      | Debbiefurt              |  -75.149246 |   -0.805465
+         381 | Bolivia                                      | South Charlesside       |  11.5762505 |  -56.136017
+         382 | Western Sahara                               | South Katherine         |  35.1985965 |  169.057425
+         383 | Iran                                         | Lake Rhonda             |  -71.193212 |   43.272758
+         384 | Reunion                                      | Port Summerbury         |   13.110774 |   70.060326
+         385 | Afghanistan                                  | Reyesmouth              | -40.4920335 | -101.787095
+         386 | Kuwait                                       | Port Daltonmouth        |   61.018479 |   47.036217
+         387 | Oman                                         | Garciastad              |  -67.155436 |   44.594983
+         388 | Colombia                                     | North Nancyport         | -65.6881045 | -119.758822
+         389 | Nauru                                        | Lake Charlesview        |   20.409375 |    64.55702
+         390 | Sudan                                        | New Claudia             | -22.5710405 |  156.762662
+         391 | Turkmenistan                                 | Lake Rachel             |   21.223768 |  163.444021
+         392 | American Samoa                               | Dyerville               | -79.5997265 |   56.022104
+         393 | Burundi                                      | Lake Rebeccaberg        | -59.7343625 |   46.227023
+         394 | Czech Republic                               | Stephaniefort           | -39.7477605 |    3.373458
+         395 | Austria                                      | Tannerfurt              |   74.197719 | -124.561676
+         396 | Tunisia                                      | New Samanthastad        |  63.4110745 |  -69.917278
+         397 | Timor-Leste                                  | Prestonburgh            |  -72.293391 | -133.166332
+         398 | Micronesia                                   | Lake Patricia           |   89.795105 |   26.437423
+         399 | Pitcairn Islands                             | Collinsmouth            |  77.1290055 | -127.320199
+         400 | Mauritius                                    | Lake Aaronberg          | -32.2823395 |   -5.386907
+         401 | Canada                                       | Keswick                 |    43.23542 |   -13.25233
+(401 rows)
+
