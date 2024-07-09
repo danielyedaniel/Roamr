@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Box, Typography, Container, CssBaseline } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -16,6 +16,13 @@ const LoginForm = () => {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            navigate('/home');
+        }
+    }, [navigate]);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const url = isSignUp ? 'http://localhost:8000/signup' : 'http://localhost:8000/login';
@@ -32,6 +39,9 @@ const LoginForm = () => {
                 body: JSON.stringify(payload),
             });
             if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('username', data.username);
                 navigate('/search');
             } else {
                 const errorData = await response.json();
