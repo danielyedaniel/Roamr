@@ -38,14 +38,14 @@ const LoginForm = () => {
                 },
                 body: JSON.stringify(payload),
             });
+
             if (response.ok) {
-                const data = await response.json();
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('username', data.username);
-                navigate('/search');
+                localStorage.setItem('token', 'dummy-token'); // Dummy token or actual token logic
+                localStorage.setItem('username', username);
+                navigate('/home');
             } else {
-                const errorData = await response.json();
-                console.error('Error:', errorData);
+                const errorText = await response.text();
+                console.error('Error:', errorText);
             }
         } catch (error) {
             console.error('Error:', error);
