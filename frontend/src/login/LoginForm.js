@@ -40,8 +40,14 @@ const LoginForm = () => {
             });
 
             if (response.ok) {
-                localStorage.setItem('token', 'dummy-token'); // Dummy token or actual token logic
-                localStorage.setItem('username', username);
+                const data = await response.json(); // Parse the JSON response
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user_id', data.userID);
+                localStorage.setItem('username', data.username);
+                localStorage.setItem('email', data.email);
+                localStorage.setItem('firstName', data.firstName);
+                localStorage.setItem('lastName', data.lastName);
+                localStorage.setItem('profilePicture', data.profilePicture);
                 navigate('/home');
             } else {
                 const errorText = await response.text();

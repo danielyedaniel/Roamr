@@ -10,7 +10,13 @@ const HomePage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Retrieve the stored username from local storage
+        console.log('Logging all local storage properties:');
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+            console.log(`${key}: ${value}`);
+        }
+
         const storedUsername = localStorage.getItem('username');
         if (storedUsername) {
             setUsername(storedUsername);
@@ -19,6 +25,11 @@ const HomePage = () => {
 
     const handleNavigation = (path) => {
         navigate(path);
+    };
+
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/');
     };
 
     return (
@@ -56,6 +67,13 @@ const HomePage = () => {
                             onClick={() => handleNavigation('/profile')}
                         >
                             Go to Profile
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            onClick={handleLogout}
+                        >
+                            Logout
                         </Button>
                     </Box>
                 </Box>

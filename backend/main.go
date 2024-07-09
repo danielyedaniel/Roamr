@@ -24,6 +24,7 @@ func main() {
     mux.HandleFunc("/search", handlers.SearchHandler(database))
     mux.HandleFunc("/locationSearch", handlers.LocationSearchHandler(database))
     mux.HandleFunc("/post", handlers.PostHandler(database))
+    mux.HandleFunc("/posts/user", handlers.GetPostsByUserHandler(database))
 
     corsMux := setupCORS(mux)
 
