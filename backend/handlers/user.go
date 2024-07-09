@@ -228,6 +228,29 @@ func PostHandler(db *gorm.DB) http.HandlerFunc {
 	}
 }
 
+// func GetPostsByUserHandler(db *gorm.DB) http.HandlerFunc {
+//     return func(w http.ResponseWriter, r *http.Request) {
+//         userIDStr := r.URL.Query().Get("user_id")
+//         userID, err := strconv.Atoi(userIDStr)
+//         if err != nil {
+//             http.Error(w, "Invalid user_id", http.StatusBadRequest)
+//             return
+//         }
+
+//         var posts []models.Post
+//         if err := db.Where("user_id = ?", userID).Find(&posts).Error; err != nil {
+//             http.Error(w, fmt.Sprintf("Error querying database, %v", err), http.StatusInternalServerError)
+//             return
+//         }
+
+//         w.Header().Set("Content-Type", "application/json")
+//         if err := json.NewEncoder(w).Encode(posts); err != nil {
+//             http.Error(w, "Error encoding response", http.StatusInternalServerError)
+//         }
+//     }
+// }
+
+
 func GetPostsByUserHandler(db *gorm.DB) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         userIDStr := r.URL.Query().Get("user_id")
@@ -237,8 +260,21 @@ func GetPostsByUserHandler(db *gorm.DB) http.HandlerFunc {
             return
         }
 
-        var posts []models.Post
-        if err := db.Where("user_id = ?", userID).Find(&posts).Error; err != nil {
+        var posts []struct {
+            models.Post
+            City    string `json:"city"`
+            Country string `json:"country"`
+        }
+
+        query := `
+            SELECT p.*, l.city, l.country
+            FROM posts p
+            LEFT JOIN locations l ON p.location_id = l.location_id
+            WHERE p.user_id = ?
+            ORDER BY p.date_created DESC;
+        `
+
+        if err := db.Raw(query, userID).Scan(&posts).Error; err != nil {
             http.Error(w, fmt.Sprintf("Error querying database, %v", err), http.StatusInternalServerError)
             return
         }
@@ -248,4 +284,29 @@ func GetPostsByUserHandler(db *gorm.DB) http.HandlerFunc {
             http.Error(w, "Error encoding response", http.StatusInternalServerError)
         }
     }
+}
+
+
+func DeletePostHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		postIDStr := r.URL.Query().Get("postID")
+		if postIDStr == "" {
+			http.Error(w, "postID is required", http.StatusBadRequest)
+			return
+		}
+
+		postID, err := strconv.Atoi(postIDStr)
+		if err != nil {
+			http.Error(w, "Invalid postID", http.StatusBadRequest)
+			return
+		}
+
+		if err := db.Delete(&models.Post{}, postID).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error deleting post from database, %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprintf(w, "Post deleted successfully")
+	}
 }
