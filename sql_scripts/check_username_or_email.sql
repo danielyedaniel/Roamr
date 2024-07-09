@@ -1,1 +1,1 @@
-SELECT * FROM "User" WHERE username = 'DanielYee' OR email = 'fakeemail';
+SELECT * FROM "users" WHERE username = 'DanielYee' OR email = 'fakeemail';

@@ -1,3 +1,3 @@
-SELECT u."userID", u."email", u."firstName", u."lastName", u."profilePicture", u."dateCreated"
-FROM "Follow" f, "User" u
-WHERE f."followedID" = u."userID" AND f."followerID" = 5;
+SELECT u."user_id", u."email", u."first_name", u."last_name", u."profile_picture", u."date_created"
+FROM "follows" f, "users" u
+WHERE f."followed_id" = u."user_id" AND f."follower_id" = 5;

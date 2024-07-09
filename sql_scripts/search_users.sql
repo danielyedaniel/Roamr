@@ -1,3 +1,3 @@
 SELECT *
-FROM "User"
+FROM "users"
 WHERE username LIKE 'Daniel%';

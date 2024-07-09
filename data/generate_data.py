@@ -13,7 +13,7 @@ locations_data = []
 
 for i in range(1, 101):
     location = {
-        "locationID": i,
+        "location_id": i,
         "latitude": float(fake.latitude()),
         "longitude": float(fake.longitude()),
         "country": fake.country(),
@@ -28,46 +28,49 @@ with open('locations_100.csv', 'w', newline='') as f:
 
 
 def generate_base64_image():
-    image = Image.new('RGB', (100, 100), color = (73, 109, 137))
+    image = Image.new('RGB', (100, 100), color=(73, 109, 137))
     buffered = BytesIO()
     image.save(buffered, format="JPEG")
     return base64.b64encode(buffered.getvalue()).decode('utf-8')
+
 
 def generate_password_hash(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
+
 def generate_base64_profile_picture():
-    image = Image.new('RGB', (100, 100), color = (123, 203, 56))
+    image = Image.new('RGB', (100, 100), color=(123, 203, 56))
     buffered = BytesIO()
     image.save(buffered, format="JPEG")
     return base64.b64encode(buffered.getvalue()).decode('utf-8')
+
 
 # users data
 users_data = []
 
 first_user = {
-    "userID": 1,
+    "user_id": 1,
     "email": "danielye@gmail.com",
     "username": "DanielYee",
-    "passwordHash": "$2a$10$3dwzJ.USYxBNsnn7YfhvOu71cTyr2nV6fiel6HbBteJHgT3IAsW9u", # password123
-    "profilePicture": generate_base64_profile_picture(),
-    "firstName": "Daniel",
-    "lastName": "Ye",
-    "dateCreated": fake.date_this_decade().isoformat()
+    "password_hash": "$2a$10$3dwzJ.USYxBNsnn7YfhvOu71cTyr2nV6fiel6HbBteJHgT3IAsW9u",  # password123
+    "profile_picture": generate_base64_profile_picture(),
+    "first_name": "Daniel",
+    "last_name": "Ye",
+    "date_created": fake.date_this_decade().isoformat()
 }
 users_data.append(first_user)
 
 # Generate remaining users
 for i in range(2, 101):
     user = {
-        "userID": i,
+        "user_id": i,
         "email": fake.email(),
         "username": fake.user_name(),
-        "passwordHash": generate_password_hash(fake.password()),
-        "profilePicture": generate_base64_profile_picture(),
-        "firstName": fake.first_name(),
-        "lastName": fake.last_name(),
-        "dateCreated": fake.date_this_decade().isoformat()
+        "password_hash": generate_password_hash(fake.password()),
+        "profile_picture": generate_base64_profile_picture(),
+        "first_name": fake.first_name(),
+        "last_name": fake.last_name(),
+        "date_created": fake.date_this_decade().isoformat()
     }
     users_data.append(user)
 
@@ -81,11 +84,11 @@ posts_data = []
 
 for i in range(1, 1001):
     post = {
-        "userID": random.randint(1, 100),
-        "postID": i,
-        "locationID": random.randint(1, 100),
+        "user_id": random.randint(1, 100),
+        "post_id": i,
+        "location_id": random.randint(1, 100),
         "description": fake.text(max_nb_chars=200),
-        "commentsCount": random.randint(0, 1000),
+        "comments_count": random.randint(0, 1000),
         "image": generate_base64_image()
     }
     posts_data.append(post)
@@ -98,11 +101,11 @@ with open('posts_1000.csv', 'w', newline='') as f:
 # comments data
 comments_data = []
 
-for i in range(1, 2001):  
+for i in range(1, 2001):
     comment = {
-        "commentID": i,
-        "postID": random.randint(1, 1000),
-        "userID": random.randint(1, 100),
+        "comment_id": i,
+        "post_id": random.randint(1, 1000),
+        "user_id": random.randint(1, 100),
         "content": fake.text(max_nb_chars=200)
     }
     comments_data.append(comment)
@@ -115,20 +118,20 @@ with open('comments_2000.csv', 'w', newline='') as f:
 # follows data
 follows_data = []
 
-for i in range(1, 501):  
-    followerID = random.randint(1, 100)
-    followedID = random.randint(1, 100)
-    while followerID == followedID:  
-        followedID = random.randint(1, 100)
-    
+for i in range(1, 501):
+    follower_id = random.randint(1, 100)
+    followed_id = random.randint(1, 100)
+    while follower_id == followed_id:
+        followed_id = random.randint(1, 100)
+
     follow = {
-        "followerID": followerID,
-        "followedID": followedID
+        "follower_id": follower_id,
+        "followed_id": followed_id
     }
-    
+
     if follow in follows_data:
         continue
-    
+
     follows_data.append(follow)
 
 with open('follows_500.csv', 'w', newline='') as f:
@@ -141,23 +144,23 @@ ratings_data = []
 existing_ratings = set()
 
 while len(ratings_data) < 2000:
-    userID = random.randint(1, 100)
-    locationID = random.randint(1, 100)
+    user_id = random.randint(1, 100)
+    location_id = random.randint(1, 100)
     rating = random.randint(1, 5)
 
-    rating_record = (userID, locationID)
-    
+    rating_record = (user_id, location_id)
+
     if rating_record in existing_ratings:
         continue
 
     existing_ratings.add(rating_record)
     ratings_data.append({
-        "userID": userID,
-        "locationID": locationID,
+        "user_id": user_id,
+        "location_id": location_id,
         "rating": rating
     })
 
 with open('ratings_2000.csv', 'w', newline='') as f:
-    writer = csv.DictWriter(f, fieldnames=["userID", "locationID", "rating"])
+    writer = csv.DictWriter(f, fieldnames=["user_id", "location_id", "rating"])
     writer.writeheader()
     writer.writerows(ratings_data)

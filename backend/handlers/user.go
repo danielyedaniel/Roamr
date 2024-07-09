@@ -1,14 +1,15 @@
 package handlers
 
 import (
-    "backend/models"
-    "encoding/json"
-    "fmt"
-    "gorm.io/gorm"
-    "net/http"
-    "golang.org/x/crypto/bcrypt"
-    "time"
-    "strconv"
+	"backend/models"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"strconv"
+	"time"
+
+	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 )
 
 type Credentials struct {
@@ -32,33 +33,32 @@ type PostRequest struct {
 }
 
 type PostResponse struct {
-	PostID        uint      `json:"postID"`
-	UserID        uint      `json:"userID"`
+	PostID        uint      `json:"post_id"`
+	UserID        uint      `json:"user_id"`
 	Description   string    `json:"description"`
-	CommentsCount int       `json:"commentsCount"`
+	CommentsCount int       `json:"comments_count"`
 	Image         string    `json:"image"`
-	LocationID    uint      `json:"locationID"`
-	CreatedAt     time.Time `json:"createdAt"`
-	UpdatedAt     time.Time `json:"updatedAt"`
+	LocationID    uint      `json:"location_id"`
+	CreatedAt     time.Time `json:"created_at"`
+	UpdatedAt     time.Time `json:"updated_at"`
 }
 
 type UserResponse struct {
-	UserID         uint      `json:"userID"`
+	UserID         uint      `json:"user_id"`
 	Username       string    `json:"username"`
 	Email          string    `json:"email"`
-	ProfilePicture string    `json:"profilePicture"`
-	FirstName      string    `json:"firstName"`
-	LastName       string    `json:"lastName"`
-	DateCreated    time.Time `json:"dateCreated"`
+	ProfilePicture string    `json:"profile_picture"`
+	FirstName      string    `json:"first_name"`
+	LastName       string    `json:"last_name"`
+	DateCreated    time.Time `json:"date_created"`
 	Token          string    `json:"token,omitempty"`
 }
 
 type LocationSearchRequest struct {
 	City       string `json:"city"`
-	LocationID uint   `json:"locationId"`
+	LocationID uint   `json:"location_id"`
 	Country    string `json:"country"`
 }
-
 
 func SignupHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -230,15 +230,15 @@ func PostHandler(db *gorm.DB) http.HandlerFunc {
 
 func GetPostsByUserHandler(db *gorm.DB) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
-        userIDStr := r.URL.Query().Get("userID")
+        userIDStr := r.URL.Query().Get("user_id")
         userID, err := strconv.Atoi(userIDStr)
         if err != nil {
-            http.Error(w, "Invalid userID", http.StatusBadRequest)
+            http.Error(w, "Invalid user_id", http.StatusBadRequest)
             return
         }
 
         var posts []models.Post
-        if err := db.Where("Post.userID = ?", userID).Find(&posts).Error; err != nil {
+        if err := db.Where("user_id = ?", userID).Find(&posts).Error; err != nil {
             http.Error(w, fmt.Sprintf("Error querying database, %v", err), http.StatusInternalServerError)
             return
         }

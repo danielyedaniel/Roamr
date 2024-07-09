@@ -1,24 +1,24 @@
-CREATE TABLE "User" (
-  "userID" SERIAL PRIMARY KEY,
+CREATE TABLE "users" (
+  "user_id" SERIAL PRIMARY KEY,
   "email" VARCHAR(255) NOT NULL,
   "username" VARCHAR(255) NOT NULL,
-  "passwordHash" VARCHAR(255) NOT NULL,
-  "firstName" VARCHAR(255) NOT NULL,
-  "lastName" VARCHAR(255) NOT NULL,
-  "profilePicture" TEXT NOT NULL,
-  "dateCreated" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  "password_hash" VARCHAR(255) NOT NULL,
+  "first_name" VARCHAR(255) NOT NULL,
+  "last_name" VARCHAR(255) NOT NULL,
+  "profile_picture" TEXT NOT NULL,
+  "date_created" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE "Follow" (
-  "followerID" INT NOT NULL,
-  "followedID" INT NOT NULL,
-  PRIMARY KEY ("followerID", "followedID"),
-  CONSTRAINT "fk_followerID" FOREIGN KEY ("followerID") REFERENCES "User" ("userID") ON DELETE CASCADE,
-  CONSTRAINT "fk_followedID" FOREIGN KEY ("followedID") REFERENCES "User" ("userID") ON DELETE CASCADE
+CREATE TABLE "follows" (
+  "follower_id" INT NOT NULL,
+  "followed_id" INT NOT NULL,
+  PRIMARY KEY ("follower_id", "followed_id"),
+  CONSTRAINT "fk_follower_id" FOREIGN KEY ("follower_id") REFERENCES "users" ("user_id") ON DELETE CASCADE,
+  CONSTRAINT "fk_followed_id" FOREIGN KEY ("followed_id") REFERENCES "users" ("user_id") ON DELETE CASCADE
 );
 
-CREATE TABLE "Location" (
-  "locationID" SERIAL PRIMARY KEY,
+CREATE TABLE "locations" (
+  "location_id" SERIAL PRIMARY KEY,
   "country" VARCHAR(255),
   "city" VARCHAR(255),
   "latitude" FLOAT NOT NULL,
@@ -26,31 +26,31 @@ CREATE TABLE "Location" (
   UNIQUE ("country", "city")
 );
 
-CREATE TABLE "Post" (
-  "userID" INT NOT NULL,
-  "postID" SERIAL PRIMARY KEY,
+CREATE TABLE "posts" (
+  "post_id" SERIAL PRIMARY KEY,
+  "user_id" INT NOT NULL,
   "description" TEXT NOT NULL,
-  "commentsCount" INT NOT NULL,
+  "comments_count" INT NOT NULL,
   "image" TEXT NOT NULL,
-  "locationID" INT,
-  CONSTRAINT "fk_userID" FOREIGN KEY ("userID") REFERENCES "User" ("userID") ON DELETE CASCADE,
-  CONSTRAINT "fk_locationID" FOREIGN KEY ("locationID") REFERENCES "Location" ("locationID") ON DELETE SET NULL
+  "location_id" INT,
+  CONSTRAINT "fk_user_id" FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE CASCADE,
+  CONSTRAINT "fk_location_id" FOREIGN KEY ("location_id") REFERENCES "locations" ("location_id") ON DELETE SET NULL
 );
 
-CREATE TABLE "Comment" (
-  "commentID" SERIAL PRIMARY KEY,
-  "postID" INT NOT NULL,
-  "userID" INT NOT NULL,
+CREATE TABLE "comments" (
+  "comment_id" SERIAL PRIMARY KEY,
+  "post_id" INT NOT NULL,
+  "user_id" INT NOT NULL,
   "content" TEXT NOT NULL,
-  CONSTRAINT "fk_postID" FOREIGN KEY ("postID") REFERENCES "Post" ("postID") ON DELETE CASCADE,
-  CONSTRAINT "fk_comment_userID" FOREIGN KEY ("userID") REFERENCES "User" ("userID") ON DELETE CASCADE
+  CONSTRAINT "fk_post_id" FOREIGN KEY ("post_id") REFERENCES "posts" ("post_id") ON DELETE CASCADE,
+  CONSTRAINT "fk_comment_user_id" FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE CASCADE
 );
 
-CREATE TABLE "Rating" (
-  "userID" INT NOT NULL,
-  "locationID" INT NOT NULL,
+CREATE TABLE "ratings" (
+  "user_id" INT NOT NULL,
+  "location_id" INT NOT NULL,
   "rating" INT NOT NULL,
-  PRIMARY KEY ("userID", "locationID"),
-  CONSTRAINT "fk_rating_userID" FOREIGN KEY ("userID") REFERENCES "User" ("userID") ON DELETE CASCADE,
-  CONSTRAINT "fk_rating_locationID" FOREIGN KEY ("locationID") REFERENCES "Location" ("locationID") ON DELETE CASCADE
+  PRIMARY KEY ("user_id", "location_id"),
+  CONSTRAINT "fk_rating_user_id" FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE CASCADE,
+  CONSTRAINT "fk_rating_location_id" FOREIGN KEY ("location_id") REFERENCES "locations" ("location_id") ON DELETE CASCADE
 );
