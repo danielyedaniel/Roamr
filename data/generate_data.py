@@ -89,7 +89,8 @@ for i in range(1, 1001):
         "location_id": random.randint(1, 100),
         "description": fake.text(max_nb_chars=200),
         "comments_count": random.randint(0, 1000),
-        "image": generate_base64_image()
+        "image": generate_base64_image(),
+        "date_created": fake.date_this_decade().isoformat()
     }
     posts_data.append(post)
 
@@ -106,7 +107,8 @@ for i in range(1, 2001):
         "comment_id": i,
         "post_id": random.randint(1, 1000),
         "user_id": random.randint(1, 100),
-        "content": fake.text(max_nb_chars=200)
+        "content": fake.text(max_nb_chars=200),
+        "date_created": fake.date_this_decade().isoformat()
     }
     comments_data.append(comment)
 
@@ -157,10 +159,11 @@ while len(ratings_data) < 2000:
     ratings_data.append({
         "user_id": user_id,
         "location_id": location_id,
-        "rating": rating
+        "rating": rating,
+        "date_created": fake.date_this_decade().isoformat()
     })
 
 with open('ratings_2000.csv', 'w', newline='') as f:
-    writer = csv.DictWriter(f, fieldnames=["user_id", "location_id", "rating"])
+    writer = csv.DictWriter(f, fieldnames=["user_id", "location_id", "rating", "date_created"])
     writer.writeheader()
     writer.writerows(ratings_data)

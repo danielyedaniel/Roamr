@@ -6,16 +6,16 @@ FROM '/docker-entrypoint-initdb.d/data/locations_100.csv' DELIMITER ',' CSV HEAD
 COPY "users" ("user_id", "email", "username", "password_hash", "profile_picture", "first_name", "last_name", "date_created")
 FROM '/docker-entrypoint-initdb.d/data/users_100.csv' DELIMITER ',' CSV HEADER;
 
-COPY "posts" ("user_id", "post_id", "location_id", "description", "comments_count", "image")
+COPY "posts" ("user_id", "post_id", "location_id", "description", "comments_count", "image", "date_created")
 FROM '/docker-entrypoint-initdb.d/data/posts_1000.csv' DELIMITER ',' CSV HEADER;
 
 COPY "follows" ("follower_id", "followed_id")
 FROM '/docker-entrypoint-initdb.d/data/follows_500.csv' DELIMITER ',' CSV HEADER;
 
-COPY "comments" ("comment_id", "post_id", "user_id", "content")
+COPY "comments" ("comment_id", "post_id", "user_id", "content", "date_created")
 FROM '/docker-entrypoint-initdb.d/data/comments_2000.csv' DELIMITER ',' CSV HEADER;
 
-COPY "ratings" ("user_id", "location_id", "rating")
+COPY "ratings" ("user_id", "location_id", "rating", "date_created")
 FROM '/docker-entrypoint-initdb.d/data/ratings_2000.csv' DELIMITER ',' CSV HEADER;
 
 SELECT setval(pg_get_serial_sequence('"locations"', 'location_id'), COALESCE(MAX("location_id"), 1) + 1, false) FROM "locations";
