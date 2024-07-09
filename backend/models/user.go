@@ -1,62 +1,65 @@
 package models
 
 import (
-    "gorm.io/gorm"
-    "time"
+	"time"
 )
 
 type User struct {
-    UserID         uint           `gorm:"primaryKey"`
-    Email          string         `gorm:"uniqueIndex;not null"`
-    Username       string         `gorm:"uniqueIndex;not null"`
-    PasswordHash   string         `gorm:"not null"`
-    ProfilePicture string         `gorm:"size:255"`
-    FirstName      string         `gorm:"size:255"`
-    LastName       string         `gorm:"size:255"`
-    DateCreated    time.Time      `gorm:"type:timestamptz"`
-    gorm.Model
+	UserID         uint      `gorm:"primaryKey;column:userID;autoIncrement"`
+	Email          string    `gorm:"uniqueIndex;not null;column:email"`
+	Username       string    `gorm:"uniqueIndex;not null;column:username"`
+	PasswordHash   string    `gorm:"not null;column:passwordHash"`
+	ProfilePicture string    `gorm:"not null;column:profilePicture"`
+	FirstName      string    `gorm:"not null;column:firstName"`
+	LastName       string    `gorm:"not null;column:lastName"`
+	DateCreated    time.Time `gorm:"not null;default:CURRENT_TIMESTAMP;column:dateCreated"`
 }
 
-type Post struct {
-    PostID        uint           `gorm:"primaryKey"`
-    UserID        uint           `gorm:"not null"`
-    LocationID    uint           `gorm:"not null"`
-    Description   string         `gorm:"type:text"`
-    CommentsCount int            `gorm:"not null"`
-    Image         string         `gorm:"size:255"`
-    Comments      []Comment      `gorm:"foreignKey:PostID"`
-    gorm.Model
-}
-
-type Location struct {
-    LocationID uint    `gorm:"primaryKey"`
-    Latitude   float64 `gorm:"not null"`
-    Longitude  float64 `gorm:"not null"`
-    Country    string  `gorm:"size:255"`
-    City       string  `gorm:"size:255"`
-    Posts      []Post  `gorm:"foreignKey:LocationID"`
-    Reviews    []Review `gorm:"foreignKey:LocationID"`
-    gorm.Model
-}
-
-type Comment struct {
-    CommentID uint   `gorm:"primaryKey"`
-    PostID    uint   `gorm:"not null"`
-    UserID    uint   `gorm:"not null"`
-    Content   string `gorm:"type:text"`
-    gorm.Model
+func (User) TableName() string {
+	return "User"
 }
 
 type Follow struct {
-    FollowerID uint `gorm:"primaryKey"`
-    FollowedID uint `gorm:"primaryKey"`
-    gorm.Model
+	FollowerID uint `gorm:"primaryKey;column:followerID"`
+	FollowedID uint `gorm:"primaryKey;column:followedID"`
 }
 
-type Review struct {
-    ReviewID          uint   `gorm:"primaryKey"`
-    LocationID        uint   `gorm:"not null"`
-    ReviewDescription string `gorm:"type:text"`
-    ReviewRating      int    `gorm:"not null"`
-    gorm.Model
+func (Follow) TableName() string {
+	return "Follow"
+}
+
+type Location struct {
+	LocationID uint    `gorm:"primaryKey;column:locationID;autoIncrement"`
+	Country    string  `gorm:"column:country"`
+	City       string  `gorm:"column:city"`
+	Latitude   float64 `gorm:"not null;column:latitude"`
+	Longitude  float64 `gorm:"not null;column:longitude"`
+}
+
+func (Location) TableName() string {
+	return "Location"
+}
+
+type Post struct {
+	PostID        uint   `gorm:"primaryKey;column:postID;autoIncrement"`
+	UserID        uint   `gorm:"not null;column:userID"`
+	Description   string `gorm:"not null;column:description"`
+	CommentsCount int    `gorm:"not null;column:commentsCount"`
+	Image         string `gorm:"not null;column:image"`
+	LocationID    uint   `gorm:"column:locationID"`
+}
+
+func (Post) TableName() string {
+	return "Post"
+}
+
+type Comment struct {
+	CommentID uint   `gorm:"primaryKey;column:commentID;autoIncrement"`
+	PostID    uint   `gorm:"not null;column:postID"`
+	UserID    uint   `gorm:"not null;column:userID"`
+	Content   string `gorm:"not null;column:content"`
+}
+
+func (Comment) TableName() string {
+	return "Comment"
 }
