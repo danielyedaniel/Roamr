@@ -15,6 +15,9 @@ FROM '/docker-entrypoint-initdb.d/data/follows_500.csv' DELIMITER ',' CSV HEADER
 COPY "Comment" ("commentID", "postID", "userID", "content")
 FROM '/docker-entrypoint-initdb.d/data/comments_2000.csv' DELIMITER ',' CSV HEADER;
 
+COPY "Rating" ("userID", "locationID", "rating")
+FROM '/docker-entrypoint-initdb.d/data/ratings_2000.csv' DELIMITER ',' CSV HEADER;
+
 SELECT setval(pg_get_serial_sequence('"Location"', 'locationID'), COALESCE(MAX("locationID"), 1) + 1, false) FROM "Location";
 SELECT setval(pg_get_serial_sequence('"User"', 'userID'), COALESCE(MAX("userID"), 1) + 1, false) FROM "User";
 SELECT setval(pg_get_serial_sequence('"Post"', 'postID'), COALESCE(MAX("postID"), 1) + 1, false) FROM "Post";

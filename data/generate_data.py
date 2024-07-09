@@ -135,3 +135,29 @@ with open('follows_500.csv', 'w', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=follows_data[0].keys())
     writer.writeheader()
     writer.writerows(follows_data)
+
+# ratings data
+ratings_data = []
+existing_ratings = set()
+
+while len(ratings_data) < 2000:
+    userID = random.randint(1, 100)
+    locationID = random.randint(1, 100)
+    rating = random.randint(1, 5)
+
+    rating_record = (userID, locationID)
+    
+    if rating_record in existing_ratings:
+        continue
+
+    existing_ratings.add(rating_record)
+    ratings_data.append({
+        "userID": userID,
+        "locationID": locationID,
+        "rating": rating
+    })
+
+with open('ratings_2000.csv', 'w', newline='') as f:
+    writer = csv.DictWriter(f, fieldnames=["userID", "locationID", "rating"])
+    writer.writeheader()
+    writer.writerows(ratings_data)
