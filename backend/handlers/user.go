@@ -23,6 +23,13 @@ type SearchRequest struct {
     Username string `json:"username"`
 }
 
+type PostRequest struct {
+	UserID      uint   `json:"user_id"`
+	Description string `json:"description"`
+	Image       string `json:"image"`
+	LocationID  uint   `json:"location_id,omitempty"`
+}
+
 func SignupHandler(db *gorm.DB) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         var creds Credentials
@@ -106,3 +113,43 @@ func SearchHandler(db *gorm.DB) http.HandlerFunc {
     }
 }
 
+func LocationSearchHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var locations []models.Location
+		if err := db.Find(&locations).Error; err != nil {
+			http.Error(w, "Error querying database", http.StatusInternalServerError)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(locations); err != nil {
+			http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		}
+	}
+}
+
+func PostHandler(db *gorm.DB) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        var postReq PostRequest
+        if err := json.NewDecoder(r.Body).Decode(&postReq); err != nil {
+            http.Error(w, "Invalid request payload", http.StatusBadRequest)
+            return
+        }
+
+        post := models.Post{
+            UserID:        postReq.UserID,
+            Description:   postReq.Description,
+            CommentsCount: 0,
+            Image:         postReq.Image,
+            LocationID:    postReq.LocationID,
+        }
+
+        if err := db.Create(&post).Error; err != nil {
+            http.Error(w, "Error saving post to database", http.StatusInternalServerError)
+            return
+        }
+
+        w.WriteHeader(http.StatusCreated)
+        fmt.Fprintf(w, "Post created successfully")
+    }
+}
