@@ -228,29 +228,6 @@ func PostHandler(db *gorm.DB) http.HandlerFunc {
 	}
 }
 
-// func GetPostsByUserHandler(db *gorm.DB) http.HandlerFunc {
-//     return func(w http.ResponseWriter, r *http.Request) {
-//         userIDStr := r.URL.Query().Get("user_id")
-//         userID, err := strconv.Atoi(userIDStr)
-//         if err != nil {
-//             http.Error(w, "Invalid user_id", http.StatusBadRequest)
-//             return
-//         }
-
-//         var posts []models.Post
-//         if err := db.Where("user_id = ?", userID).Find(&posts).Error; err != nil {
-//             http.Error(w, fmt.Sprintf("Error querying database, %v", err), http.StatusInternalServerError)
-//             return
-//         }
-
-//         w.Header().Set("Content-Type", "application/json")
-//         if err := json.NewEncoder(w).Encode(posts); err != nil {
-//             http.Error(w, "Error encoding response", http.StatusInternalServerError)
-//         }
-//     }
-// }
-
-
 func GetPostsByUserHandler(db *gorm.DB) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         userIDStr := r.URL.Query().Get("user_id")
