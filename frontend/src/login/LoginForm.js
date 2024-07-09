@@ -42,12 +42,12 @@ const LoginForm = () => {
             if (response.ok) {
                 const data = await response.json(); // Parse the JSON response
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('user_id', data.userID);
+                localStorage.setItem('user_id', data.user_id);
                 localStorage.setItem('username', data.username);
                 localStorage.setItem('email', data.email);
-                localStorage.setItem('firstName', data.firstName);
-                localStorage.setItem('lastName', data.lastName);
-                localStorage.setItem('profilePicture', data.profilePicture);
+                localStorage.setItem('firstName', data.first_name);
+                localStorage.setItem('lastName', data.last_name);
+                localStorage.setItem('profilePicture', data.profile_picture);
                 navigate('/home');
             } else {
                 const errorText = await response.text();
