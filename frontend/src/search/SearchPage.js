@@ -7,6 +7,7 @@ const theme = createTheme();
 const SearchPage = () => {
     const [searchUsername, setSearchUsername] = useState('');
     const [results, setResults] = useState([]);
+    const userID = 1; // Replace this with the actual logged-in user's ID
 
     const handleSearch = async (event) => {
         event.preventDefault();
@@ -20,6 +21,28 @@ const SearchPage = () => {
             });
             const data = await response.json();
             setResults(data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleFollow = async (followedID) => {
+        try {
+            const response = await fetch('http://localhost:8000/follow', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    followerID: userID,
+                    followedID: followedID,
+                }),
+            });
+            if (response.ok) {
+                alert(`Followed user with ID: ${followedID}`);
+            } else {
+                alert(`Failed to follow user with ID: ${followedID}`);
+            }
         } catch (error) {
             console.error('Error:', error);
         }
@@ -71,6 +94,7 @@ const SearchPage = () => {
                                     <TableCell>Username</TableCell>
                                     <TableCell>First Name</TableCell>
                                     <TableCell>Last Name</TableCell>
+                                    <TableCell>Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -81,6 +105,14 @@ const SearchPage = () => {
                                         </TableCell>
                                         <TableCell>{row.FirstName}</TableCell>
                                         <TableCell>{row.LastName}</TableCell>
+                                        <TableCell>
+                                            <Button
+                                                variant="contained"
+                                                onClick={() => handleFollow(row.ID)}
+                                            >
+                                                Follow
+                                            </Button>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
