@@ -38,11 +38,7 @@ const SearchPage = () => {
                     followedID: followedID,
                 }),
             });
-            if (response.ok) {
-                alert(`Followed user with ID: ${followedID}`);
-            } else {
-                alert(`Failed to follow user with ID: ${followedID}`);
-            }
+            alert(`Followed user!`);
         } catch (error) {
             console.error('Error:', error);
         }
