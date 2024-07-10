@@ -13,16 +13,16 @@ import (
 )
 
 type Credentials struct {
-    Username       string `json:"username"`
-    Password       string `json:"password"`
-    Email          string `json:"email"`
-    ProfilePicture string `json:"profile_picture"`
-    FirstName      string `json:"first_name"`
-    LastName       string `json:"last_name"`
+	Username       string `json:"username"`
+	Password       string `json:"password"`
+	Email          string `json:"email"`
+	ProfilePicture string `json:"profile_picture"`
+	FirstName      string `json:"first_name"`
+	LastName       string `json:"last_name"`
 }
 
 type SearchRequest struct {
-    Username string `json:"username"`
+	Username string `json:"username"`
 }
 
 type PostRequest struct {
@@ -58,6 +58,58 @@ type LocationSearchRequest struct {
 	City       string `json:"city"`
 	LocationID uint   `json:"location_id"`
 	Country    string `json:"country"`
+}
+
+type FollowRequest struct {
+	FollowerID uint `json:"followerID"`
+	FollowedID uint `json:"followedID"`
+}
+
+func FollowHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var followReq FollowRequest
+		if err := json.NewDecoder(r.Body).Decode(&followReq); err != nil {
+			http.Error(w, "Invalid request payload", http.StatusBadRequest)
+			return
+		}
+
+		if followReq.FollowerID == followReq.FollowedID {
+			http.Error(w, "Follower and followed IDs cannot be the same", http.StatusBadRequest)
+			return
+		}
+
+		follow := models.Follow{
+			FollowerID: followReq.FollowerID,
+			FollowedID: followReq.FollowedID,
+		}
+
+		if err := db.Create(&follow).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error saving follow to database, %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusCreated)
+		fmt.Fprintf(w, "Follow created successfully")
+	}
+}
+
+func UnfollowHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var followReq FollowRequest
+		if err := json.NewDecoder(r.Body).Decode(&followReq); err != nil {
+			http.Error(w, "Invalid request payload", http.StatusBadRequest)
+			return
+		}
+
+		if err := db.Where("follower_id = ? AND followed_id = ?", followReq.FollowerID, followReq.FollowedID).
+			Delete(&models.Follow{}).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error deleting follow from database, %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprintf(w, "Unfollowed successfully")
+	}
 }
 
 func SignupHandler(db *gorm.DB) http.HandlerFunc {
@@ -149,24 +201,24 @@ func LoginHandler(db *gorm.DB) http.HandlerFunc {
 }
 
 func SearchHandler(db *gorm.DB) http.HandlerFunc {
-    return func(w http.ResponseWriter, r *http.Request) {
-        var searchReq SearchRequest
-        if err := json.NewDecoder(r.Body).Decode(&searchReq); err != nil {
-            http.Error(w, "Invalid request payload", http.StatusBadRequest)
-            return
-        }
+	return func(w http.ResponseWriter, r *http.Request) {
+		var searchReq SearchRequest
+		if err := json.NewDecoder(r.Body).Decode(&searchReq); err != nil {
+			http.Error(w, "Invalid request payload", http.StatusBadRequest)
+			return
+		}
 
-        var users []models.User
-        if err := db.Where("username LIKE ?", "%"+searchReq.Username+"%").Find(&users).Error; err != nil {
-            http.Error(w, "Error querying database", http.StatusInternalServerError)
-            return
-        }
+		var users []models.User
+		if err := db.Where("username LIKE ?", "%"+searchReq.Username+"%").Find(&users).Error; err != nil {
+			http.Error(w, "Error querying database", http.StatusInternalServerError)
+			return
+		}
 
-        w.Header().Set("Content-Type", "application/json")
-        if err := json.NewEncoder(w).Encode(users); err != nil {
-            http.Error(w, "Error encoding response", http.StatusInternalServerError)
-        }
-    }
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(users); err != nil {
+			http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		}
+	}
 }
 
 func LocationSearchHandler(db *gorm.DB) http.HandlerFunc {
@@ -229,21 +281,21 @@ func PostHandler(db *gorm.DB) http.HandlerFunc {
 }
 
 func GetPostsByUserHandler(db *gorm.DB) http.HandlerFunc {
-    return func(w http.ResponseWriter, r *http.Request) {
-        userIDStr := r.URL.Query().Get("user_id")
-        userID, err := strconv.Atoi(userIDStr)
-        if err != nil {
-            http.Error(w, "Invalid user_id", http.StatusBadRequest)
-            return
-        }
+	return func(w http.ResponseWriter, r *http.Request) {
+		userIDStr := r.URL.Query().Get("user_id")
+		userID, err := strconv.Atoi(userIDStr)
+		if err != nil {
+			http.Error(w, "Invalid user_id", http.StatusBadRequest)
+			return
+		}
 
-        var posts []struct {
-            models.Post
-            City    string `json:"city"`
-            Country string `json:"country"`
-        }
+		var posts []struct {
+			models.Post
+			City    string `json:"city"`
+			Country string `json:"country"`
+		}
 
-        query := `
+		query := `
             SELECT p.*, l.city, l.country
             FROM posts p
             LEFT JOIN locations l ON p.location_id = l.location_id
@@ -251,18 +303,17 @@ func GetPostsByUserHandler(db *gorm.DB) http.HandlerFunc {
             ORDER BY p.date_created DESC;
         `
 
-        if err := db.Raw(query, userID).Scan(&posts).Error; err != nil {
-            http.Error(w, fmt.Sprintf("Error querying database, %v", err), http.StatusInternalServerError)
-            return
-        }
+		if err := db.Raw(query, userID).Scan(&posts).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error querying database, %v", err), http.StatusInternalServerError)
+			return
+		}
 
-        w.Header().Set("Content-Type", "application/json")
-        if err := json.NewEncoder(w).Encode(posts); err != nil {
-            http.Error(w, "Error encoding response", http.StatusInternalServerError)
-        }
-    }
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(posts); err != nil {
+			http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		}
+	}
 }
-
 
 func DeletePostHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
