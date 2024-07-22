@@ -3,6 +3,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.16.0",
-    "axios": "^1.7.2"
+    "axios": "^1.7.2",
+    "mapbox-gl": "^3.5.2"
   }
 }
