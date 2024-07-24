@@ -17,6 +17,7 @@ function App() {
         <Route path="/post" element={<PostPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/map" element={<MapPage />} />
+        <Route path="/rating" element={<MapPage />} />
       </Routes>
     </Router>
   );

@@ -23,8 +23,8 @@ const ProfilePage = () => {
         console.log(`Delete button clicked for postID: ${postID}`);
         try {
             await axios.delete(`http://localhost:8000/deletePost?postID=${postID}`);
-            setPosts([]); 
-            fetchPosts(); 
+            setPosts([]);
+            fetchPosts();
         } catch (error) {
             console.error("There was an error deleting the post!", error);
         }
@@ -33,32 +33,36 @@ const ProfilePage = () => {
     return (
         <div>
             <Typography variant="h4" gutterBottom>User Posts</Typography>
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>City</TableCell>
-                            <TableCell>Country</TableCell>
-                            <TableCell>Image</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {posts.map(post => (
-                            <TableRow key={post.PostID}>
-                                <TableCell>{post.city}</TableCell>
-                                <TableCell>{post.country}</TableCell>
-                                <TableCell>{post.image}</TableCell>
-                                <TableCell>{post.Description}</TableCell>
-                                <TableCell>
-                                    <Button variant="contained" color="secondary" onClick={() => deletePost(post.PostID)}>Delete</Button>
-                                </TableCell>
+            {Array.isArray(posts) && posts.length > 0 ? (
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>City</TableCell>
+                                <TableCell>Country</TableCell>
+                                <TableCell>Image</TableCell>
+                                <TableCell>Description</TableCell>
+                                <TableCell>Actions</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {posts.map(post => (
+                                <TableRow key={post.PostID}>
+                                    <TableCell>{post.city}</TableCell>
+                                    <TableCell>{post.country}</TableCell>
+                                    <TableCell>{post.image}</TableCell>
+                                    <TableCell>{post.Description}</TableCell>
+                                    <TableCell>
+                                        <Button variant="contained" color="secondary" onClick={() => deletePost(post.PostID)}>Delete</Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            ) : (
+                <Typography variant="body1">No posts available.</Typography>
+            )}
         </div>
     );
 };
