@@ -71,6 +71,14 @@ type RatingRequest struct {
 	Rating     int  `json:"rating"`
 }
 
+type CommentResponse struct {
+	CommentID   uint      `json:"comment_id"`
+	PostID      uint      `json:"post_id"`
+	UserID      uint      `json:"user_id"`
+	Content     string    `json:"content"`
+	DateCreated time.Time `json:"date_created"`
+}
+
 func FollowHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var followReq FollowRequest
@@ -508,6 +516,61 @@ func AddLocationHandler(db *gorm.DB) http.HandlerFunc {
     }
 }
 
+func AddCommentHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var commentReq struct {
+			UserID  uint   `json:"user_id"`
+			PostID  uint   `json:"post_id"`
+			Content string `json:"content"`
+		}
+
+		if err := json.NewDecoder(r.Body).Decode(&commentReq); err != nil {
+			http.Error(w, "Invalid request payload", http.StatusBadRequest)
+			return
+		}
+
+		comment := models.Comment{
+			UserID:  commentReq.UserID,
+			PostID:  commentReq.PostID,
+			Content: commentReq.Content,
+		}
+
+		// Create the comment
+		if err := db.Create(&comment).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error saving comment to database: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusCreated)
+		fmt.Fprintf(w, "Comment added successfully")
+	}
+}
+
+
+func GetCommentsHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		postIDStr := r.URL.Query().Get("post_id")
+		postID, err := strconv.Atoi(postIDStr)
+		if err != nil {
+			http.Error(w, "Invalid post_id", http.StatusBadRequest)
+			return
+		}
+
+		var comments []CommentResponse
+		if err := db.Table("comments").
+			Where("post_id = ?", postID).
+			Select("comment_id, post_id, user_id, content, date_created").
+			Scan(&comments).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error querying database: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(comments); err != nil {
+			http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		}
+	}
+}
 
 func GetLocationsSortedByRatingCountHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {

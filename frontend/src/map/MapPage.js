@@ -14,57 +14,56 @@ const MapPage = () => {
     'mapbox://styles/mapbox/satellite-streets-v11'
   ];
 
-  useEffect(() => {
-    if (mapRef.current) {
-      mapRef.current.remove();
-    }
+  const addCustomMarkerAndPoints = (map, data) => {
+    console.log('Adding custom markers and points');
+    
+    map.loadImage(
+      'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+      (error, image) => {
+        if (error) {
+          console.error('Error loading marker image:', error);
+          return;
+        }
+        if (!map.hasImage('custom-marker')) {
+          map.addImage('custom-marker', image);
+        }
 
-    const fetchLocations = async () => {
-      try {
-        const response = await fetch('http://localhost:8000/postlocation?user_id=1');
-        const data = await response.json();
+        const features = data.filter(location => {
+          if (!location || location.longitude == null || location.latitude == null) {
+            console.warn('Invalid location data:', location);
+            return false;
+          }
+          return true;
+        }).map(location => {
+          console.log('Creating feature for location:', location);
 
-        console.log(data); // Debugging: Log the fetched data
+          // Parse posts if it's a string
+          const posts = typeof location.posts === 'string' ? JSON.parse(location.posts) : location.posts;
 
-        mapboxgl.accessToken = 'pk.eyJ1IjoidGVzdGNzMzQ4IiwiYSI6ImNseXpkYXdtcDJoeDcyanB1NnEyN252ejkifQ.KFDQShkH-emDn4Iz77W2jQ'; // Add your Mapbox access token here
-
-        mapRef.current = new mapboxgl.Map({
-          container: mapContainerRef.current,
-          style: styles[styleIndex],
-          center: [-96, 37.8],
-          zoom: 3,
-          projection: 'globe' // Ensure the map is rendered as a globe
-        });
-
-        mapRef.current.on('style.load', () => {
-          mapRef.current.setFog({}); // Add fog to the map for better visualization of the globe
-        });
-
-        mapRef.current.on('load', () => {
-          const features = data.map(location => {
-            // Add checks to ensure location properties are defined
-            const longitude = location.Longitude;
-            const latitude = location.Latitude;
-            const title = location.LocationID ? location.LocationID.toString() : 'Unknown';
-
-            if (longitude !== undefined && latitude !== undefined) {
-              return {
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  coordinates: [longitude, latitude]
-                },
-                properties: {
-                  title
-                }
-              };
-            } else {
-              console.error('Invalid location data', location); // Debugging: Log invalid data
-              return null;
+          return {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [parseFloat(location.longitude), parseFloat(location.latitude)]
+            },
+            properties: {
+              title: location.location_id ? location.location_id.toString() : 'Unknown',
+              posts: Array.isArray(posts) ? posts : []
             }
-          }).filter(feature => feature !== null);
+          };
+        });
 
-          mapRef.current.addSource('points', {
+        console.log('Created features:', features);
+
+        if (map.getSource('points')) {
+          console.log('Updating existing source');
+          map.getSource('points').setData({
+            type: 'FeatureCollection',
+            features
+          });
+        } else {
+          console.log('Adding new source and layer');
+          map.addSource('points', {
             type: 'geojson',
             data: {
               type: 'FeatureCollection',
@@ -72,12 +71,12 @@ const MapPage = () => {
             }
           });
 
-          mapRef.current.addLayer({
+          map.addLayer({
             id: 'points',
             type: 'symbol',
             source: 'points',
             layout: {
-              'icon-image': 'marker-15',
+              'icon-image': 'custom-marker',
               'text-field': ['get', 'title'],
               'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
               'text-offset': [0, 1.25],
@@ -85,44 +84,96 @@ const MapPage = () => {
             }
           });
 
-          // Add a right-click event listener to the entire map
-          mapRef.current.getCanvas().addEventListener('contextmenu', (e) => {
-            e.preventDefault();
+          // Add click event listener
+          map.on('click', 'points', handleClick);
+        }
+      }
+    );
+  };
 
-            // Get the coordinates of the click
-            const bbox = mapRef.current.getCanvas().getBoundingClientRect();
-            const x = e.clientX - bbox.left;
-            const y = e.clientY - bbox.top;
-            const coordinates = mapRef.current.unproject([x, y]);
+  const handleClick = (e) => {
+    const coordinates = e.lngLat;
+    const properties = e.features[0].properties;
 
-            // Form HTML
-            const formHTML = `
-              <form id="popup-form">
-                <label for="description">Description:</label><br>
-                <input type="text" id="description" name="description"><br>
-                <label for="image">Image URL:</label><br>
-                <input type="text" id="image" name="image"><br>
-                <input type="text" id="latitude" name="latitude" value="${coordinates.lat}">
-                <input type="text" id="longitude" name="longitude" value="${coordinates.lng}">
-                <button type="button">Post</button>
-              </form>
-            `;
+    if (properties.posts && properties.posts.length > 0) {
+      const firstPost = properties.posts[0];
 
-            new mapboxgl.Popup()
-              .setLngLat(coordinates)
-              .setHTML(formHTML)
-              .addTo(mapRef.current);
+      // Debugging logs
+      console.log('First Post:', firstPost);
+      console.log('Image Base64:', firstPost.image);
+      console.log('Description:', firstPost.description);
+
+      const formHTML = `
+        <div>
+          ${firstPost.image ? `<img src="data:image/jpeg;base64,${firstPost.image}" alt="Post Image" style="width: 100%; height: auto;"/>` : '<p>No image available</p>'}
+          ${firstPost.description ? `<p>${firstPost.description}</p>` : '<p>No description available</p>'}
+        </div>
+      `;
+
+      new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(formHTML)
+        .addTo(mapRef.current);
+    } else {
+      // Handle case where no posts are available
+      new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML('<p>No posts available for this location.</p>')
+        .addTo(mapRef.current);
+    }
+  };
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/postlocation?user_id=1');
+        const data = await response.json();
+
+        console.log('Fetched data:', JSON.stringify(data, null, 2));
+
+        data.forEach((location, index) => {
+          console.log(`Location ${index}:`, {
+            location_id: location.location_id,
+            country: location.country,
+            city: location.city,
+            latitude: location.latitude,
+            longitude: location.longitude
           });
+        });
 
-          // Change the cursor to a pointer when the mouse is over the points layer.
-          mapRef.current.on('mouseenter', 'points', () => {
-            mapRef.current.getCanvas().style.cursor = 'pointer';
-          });
+        mapboxgl.accessToken = 'pk.eyJ1IjoidGVzdGNzMzQ4IiwiYSI6ImNseXpkYXdtcDJoeDcyanB1NnEyN252ejkifQ.KFDQShkH-emDn4Iz77W2jQ';
 
-          // Change it back to a pointer when it leaves.
-          mapRef.current.on('mouseleave', 'points', () => {
-            mapRef.current.getCanvas().style.cursor = '';
-          });
+        if (mapRef.current) {
+          mapRef.current.remove();
+        }
+
+        mapRef.current = new mapboxgl.Map({
+          container: mapContainerRef.current,
+          style: styles[styleIndex],
+          center: [-96, 37.8],
+          zoom: 3,
+          projection: 'globe'
+        });
+
+        mapRef.current.on('style.load', () => {
+          console.log('Map style loaded');
+          mapRef.current.setFog({});
+          addCustomMarkerAndPoints(mapRef.current, data);
+        });
+
+        mapRef.current.on('load', () => {
+          console.log('Map fully loaded');
+        });
+
+        // Add right-click event listener
+        mapRef.current.on('contextmenu', handleRightClick);
+
+        // Change cursor on hover
+        mapRef.current.on('mouseenter', 'points', () => {
+          mapRef.current.getCanvas().style.cursor = 'pointer';
+        });
+        mapRef.current.on('mouseleave', 'points', () => {
+          mapRef.current.getCanvas().style.cursor = '';
         });
       } catch (error) {
         console.error('Error fetching locations:', error);
@@ -132,20 +183,36 @@ const MapPage = () => {
     fetchLocations();
   }, [styleIndex]);
 
+  const handleRightClick = (e) => {
+    e.preventDefault();
+    
+    const coordinates = e.lngLat;
+
+    const formHTML = `
+      <form id="popup-form">
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description"><br>
+        <label for="image">Image URL:</label><br>
+        <input type="text" id="image" name="image"><br>
+        <input type="hidden" id="latitude" name="latitude" value="${coordinates.lat}">
+        <input type="hidden" id="longitude" name="longitude" value="${coordinates.lng}">
+        <button type="button">Post</button>
+      </form>
+    `;
+
+    new mapboxgl.Popup()
+      .setLngLat(coordinates)
+      .setHTML(formHTML)
+      .addTo(mapRef.current);
+  };
+
   const cycleStyle = () => {
     setStyleIndex((prevIndex) => (prevIndex + 1) % styles.length);
   };
 
   return (
     <div style={{ position: 'relative' }}>
-      <div
-        style={{
-          position: 'absolute',
-          top: 10,
-          right: 10,
-          zIndex: 1
-        }}
-      >
+      <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 1 }}>
         <button onClick={cycleStyle}>Cycle Maps</button>
       </div>
       <div id="map" style={{ height: '100vh', width: '100%' }} ref={mapContainerRef}></div>
