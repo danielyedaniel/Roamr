@@ -28,7 +28,10 @@ func main() {
 	mux.HandleFunc("/follow", handlers.FollowHandler(database))
 	mux.HandleFunc("/unfollow", handlers.UnfollowHandler(database))
 	mux.HandleFunc("/postlocation", handlers.GetLocationsAndPostsByUserAndFollowingHandler(database))
-	mux.HandleFunc("/rating", handlers.AddRatingHandler(database))
+	mux.HandleFunc("/locations", handlers.GetLocationsHandler(database))
+	mux.HandleFunc("/location", handlers.AddLocationHandler(database))
+
+
 
 	corsMux := setupCORS(mux)
 

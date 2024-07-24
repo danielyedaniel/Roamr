@@ -49,3 +49,4 @@ type Rating struct {
 	LocationID uint `gorm:"primaryKey"`
 	Rating     int  `gorm:"not null"`
 }
+

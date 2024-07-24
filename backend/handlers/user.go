@@ -451,3 +451,61 @@ func AddRatingHandler(db *gorm.DB) http.HandlerFunc {
 		fmt.Fprintf(w, "Rating added successfully")
 	}
 }
+
+func GetLocationsHandler(db *gorm.DB) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        var locations []struct {
+            LocationID uint    `json:"location_id"`
+            Country    string  `json:"country"`
+            City       string  `json:"city"`
+            Latitude   float64 `json:"latitude"`
+            Longitude  float64 `json:"longitude"`
+        }
+
+        query := `
+            SELECT location_id, country, city, latitude, longitude
+            FROM locations;
+        `
+
+        if err := db.Raw(query).Scan(&locations).Error; err != nil {
+            http.Error(w, fmt.Sprintf("Error querying database: %v", err), http.StatusInternalServerError)
+            return
+        }
+
+        w.Header().Set("Content-Type", "application/json")
+        if err := json.NewEncoder(w).Encode(locations); err != nil {
+            http.Error(w, "Error encoding response", http.StatusInternalServerError)
+        }
+    }
+}
+
+
+func AddLocationHandler(db *gorm.DB) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        var location models.Location
+        err := json.NewDecoder(r.Body).Decode(&location)
+        if err != nil {
+            http.Error(w, fmt.Sprintf("Invalid input: %v", err), http.StatusBadRequest)
+            return
+        }
+
+        // Log the decoded location to debug
+        fmt.Printf("Decoded location: %+v\n", location)
+
+        // Ensure required fields are provided
+        if location.Country == "" || location.City == "" || location.Latitude == 0 || location.Longitude == 0 {
+            http.Error(w, "Missing required fields", http.StatusBadRequest)
+            return
+        }
+
+        if err := db.Create(&location).Error; err != nil {
+            http.Error(w, fmt.Sprintf("Error adding location to database: %v", err), http.StatusInternalServerError)
+            return
+        }
+
+        w.WriteHeader(http.StatusCreated)
+        fmt.Fprintf(w, "Location added successfully")
+    }
+}
+
+

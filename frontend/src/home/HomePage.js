@@ -77,6 +77,13 @@ const HomePage = () => {
                         </Button>
                         <Button
                             variant="contained"
+                            color="primary"
+                            onClick={() => handleNavigation('/locations')}
+                        >
+                            Locations
+                        </Button>
+                        <Button
+                            variant="contained"
                             color="error"
                             onClick={handleLogout}
                         >

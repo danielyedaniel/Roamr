@@ -5,6 +5,7 @@ import HomePage from './home/HomePage';
 import SearchPage from './search/SearchPage';
 import PostPage from './post/PostPage';
 import ProfilePage from './profile/ProfilePage';
+import Locations from './locations/Locations';
 import MapPage from './map/MapPage';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/locations" element={<Locations />} />
         <Route path="/map" element={<MapPage />} />
       </Routes>
     </Router>
