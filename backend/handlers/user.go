@@ -65,6 +65,12 @@ type FollowRequest struct {
 	FollowedID uint `json:"followedID"`
 }
 
+type RatingRequest struct {
+	UserID     uint `json:"user_id"`
+	LocationID uint `json:"location_id"`
+	Rating     int  `json:"rating"`
+}
+
 func FollowHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var followReq FollowRequest
@@ -419,5 +425,29 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 		if err := json.NewEncoder(w).Encode(locationWithPosts); err != nil {
 			http.Error(w, "Error encoding response", http.StatusInternalServerError)
 		}
+	}
+}
+
+func AddRatingHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var ratingReq RatingRequest
+		if err := json.NewDecoder(r.Body).Decode(&ratingReq); err != nil {
+			http.Error(w, "Invalid request payload", http.StatusBadRequest)
+			return
+		}
+
+		rating := models.Rating{
+			UserID:     ratingReq.UserID,
+			LocationID: ratingReq.LocationID,
+			Rating:     ratingReq.Rating,
+		}
+
+		if err := db.Create(&rating).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error saving rating to database: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusCreated)
+		fmt.Fprintf(w, "Rating added successfully")
 	}
 }
