@@ -339,7 +339,7 @@ func DeletePostHandler(db *gorm.DB) http.HandlerFunc {
 	}
 }
 
-func GetLocationsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc {
+func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		userIDStr := r.URL.Query().Get("user_id")
 		userID, err := strconv.Atoi(userIDStr)
@@ -348,28 +348,64 @@ func GetLocationsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc {
 			return
 		}
 
-		var locations []models.Location
+		type Post struct {
+			PostID        uint   `json:"post_id"`
+			UserID        uint   `json:"user_id"`
+			Description   string `json:"description"`
+			CommentsCount int    `json:"comments_count"`
+			Image         string `json:"image"`
+			LocationID    uint   `json:"location_id"`
+		}
+
+		type LocationWithPosts struct {
+			models.Location
+			Posts []Post `json:"posts"`
+		}
+
+		var locationWithPosts []LocationWithPosts
 
 		query := `
-            SELECT DISTINCT l.*
-            FROM posts p
-            LEFT JOIN locations l ON p.location_id = l.location_id
-            WHERE (p.user_id = ? OR p.user_id IN (
-                SELECT followed_id
-                FROM follows
-                WHERE follower_id = ?
-            )) AND l.location_id IS NOT NULL
-        `
+			SELECT p.post_id, p.user_id, p.description, p.comments_count, p.image, p.location_id, l.location_id, l.city, l.country
+			FROM posts p
+			LEFT JOIN locations l ON p.location_id = l.location_id
+			WHERE (p.user_id = ? OR p.user_id IN (
+				SELECT followed_id
+				FROM follows
+				WHERE follower_id = ?
+			)) AND l.location_id IS NOT NULL
+		`
 
-		if err := db.Raw(query, userID, userID).Scan(&locations).Error; err != nil {
-			http.Error(w, fmt.Sprintf("Error querying database, %v", err), http.StatusInternalServerError)
+		rows, err := db.Raw(query, userID, userID).Rows()
+		if err != nil {
+			http.Error(w, fmt.Sprintf("Error querying database: %v", err), http.StatusInternalServerError)
 			return
+		}
+		defer rows.Close()
+
+		locationMap := make(map[uint]*LocationWithPosts)
+		for rows.Next() {
+			var post Post
+			var location models.Location
+			if err := rows.Scan(&post.PostID, &post.UserID, &post.Description, &post.CommentsCount, &post.Image, &post.LocationID, &location.LocationID, &location.City, &location.Country); err != nil {
+				http.Error(w, fmt.Sprintf("Error scanning row: %v", err), http.StatusInternalServerError)
+				return
+			}
+			if _, exists := locationMap[location.LocationID]; !exists {
+				locationMap[location.LocationID] = &LocationWithPosts{
+					Location: location,
+					Posts:    []Post{},
+				}
+			}
+			locationMap[location.LocationID].Posts = append(locationMap[location.LocationID].Posts, post)
+		}
+
+		for _, loc := range locationMap {
+			locationWithPosts = append(locationWithPosts, *loc)
 		}
 
 		w.Header().Set("Content-Type", "application/json")
-		if err := json.NewEncoder(w).Encode(locations); err != nil {
+		if err := json.NewEncoder(w).Encode(locationWithPosts); err != nil {
 			http.Error(w, "Error encoding response", http.StatusInternalServerError)
 		}
 	}
 }
-

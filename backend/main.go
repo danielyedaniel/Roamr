@@ -17,7 +17,6 @@ func main() {
 		log.Fatalf("Could not connect to the database: %v", err)
 	}
 	defer db.CloseDB(database)
-
 	mux := http.NewServeMux()
 	mux.HandleFunc("/login", handlers.LoginHandler(database))
 	mux.HandleFunc("/signup", handlers.SignupHandler(database))
@@ -28,7 +27,7 @@ func main() {
 	mux.HandleFunc("/deletePost", handlers.DeletePostHandler(database))
 	mux.HandleFunc("/follow", handlers.FollowHandler(database))
 	mux.HandleFunc("/unfollow", handlers.UnfollowHandler(database))
-	mux.HandleFunc("/postlocation", handlers.GetLocationsByUserAndFollowingHandler(database))
+	mux.HandleFunc("/postlocation", handlers.GetLocationsAndPostsByUserAndFollowingHandler(database))
 
 	corsMux := setupCORS(mux)
 
