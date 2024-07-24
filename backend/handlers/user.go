@@ -358,14 +358,19 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 		}
 
 		type LocationWithPosts struct {
-			models.Location
-			Posts []Post `json:"posts"`
+			LocationID uint    `json:"location_id"`
+			City       string  `json:"city"`
+			Country    string  `json:"country"`
+			Longitude  float64 `json:"longitude"`
+			Latitude   float64 `json:"latitude"`
+			Posts      []Post  `json:"posts"`
 		}
 
 		var locationWithPosts []LocationWithPosts
 
 		query := `
-			SELECT p.post_id, p.user_id, p.description, p.comments_count, p.image, p.location_id, l.location_id, l.city, l.country
+			SELECT p.post_id, p.user_id, p.description, p.comments_count, p.image, p.location_id, 
+			       l.location_id, l.city, l.country, l.longitude, l.latitude
 			FROM posts p
 			LEFT JOIN locations l ON p.location_id = l.location_id
 			WHERE (p.user_id = ? OR p.user_id IN (
@@ -385,18 +390,25 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 		locationMap := make(map[uint]*LocationWithPosts)
 		for rows.Next() {
 			var post Post
-			var location models.Location
-			if err := rows.Scan(&post.PostID, &post.UserID, &post.Description, &post.CommentsCount, &post.Image, &post.LocationID, &location.LocationID, &location.City, &location.Country); err != nil {
+			var locationID uint
+			var city, country string
+			var longitude, latitude float64
+
+			if err := rows.Scan(&post.PostID, &post.UserID, &post.Description, &post.CommentsCount, &post.Image, &post.LocationID, &locationID, &city, &country, &longitude, &latitude); err != nil {
 				http.Error(w, fmt.Sprintf("Error scanning row: %v", err), http.StatusInternalServerError)
 				return
 			}
-			if _, exists := locationMap[location.LocationID]; !exists {
-				locationMap[location.LocationID] = &LocationWithPosts{
-					Location: location,
-					Posts:    []Post{},
+			if _, exists := locationMap[locationID]; !exists {
+				locationMap[locationID] = &LocationWithPosts{
+					LocationID: locationID,
+					City:       city,
+					Country:    country,
+					Longitude:  longitude,
+					Latitude:   latitude,
+					Posts:      []Post{},
 				}
 			}
-			locationMap[location.LocationID].Posts = append(locationMap[location.LocationID].Posts, post)
+			locationMap[locationID].Posts = append(locationMap[locationID].Posts, post)
 		}
 
 		for _, loc := range locationMap {
