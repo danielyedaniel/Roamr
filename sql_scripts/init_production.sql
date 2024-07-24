@@ -1,4 +1,7 @@
-\i /docker-entrypoint-initdb.d/sql_scripts/create_tables.sql
+-- SWITCH BETWEEN THE BELOW TWO CREATE TABLES FOR THE UNOPTIMIZED/UNTUNED DATABASE AND THE OPTIMIZED DATABASE
+
+-- \i /docker-entrypoint-initdb.d/sql_scripts/create_tables.sql
+\i /docker-entrypoint-initdb.d/sql_scripts/create_tables_optimized.sql
 
 COPY "locations" ("location_id", "latitude", "longitude", "country", "city")
 FROM '/docker-entrypoint-initdb.d/production_data/locations.csv' DELIMITER ',' CSV HEADER;
