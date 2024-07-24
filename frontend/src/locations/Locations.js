@@ -6,22 +6,22 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#6ba292', // Light green tint
+            main: '#6ba292', 
         },
         secondary: {
-            main: '#95c4b5', // Slightly lighter green
+            main: '#95c4b5', 
         },
         success: {
-            main: '#8bb09b', // Another shade of light green
+            main: '#8bb09b', 
         },
         warning: {
-            main: '#7f9e8b', // Another shade of light green
+            main: '#7f9e8b', 
         },
         error: {
-            main: '#748f80', // Another shade of light green
+            main: '#748f80', 
         },
         background: {
-            default: 'linear-gradient(to bottom right, #ffffff, #d0e6d7)', // Gradient background
+            default: 'linear-gradient(to bottom right, #ffffff, #d0e6d7)', 
         },
     },
     typography: {
