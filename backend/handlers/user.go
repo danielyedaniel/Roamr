@@ -509,3 +509,56 @@ func AddLocationHandler(db *gorm.DB) http.HandlerFunc {
 }
 
 
+func GetLocationsSortedByRatingCountHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var locations []struct {
+			models.Location
+			RatingCount int `json:"rating_count"`
+		}
+
+		query := `
+			SELECT l.*, COUNT(r.location_id) as rating_count
+			FROM locations l
+			LEFT JOIN ratings r ON l.location_id = r.location_id
+			GROUP BY l.location_id
+			ORDER BY rating_count DESC;
+		`
+
+		if err := db.Raw(query).Scan(&locations).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error querying database: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(locations); err != nil {
+			http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		}
+	}
+}
+
+func GetLocationsSortedByAverageRatingHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var locations []struct {
+			models.Location
+			AverageRating float64 `json:"average_rating"`
+		}
+
+		query := `
+			SELECT l.*, COALESCE(AVG(r.rating), 0) as average_rating
+			FROM locations l
+			LEFT JOIN ratings r ON l.location_id = r.location_id
+			GROUP BY l.location_id
+			ORDER BY average_rating DESC;
+		`
+
+		if err := db.Raw(query).Scan(&locations).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error querying database: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(locations); err != nil {
+			http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		}
+	}
+}
