@@ -38,8 +38,8 @@ services:
       - ./production_data:/docker-entrypoint-initdb.d/production_data
 
       # SWITCH BETWEEN THE BELOW TWO INIT SCRIPTS TO SWAP FROM SAMPLE (init.sql) TO PRODUCTION (init_production.sql)
-      - ./sql_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
-      # - ./sql_scripts/init_production.sql:/docker-entrypoint-initdb.d/init_production.sql
+      # - ./sql_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./sql_scripts/init_production.sql:/docker-entrypoint-initdb.d/init_production.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
