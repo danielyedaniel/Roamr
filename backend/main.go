@@ -28,7 +28,7 @@ func main() {
 	mux.HandleFunc("/deletePost", handlers.DeletePostHandler(database))
 	mux.HandleFunc("/follow", handlers.FollowHandler(database))
 	mux.HandleFunc("/unfollow", handlers.UnfollowHandler(database))
-	mux.HandleFunc("/postlocation", handlers.GetLocationByPostHandler(database))
+	mux.HandleFunc("/postlocation", handlers.GetLocationsByUserAndFollowingHandler(database))
 
 	corsMux := setupCORS(mux)
 
