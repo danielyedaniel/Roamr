@@ -25,3 +25,7 @@ SELECT setval(pg_get_serial_sequence('"locations"', 'location_id'), COALESCE(MAX
 SELECT setval(pg_get_serial_sequence('"users"', 'user_id'), COALESCE(MAX("user_id"), 1) + 1, false) FROM "users";
 SELECT setval(pg_get_serial_sequence('"posts"', 'post_id'), COALESCE(MAX("post_id"), 1) + 1, false) FROM "posts";
 SELECT setval(pg_get_serial_sequence('"comments"', 'comment_id'), COALESCE(MAX("comment_id"), 1) + 1, false) FROM "comments";
+
+UPDATE "posts" SET "comments_count" = (
+    SELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = "posts"."post_id"
+);

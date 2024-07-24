@@ -508,4 +508,32 @@ func AddLocationHandler(db *gorm.DB) http.HandlerFunc {
     }
 }
 
+func AddCommentHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var commentReq struct {
+			UserID  uint   `json:"user_id"`
+			PostID  uint   `json:"post_id"`
+			Content string `json:"content"`
+		}
 
+		if err := json.NewDecoder(r.Body).Decode(&commentReq); err != nil {
+			http.Error(w, "Invalid request payload", http.StatusBadRequest)
+			return
+		}
+
+		comment := models.Comment{
+			UserID:  commentReq.UserID,
+			PostID:  commentReq.PostID,
+			Content: commentReq.Content,
+		}
+
+		// Create the comment
+		if err := db.Create(&comment).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error saving comment to database: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.WriteHeader(http.StatusCreated)
+		fmt.Fprintf(w, "Comment added successfully")
+	}
+}
