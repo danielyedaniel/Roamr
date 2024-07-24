@@ -338,3 +338,50 @@ func DeletePostHandler(db *gorm.DB) http.HandlerFunc {
 		fmt.Fprintf(w, "Post deleted successfully")
 	}
 }
+
+
+func GetLocationByPostHandler(db *gorm.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		postIDStr := r.URL.Query().Get("post_id")
+		if postIDStr == "" {
+			http.Error(w, "post_id is required", http.StatusBadRequest)
+			return
+		}
+
+		postID, err := strconv.Atoi(postIDStr)
+		if err != nil {
+			http.Error(w, "Invalid post_id", http.StatusBadRequest)
+			return
+		}
+
+		var post models.Post
+		if err := db.First(&post, postID).Error; err != nil {
+			if err == gorm.ErrRecordNotFound {
+				http.Error(w, "Post not found", http.StatusNotFound)
+				return
+			}
+			http.Error(w, fmt.Sprintf("Error querying database: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		if post.LocationID == 0 {
+			http.Error(w, "No location associated with this post", http.StatusNotFound)
+			return
+		}
+
+		var location models.Location
+		if err := db.First(&location, post.LocationID).Error; err != nil {
+			if err == gorm.ErrRecordNotFound {
+				http.Error(w, "Location not found", http.StatusNotFound)
+				return
+			}
+			http.Error(w, fmt.Sprintf("Error querying database: %v", err), http.StatusInternalServerError)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(location); err != nil {
+			http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		}
+	}
+}
