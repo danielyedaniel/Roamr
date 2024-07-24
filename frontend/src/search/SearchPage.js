@@ -7,7 +7,7 @@ const theme = createTheme();
 const SearchPage = () => {
     const [searchUsername, setSearchUsername] = useState('');
     const [results, setResults] = useState([]);
-    const userID = 1; // Replace this with the actual logged-in user's ID
+    const userID = parseInt(localStorage.getItem("user_id"));
 
     const handleSearch = async (event) => {
         event.preventDefault();
@@ -50,7 +50,7 @@ const SearchPage = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="md">
                 <CssBaseline />
                 <Box
                     sx={{
@@ -87,8 +87,8 @@ const SearchPage = () => {
                     </Box>
                 </Box>
                 {results.length > 0 && (
-                    <TableContainer component={Paper} sx={{ marginTop: 4 }}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableContainer component={Paper} sx={{ marginTop: 4, maxWidth: '100%' }}>
+                        <Table sx={{ minWidth: 700 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Username</TableCell>
@@ -99,7 +99,7 @@ const SearchPage = () => {
                             </TableHead>
                             <TableBody>
                                 {results.map((row) => (
-                                    <TableRow key={row.ID}>
+                                    <TableRow key={row.UserID}>
                                         <TableCell component="th" scope="row">
                                             {row.Username}
                                         </TableCell>
@@ -108,7 +108,7 @@ const SearchPage = () => {
                                         <TableCell>
                                             <Button
                                                 variant="contained"
-                                                onClick={() => handleFollow(row.ID)}
+                                                onClick={() => handleFollow(row.UserID)}
                                             >
                                                 Follow
                                             </Button>
