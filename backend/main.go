@@ -31,6 +31,7 @@ func main() {
 	mux.HandleFunc("/locations", handlers.GetLocationsHandler(database))
 	mux.HandleFunc("/location", handlers.AddLocationHandler(database))
 	mux.HandleFunc("/comment", handlers.AddCommentHandler(database))
+	mux.HandleFunc("/comments", handlers.GetCommentsHandler(database))
 
 
 
