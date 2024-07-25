@@ -99,6 +99,62 @@ const MapPage = () => {
         );
     };
 
+
+    const fetchLocations = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/postlocation?user_id=${localStorage.getItem("user_id")}`);
+            const data = await response.json();
+
+            console.log('Fetched data:', JSON.stringify(data, null, 2));
+
+            data.forEach((location, index) => {
+                console.log(`Location ${index}:`, {
+                    location_id: location.location_id,
+                    country: location.country,
+                    city: location.city,
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                });
+            });
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoidGVzdGNzMzQ4IiwiYSI6ImNseXpkYXdtcDJoeDcyanB1NnEyN252ejkifQ.KFDQShkH-emDn4Iz77W2jQ';
+
+            if (mapRef.current) {
+                mapRef.current.remove();
+            }
+
+            mapRef.current = new mapboxgl.Map({
+                container: mapContainerRef.current,
+                style: styles[styleIndex],
+                center: [-96, 37.8],
+                zoom: 3,
+                projection: 'globe'
+            });
+
+            mapRef.current.on('style.load', () => {
+                console.log('Map style loaded');
+                mapRef.current.setFog({});
+                addCustomMarkerAndPoints(mapRef.current, data);
+            });
+
+            mapRef.current.on('load', () => {
+                console.log('Map fully loaded');
+            });
+
+            // Add right-click event listener
+            mapRef.current.on('contextmenu', handleRightClick);
+
+            // Change cursor on hover
+            mapRef.current.on('mouseenter', 'points', () => {
+                mapRef.current.getCanvas().style.cursor = 'pointer';
+            });
+            mapRef.current.on('mouseleave', 'points', () => {
+                mapRef.current.getCanvas().style.cursor = '';
+            });
+        } catch (error) {
+            console.error('Error fetching locations:', error);
+        }
+    };
     const handleClick = (e) => {
         const coordinates = e.lngLat;
         const properties = e.features[0].properties;
@@ -106,54 +162,120 @@ const MapPage = () => {
         if (properties.posts && properties.posts.length > 0) {
             const firstPost = JSON.parse(properties.posts)[0];
 
-            console.log('First Post:', firstPost);
-            console.log('Image Base64:', firstPost.image);
-            console.log('Description:', firstPost.description);
+            const popupContent = document.createElement('div');
+            popupContent.style.maxHeight = '300px';
+            popupContent.style.overflowY = 'auto';
+            popupContent.style.padding = '10px';
+            popupContent.style.backgroundColor = '#ffffff';
+            popupContent.style.borderRadius = '8px';
+            popupContent.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
 
-            let formHTML = `
-                <div style="max-height: 300px; overflow-y: auto;">
-                    ${firstPost.image ? `<img src="data:image/jpeg;base64,${firstPost.image}" alt="Post Image" style="width: 100%; height: auto;"/>` : '<p>No image available</p>'}
-                    ${firstPost.description ? `<p>${firstPost.description}</p>` : '<p>No description available</p>'}
-                    <hr/>
-                    <div>
-                        <h3>Comments:</h3>
-                        <ul>
-            `;
-
-            if (firstPost.comments && firstPost.comments.length > 0) {
-                firstPost.comments.forEach((comment) => {
-                    formHTML += `<li><strong>${comment.username}</strong>: ${comment.content}</li>`;
-                });
+            if (firstPost.image) {
+                const img = document.createElement('img');
+                img.src = `data:image/jpeg;base64,${firstPost.image}`;
+                img.alt = 'Post Image';
+                img.style.width = '100%';
+                img.style.height = 'auto';
+                img.style.borderRadius = '4px';
+                img.style.marginBottom = '10px';
+                popupContent.appendChild(img);
             } else {
-                formHTML += '<li>No comments available.</li>';
+                const noImageText = document.createElement('p');
+                noImageText.textContent = 'No image available';
+                noImageText.style.color = '#999';
+                popupContent.appendChild(noImageText);
             }
 
-            formHTML += `
-                        </ul>
-                    </div>
-                    <hr/>
-                    <div>
-                        <form id="comment-form">
-                            <label for="comment">Add a comment:</label><br>
-                            <input type="text" id="comment" name="comment"><br>
-                            <input type="hidden" id="post-id" name="post-id" value="${firstPost.post_id}">
-                            <button type="submit">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            `;
+            if (firstPost.description) {
+                const descriptionText = document.createElement('p');
+                descriptionText.textContent = firstPost.description;
+                descriptionText.style.marginBottom = '10px';
+                popupContent.appendChild(descriptionText);
+            } else {
+                const noDescriptionText = document.createElement('p');
+                noDescriptionText.textContent = 'No description available';
+                noDescriptionText.style.color = '#999';
+                noDescriptionText.style.marginBottom = '10px';
+                popupContent.appendChild(noDescriptionText);
+            }
 
-            const popup = new mapboxgl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(formHTML)
-                .addTo(mapRef.current);
+            const commentsContainer = document.createElement('div');
+            const commentsHeader = document.createElement('h3');
+            commentsHeader.textContent = 'Comments:';
+            commentsHeader.style.marginBottom = '5px';
+            commentsContainer.appendChild(commentsHeader);
 
-            popup.getElement().querySelector('form#comment-form').addEventListener('submit', (event) => {
+            const commentsList = document.createElement('ul');
+            commentsList.style.listStyleType = 'none';
+            commentsList.style.paddingLeft = '0';
+            commentsList.style.marginBottom = '10px';
+            if (firstPost.comments && firstPost.comments.length > 0) {
+                firstPost.comments.forEach((comment) => {
+                    const commentItem = document.createElement('li');
+                    commentItem.innerHTML = `<strong>${comment.username}</strong>: ${comment.content}`;
+                    commentItem.style.marginBottom = '5px';
+                    commentsList.appendChild(commentItem);
+                });
+            } else {
+                const noCommentsItem = document.createElement('li');
+                noCommentsItem.textContent = 'No comments available.';
+                noCommentsItem.style.color = '#999';
+                commentsList.appendChild(noCommentsItem);
+            }
+            commentsContainer.appendChild(commentsList);
+            popupContent.appendChild(commentsContainer);
+
+            const commentForm = document.createElement('form');
+            commentForm.id = 'comment-form';
+            commentForm.style.display = 'flex';
+            commentForm.style.flexDirection = 'column';
+
+            const commentLabel = document.createElement('label');
+            commentLabel.setAttribute('for', 'comment');
+            commentLabel.textContent = 'Add a comment:';
+            commentLabel.style.marginBottom = '5px';
+            commentForm.appendChild(commentLabel);
+
+            const commentInput = document.createElement('input');
+            commentInput.type = 'text';
+            commentInput.id = 'comment';
+            commentInput.name = 'comment';
+            commentInput.style.marginBottom = '10px';
+            commentInput.style.padding = '8px';
+            commentInput.style.border = '1px solid #ccc';
+            commentInput.style.borderRadius = '4px';
+            commentForm.appendChild(commentInput);
+
+            const postIdInput = document.createElement('input');
+            postIdInput.type = 'hidden';
+            postIdInput.id = 'post-id';
+            postIdInput.name = 'post-id';
+            postIdInput.value = firstPost.post_id;
+            commentForm.appendChild(postIdInput);
+
+            const submitButton = document.createElement('button');
+            submitButton.type = 'submit';
+            submitButton.textContent = 'Submit';
+            submitButton.style.padding = '10px';
+            submitButton.style.backgroundColor = '#6ba292';
+            submitButton.style.color = '#fff';
+            submitButton.style.border = 'none';
+            submitButton.style.borderRadius = '4px';
+            submitButton.style.cursor = 'pointer';
+            commentForm.appendChild(submitButton);
+
+            commentForm.addEventListener('submit', (event) => {
                 event.preventDefault();
                 submitComment(event.target);
             });
+
+            popupContent.appendChild(commentForm);
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setDOMContent(popupContent)
+                .addTo(mapRef.current);
         } else {
-            // Handle case where no posts are available
             new mapboxgl.Popup()
                 .setLngLat(coordinates)
                 .setHTML('<p>No posts available for this location.</p>')
@@ -182,6 +304,7 @@ const MapPage = () => {
 
             if (response.ok) {
                 console.log('Comment submitted successfully');
+                fetchLocations(); // Refresh locations after adding a comment
             } else {
                 console.error('Error submitting comment:', response.statusText);
             }
@@ -190,63 +313,42 @@ const MapPage = () => {
         }
     };
 
-    useEffect(() => {
-        const fetchLocations = async () => {
-            try {
-                const response = await fetch(`http://localhost:8000/postlocation?user_id=${localStorage.getItem("user_id")}`);
-                const data = await response.json();
 
-                console.log('Fetched data:', JSON.stringify(data, null, 2));
+    const postData = async (form) => {
+        const description = form.elements['description'].value;
+        const image = form.elements['image'].value;
+        const latitude = form.elements['latitude'].value;
+        const longitude = form.elements['longitude'].value;
 
-                data.forEach((location, index) => {
-                    console.log(`Location ${index}:`, {
-                        location_id: location.location_id,
-                        country: location.country,
-                        city: location.city,
-                        latitude: location.latitude,
-                        longitude: location.longitude
-                    });
-                });
-
-                mapboxgl.accessToken = 'pk.eyJ1IjoidGVzdGNzMzQ4IiwiYSI6ImNseXpkYXdtcDJoeDcyanB1NnEyN252ejkifQ.KFDQShkH-emDn4Iz77W2jQ';
-
-                if (mapRef.current) {
-                    mapRef.current.remove();
-                }
-
-                mapRef.current = new mapboxgl.Map({
-                    container: mapContainerRef.current,
-                    style: styles[styleIndex],
-                    center: [-96, 37.8],
-                    zoom: 3,
-                    projection: 'globe'
-                });
-
-                mapRef.current.on('style.load', () => {
-                    console.log('Map style loaded');
-                    mapRef.current.setFog({});
-                    addCustomMarkerAndPoints(mapRef.current, data);
-                });
-
-                mapRef.current.on('load', () => {
-                    console.log('Map fully loaded');
-                });
-
-                // Add right-click event listener
-                mapRef.current.on('contextmenu', handleRightClick);
-
-                // Change cursor on hover
-                mapRef.current.on('mouseenter', 'points', () => {
-                    mapRef.current.getCanvas().style.cursor = 'pointer';
-                });
-                mapRef.current.on('mouseleave', 'points', () => {
-                    mapRef.current.getCanvas().style.cursor = '';
-                });
-            } catch (error) {
-                console.error('Error fetching locations:', error);
-            }
+        const data = {
+            description,
+            longitude: parseFloat(longitude),
+            latitude: parseFloat(latitude),
+            user_id: Number(localStorage.getItem("user_id")),
+            image
         };
 
+        try {
+            const response = await fetch('http://localhost:8000/addlocationpost', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                console.log('Post submitted successfully');
+                fetchLocations(); // Refresh locations after adding a post
+            } else {
+                console.error('Error submitting post:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error submitting post:', error);
+        }
+    };
+
+    useEffect(() => {
         fetchLocations();
     }, [styleIndex]);
 
@@ -277,39 +379,6 @@ const MapPage = () => {
             event.preventDefault();
             postData(event.target);
         });
-    };
-
-    const postData = async (form) => {
-        const description = form.elements['description'].value;
-        const image = form.elements['image'].value;
-        const latitude = form.elements['latitude'].value;
-        const longitude = form.elements['longitude'].value;
-
-        const data = {
-            description,
-            longitude: parseFloat(longitude),
-            latitude: parseFloat(latitude),
-            user_id: Number(localStorage.getItem("user_id")),
-            image
-        };
-
-        try {
-            const response = await fetch('http://localhost:8000/addlocationpost', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
-                console.log('Post submitted successfully');
-            } else {
-                console.error('Error submitting post:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error submitting post:', error);
-        }
     };
 
     const cycleStyle = () => {
