@@ -360,6 +360,7 @@ func DeletePostHandler(db *gorm.DB) http.HandlerFunc {
 		fmt.Fprintf(w, "Post deleted successfully")
 	}
 }
+
 func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		userIDStr := r.URL.Query().Get("user_id")
@@ -369,14 +370,24 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 			return
 		}
 
+		type Comment struct {
+			CommentID   uint      `json:"comment_id"`
+			PostID      uint      `json:"post_id"`
+			UserID      uint      `json:"user_id"`
+			Username    string    `json:"username"`
+			Content     string    `json:"content"`
+			DateCreated time.Time `json:"date_created"`
+		}
+
 		type Post struct {
-			PostID        uint   `json:"post_id"`
-			UserID        uint   `json:"user_id"`
-			Username      string `json:"username"`
-			Description   string `json:"description"`
-			CommentsCount int    `json:"comments_count"`
-			Image         string `json:"image"`
-			LocationID    uint   `json:"location_id"`
+			PostID        uint      `json:"post_id"`
+			UserID        uint      `json:"user_id"`
+			Username      string    `json:"username"`
+			Description   string    `json:"description"`
+			CommentsCount int       `json:"comments_count"`
+			Image         string    `json:"image"`
+			LocationID    uint      `json:"location_id"`
+			Comments      []Comment `json:"comments"`
 		}
 
 		type LocationWithPosts struct {
@@ -392,10 +403,14 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 
 		query := `
 			SELECT p.post_id, p.user_id, u.username, p.description, p.comments_count, p.image, p.location_id, 
-			       l.location_id, l.city, l.country, l.longitude, l.latitude
+			       l.location_id, l.city, l.country, l.longitude, l.latitude,
+			       COALESCE(c.comment_id, 0) as comment_id, COALESCE(c.content, '') as content, COALESCE(c.date_created, '0001-01-01') as date_created, 
+			       COALESCE(cu.username, '') as comment_username, COALESCE(c.user_id, 0) as comment_user_id
 			FROM posts p
 			LEFT JOIN locations l ON p.location_id = l.location_id
 			LEFT JOIN users u ON p.user_id = u.user_id
+			LEFT JOIN comments c ON c.post_id = p.post_id
+			LEFT JOIN users cu ON c.user_id = cu.user_id
 			WHERE (p.user_id = ? OR p.user_id IN (
 				SELECT followed_id
 				FROM follows
@@ -411,17 +426,39 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 		defer rows.Close()
 
 		locationMap := make(map[uint]*LocationWithPosts)
+		postMap := make(map[uint]*Post)
+
 		for rows.Next() {
 			var post Post
+			var comment Comment
 			var locationID uint
-			var city, country, username string
+			var city, country, username, commentUsername string
 			var longitude, latitude float64
+			var commentID, commentUserID uint
+			var commentContent string
+			var commentDateCreated time.Time
 
-			if err := rows.Scan(&post.PostID, &post.UserID, &username, &post.Description, &post.CommentsCount, &post.Image, &post.LocationID, &locationID, &city, &country, &longitude, &latitude); err != nil {
+			err = rows.Scan(&post.PostID, &post.UserID, &username, &post.Description, &post.CommentsCount, &post.Image, &post.LocationID,
+				&locationID, &city, &country, &longitude, &latitude,
+				&commentID, &commentContent, &commentDateCreated, &commentUsername, &commentUserID)
+			if err != nil {
 				http.Error(w, fmt.Sprintf("Error scanning row: %v", err), http.StatusInternalServerError)
 				return
 			}
+
 			post.Username = username
+
+			// Only add a comment if the comment_id is not zero (indicating no actual comment)
+			if commentID != 0 {
+				comment = Comment{
+					CommentID:   commentID,
+					UserID:      commentUserID,
+					Username:    commentUsername,
+					Content:     commentContent,
+					DateCreated: commentDateCreated,
+				}
+			}
+
 			if _, exists := locationMap[locationID]; !exists {
 				locationMap[locationID] = &LocationWithPosts{
 					LocationID: locationID,
@@ -432,7 +469,20 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 					Posts:      []Post{},
 				}
 			}
-			locationMap[locationID].Posts = append(locationMap[locationID].Posts, post)
+
+			if existingPost, exists := postMap[post.PostID]; exists {
+				if commentID != 0 {
+					existingPost.Comments = append(existingPost.Comments, comment)
+				}
+			} else {
+				if commentID != 0 {
+					post.Comments = []Comment{comment}
+				} else {
+					post.Comments = []Comment{}
+				}
+				locationMap[locationID].Posts = append(locationMap[locationID].Posts, post)
+				postMap[post.PostID] = &post
+			}
 		}
 
 		for _, loc := range locationMap {
@@ -445,6 +495,7 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 		}
 	}
 }
+
 
 
 func AddRatingHandler(db *gorm.DB) http.HandlerFunc {
