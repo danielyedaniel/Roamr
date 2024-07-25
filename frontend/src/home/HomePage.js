@@ -8,6 +8,7 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MapIcon from '@mui/icons-material/Map';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import StarIcon from '@mui/icons-material/Star'; // Importing the icon for Rating button
 import globeImage from './globe.png'; // Import the globe image
 
 const theme = createTheme({
@@ -143,6 +144,15 @@ const HomePage = () => {
                                 sx={{ minWidth: 150 }}
                             >
                                 Locations
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                startIcon={<StarIcon />}
+                                onClick={() => handleNavigation('/rating')}
+                                sx={{ minWidth: 150 }}
+                            >
+                                Ratings
                             </Button>
                             <Button
                                 variant="contained"
