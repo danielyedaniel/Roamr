@@ -646,7 +646,7 @@ func AddLocationAndPostHandler(db *gorm.DB, apiKey string) http.HandlerFunc {
         }
 
         // Fetch location from HERE API
-        locationURL := fmt.Sprintf("https://revgeocode.search.hereapi.com/v1/revgeocode?at=%f,%f&apikey=%s", req.Latitude, req.longitude, apiKey)
+        locationURL := fmt.Sprintf("https://revgeocode.search.hereapi.com/v1/revgeocode?at=%f,%f&apikey=%s", req.Latitude, req.Longitude, apiKey)
         fmt.Println(locationURL)
         resp, err := http.Get(locationURL)
         if err != nil || resp.StatusCode != http.StatusOK {
