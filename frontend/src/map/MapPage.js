@@ -55,8 +55,8 @@ const MapPage = () => {
               coordinates: [parseFloat(location.longitude), parseFloat(location.latitude)]
             },
             properties: {
-              title: location.location_id ? location.location_id.toString() : 'Unknown',
-              posts: Array.isArray(posts) ? posts : []
+                title: Array.isArray(posts) ? posts[0].username : (location.location_id ? location.location_id.toString() : 'Unknown'),
+                posts: Array.isArray(posts) ? posts : []
             }
           };
         });
@@ -134,7 +134,7 @@ const MapPage = () => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await fetch('http://localhost:8000/postlocation?user_id=1');
+        const response = await fetch(`http://localhost:8000/postlocation?user_id=${localStorage.getItem("user_id")}`);
         const data = await response.json();
 
         console.log('Fetched data:', JSON.stringify(data, null, 2));
@@ -230,7 +230,7 @@ const MapPage = () => {
       description,
       longitude: parseFloat(longitude),
       latitude: parseFloat(latitude),
-      user_id: 1,
+      user_id: Number(localStorage.getItem("user_id")),
       image
     };
 

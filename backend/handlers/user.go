@@ -360,7 +360,6 @@ func DeletePostHandler(db *gorm.DB) http.HandlerFunc {
 		fmt.Fprintf(w, "Post deleted successfully")
 	}
 }
-
 func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		userIDStr := r.URL.Query().Get("user_id")
@@ -373,6 +372,7 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 		type Post struct {
 			PostID        uint   `json:"post_id"`
 			UserID        uint   `json:"user_id"`
+			Username      string `json:"username"`
 			Description   string `json:"description"`
 			CommentsCount int    `json:"comments_count"`
 			Image         string `json:"image"`
@@ -391,10 +391,11 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 		var locationWithPosts []LocationWithPosts
 
 		query := `
-			SELECT p.post_id, p.user_id, p.description, p.comments_count, p.image, p.location_id, 
+			SELECT p.post_id, p.user_id, u.username, p.description, p.comments_count, p.image, p.location_id, 
 			       l.location_id, l.city, l.country, l.longitude, l.latitude
 			FROM posts p
 			LEFT JOIN locations l ON p.location_id = l.location_id
+			LEFT JOIN users u ON p.user_id = u.user_id
 			WHERE (p.user_id = ? OR p.user_id IN (
 				SELECT followed_id
 				FROM follows
@@ -413,13 +414,14 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 		for rows.Next() {
 			var post Post
 			var locationID uint
-			var city, country string
+			var city, country, username string
 			var longitude, latitude float64
 
-			if err := rows.Scan(&post.PostID, &post.UserID, &post.Description, &post.CommentsCount, &post.Image, &post.LocationID, &locationID, &city, &country, &longitude, &latitude); err != nil {
+			if err := rows.Scan(&post.PostID, &post.UserID, &username, &post.Description, &post.CommentsCount, &post.Image, &post.LocationID, &locationID, &city, &country, &longitude, &latitude); err != nil {
 				http.Error(w, fmt.Sprintf("Error scanning row: %v", err), http.StatusInternalServerError)
 				return
 			}
+			post.Username = username
 			if _, exists := locationMap[locationID]; !exists {
 				locationMap[locationID] = &LocationWithPosts{
 					LocationID: locationID,
@@ -443,6 +445,7 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 		}
 	}
 }
+
 
 func AddRatingHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
