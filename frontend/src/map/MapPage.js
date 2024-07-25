@@ -38,7 +38,15 @@ const MapPage = () => {
           console.log('Creating feature for location:', location);
 
           // Parse posts if it's a string
-          const posts = typeof location.posts === 'string' ? JSON.parse(location.posts) : location.posts;
+          let posts = location.posts;
+          if (typeof posts === 'string') {
+            try {
+              posts = JSON.parse(posts);
+            } catch (error) {
+              console.error('Error parsing posts:', error);
+              posts = [];
+            }
+          }
 
           return {
             type: 'Feature',
@@ -96,7 +104,7 @@ const MapPage = () => {
     const properties = e.features[0].properties;
 
     if (properties.posts && properties.posts.length > 0) {
-      const firstPost = properties.posts[0];
+      const firstPost = JSON.parse(properties.posts)[0];
 
       // Debugging logs
       console.log('First Post:', firstPost);
