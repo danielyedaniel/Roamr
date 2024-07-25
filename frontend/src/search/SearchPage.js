@@ -50,7 +50,7 @@ const SearchPage = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username: searchUsername }),
+                body: JSON.stringify({follower_id: userID, username: searchUsername }),
             });
             const data = await response.json();
             setResults(data);
@@ -59,9 +59,12 @@ const SearchPage = () => {
         }
     };
 
-    const handleFollow = async (followedID) => {
+    const handleFollow = async (followedID, isFollowing) => {
+        const url = isFollowing ? 'http://localhost:8000/unfollow' : 'http://localhost:8000/follow';
+        const action = isFollowing ? 'Unfollowed' : 'Followed';
+
         try {
-            const response = await fetch('http://localhost:8000/follow', {
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -72,9 +75,13 @@ const SearchPage = () => {
                 }),
             });
             if (response.ok) {
-                alert(`Followed user!`);
+                alert(`${action} user!`);
+                // Update the local state to reflect the change
+                setResults(results.map(user => 
+                    user.UserID === followedID ? { ...user, is_following: !isFollowing } : user
+                ));
             } else {
-                alert(`Followed user!`);
+                alert(`Error: Unable to ${action.toLowerCase()} user!`);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -147,9 +154,9 @@ const SearchPage = () => {
                                                 <Button
                                                     variant="contained"
                                                     color="secondary"
-                                                    onClick={() => handleFollow(row.UserID)}
+                                                    onClick={() => handleFollow(row.UserID, row.is_following)}
                                                 >
-                                                    Follow
+                                                    {row.is_following ? 'Unfollow' : 'Follow'}
                                                 </Button>
                                             </TableCell>
                                         </TableRow>

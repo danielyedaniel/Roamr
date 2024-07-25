@@ -22,7 +22,8 @@ type Credentials struct {
 }
 
 type SearchRequest struct {
-	Username string `json:"username"`
+    Username   string `json:"username"`
+    FollowerID uint   `json:"follower_id"`
 }
 
 type PostRequest struct {
@@ -52,6 +53,7 @@ type UserResponse struct {
 	LastName       string    `json:"last_name"`
 	DateCreated    time.Time `json:"date_created"`
 	Token          string    `json:"token,omitempty"`
+	IsFollowing    bool      `json:"is_following"`
 }
 
 type LocationSearchRequest struct {
@@ -230,8 +232,23 @@ func SearchHandler(db *gorm.DB) http.HandlerFunc {
 			return
 		}
 
-		var users []models.User
-		if err := db.Where("username LIKE ?", "%"+searchReq.Username+"%").Find(&users).Error; err != nil {
+		var users []struct {
+			models.User
+			IsFollowing bool `json:"is_following"`
+		}
+
+		query := `
+            SELECT u.*, 
+                   CASE 
+                       WHEN f.follower_id IS NOT NULL THEN TRUE 
+                       ELSE FALSE 
+                   END as is_following
+            FROM users u
+            LEFT JOIN follows f ON u.user_id = f.followed_id AND f.follower_id = ?
+            WHERE u.username LIKE ?;
+        `
+
+		if err := db.Raw(query, searchReq.FollowerID, "%"+searchReq.Username+"%").Scan(&users).Error; err != nil {
 			http.Error(w, "Error querying database", http.StatusInternalServerError)
 			return
 		}
@@ -496,8 +513,6 @@ func GetLocationsAndPostsByUserAndFollowingHandler(db *gorm.DB) http.HandlerFunc
 	}
 }
 
-
-
 func AddRatingHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var ratingReq RatingRequest
@@ -523,63 +538,61 @@ func AddRatingHandler(db *gorm.DB) http.HandlerFunc {
 }
 
 func GetLocationsHandler(db *gorm.DB) http.HandlerFunc {
-    return func(w http.ResponseWriter, r *http.Request) {
-        var locations []struct {
-            LocationID uint    `json:"location_id"`
-            Country    string  `json:"country"`
-            City       string  `json:"city"`
-            Latitude   float64 `json:"latitude"`
-            Longitude  float64 `json:"longitude"`
-        }
+	return func(w http.ResponseWriter, r *http.Request) {
+		var locations []struct {
+			LocationID uint    `json:"location_id"`
+			Country    string  `json:"country"`
+			City       string  `json:"city"`
+			Latitude   float64 `json:"latitude"`
+			Longitude  float64 `json:"longitude"`
+		}
 
-        query := `
+		query := `
             SELECT location_id, country, city, latitude, longitude
             FROM locations;
         `
 
-        if err := db.Raw(query).Scan(&locations).Error; err != nil {
-            http.Error(w, fmt.Sprintf("Error querying database: %v", err), http.StatusInternalServerError)
-            return
-        }
+		if err := db.Raw(query).Scan(&locations).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error querying database: %v", err), http.StatusInternalServerError)
+			return
+		}
 
-        w.Header().Set("Content-Type", "application/json")
-        if err := json.NewEncoder(w).Encode(locations); err != nil {
-            http.Error(w, "Error encoding response", http.StatusInternalServerError)
-        }
-    }
+		w.Header().Set("Content-Type", "application/json")
+		if err := json.NewEncoder(w).Encode(locations); err != nil {
+			http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		}
+	}
 }
-
 
 func AddLocationHandler(db *gorm.DB) http.HandlerFunc {
-    return func(w http.ResponseWriter, r *http.Request) {
-        var location models.Location
-        err := json.NewDecoder(r.Body).Decode(&location)
-        if err != nil {
-            http.Error(w, fmt.Sprintf("Invalid input: %v", err), http.StatusBadRequest)
-            return
-        }
+	return func(w http.ResponseWriter, r *http.Request) {
+		var location models.Location
+		err := json.NewDecoder(r.Body).Decode(&location)
+		if err != nil {
+			http.Error(w, fmt.Sprintf("Invalid input: %v", err), http.StatusBadRequest)
+			return
+		}
 
-        // Log the decoded location to debug
-        fmt.Printf("Decoded location: %+v\n", location)
+		// Log the decoded location to debug
+		fmt.Printf("Decoded location: %+v\n", location)
 
-        // Ensure required fields are provided
-        if location.Country == "" || location.City == "" || location.Latitude == 0 || location.Longitude == 0 {
-            http.Error(w, "Missing required fields", http.StatusBadRequest)
-            return
-        }
+		// Ensure required fields are provided
+		if location.Country == "" || location.City == "" || location.Latitude == 0 || location.Longitude == 0 {
+			http.Error(w, "Missing required fields", http.StatusBadRequest)
+			return
+		}
 
-        if err := db.Create(&location).Error; err != nil {
-            http.Error(w, fmt.Sprintf("Error adding location to database: %v", err), http.StatusInternalServerError)
-            return
-        }
+		if err := db.Create(&location).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error adding location to database: %v", err), http.StatusInternalServerError)
+			return
+		}
 
-        w.WriteHeader(http.StatusCreated)
-        if err := json.NewEncoder(w).Encode(location); err != nil {
-            http.Error(w, "Error encoding response", http.StatusInternalServerError)
-        }
-    }
+		w.WriteHeader(http.StatusCreated)
+		if err := json.NewEncoder(w).Encode(location); err != nil {
+			http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		}
+	}
 }
-
 
 func AddCommentHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -610,7 +623,6 @@ func AddCommentHandler(db *gorm.DB) http.HandlerFunc {
 		fmt.Fprintf(w, "Comment added successfully")
 	}
 }
-
 
 func GetCommentsHandler(db *gorm.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -692,95 +704,95 @@ func GetLocationsSortedByAverageRatingHandler(db *gorm.DB) http.HandlerFunc {
 }
 
 func AddLocationAndPostHandler(db *gorm.DB, apiKey string) http.HandlerFunc {
-    return func(w http.ResponseWriter, r *http.Request) {
-        var req LocationAndPostRequest
-        if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-            http.Error(w, fmt.Sprintf("Invalid request payload: %v", err), http.StatusBadRequest)
-            return
-        }
+	return func(w http.ResponseWriter, r *http.Request) {
+		var req LocationAndPostRequest
+		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+			http.Error(w, fmt.Sprintf("Invalid request payload: %v", err), http.StatusBadRequest)
+			return
+		}
 
-        // Fetch location from HERE API
-        locationURL := fmt.Sprintf("https://revgeocode.search.hereapi.com/v1/revgeocode?at=%f,%f&apikey=%s", req.Latitude, req.Longitude, apiKey)
-        fmt.Println(locationURL)
-        resp, err := http.Get(locationURL)
-        if err != nil || resp.StatusCode != http.StatusOK {
-            http.Error(w, fmt.Sprintf("Failed to fetch location data: %v", err), http.StatusInternalServerError)
-            return
-        }
-        defer resp.Body.Close()
+		// Fetch location from HERE API
+		locationURL := fmt.Sprintf("https://revgeocode.search.hereapi.com/v1/revgeocode?at=%f,%f&apikey=%s", req.Latitude, req.Longitude, apiKey)
+		fmt.Println(locationURL)
+		resp, err := http.Get(locationURL)
+		if err != nil || resp.StatusCode != http.StatusOK {
+			http.Error(w, fmt.Sprintf("Failed to fetch location data: %v", err), http.StatusInternalServerError)
+			return
+		}
+		defer resp.Body.Close()
 
-        var locationResponse struct {
-            Items []struct {
-                Address struct {
-                    CountryName string `json:"countryName"`
-                    City        string `json:"city"`
-                } `json:"address"`
-            } `json:"items"`
-        }
+		var locationResponse struct {
+			Items []struct {
+				Address struct {
+					CountryName string `json:"countryName"`
+					City        string `json:"city"`
+				} `json:"address"`
+			} `json:"items"`
+		}
 
-        if err := json.NewDecoder(resp.Body).Decode(&locationResponse); err != nil {
-            http.Error(w, fmt.Sprintf("Error decoding location data: %v", err), http.StatusInternalServerError)
-            return
-        }
+		if err := json.NewDecoder(resp.Body).Decode(&locationResponse); err != nil {
+			http.Error(w, fmt.Sprintf("Error decoding location data: %v", err), http.StatusInternalServerError)
+			return
+		}
 		fmt.Println(locationResponse)
 
-        var country, city string
-        if len(locationResponse.Items) == 0 || locationResponse.Items[0].Address.CountryName == "" || locationResponse.Items[0].Address.City == "" {
-            country = "ocean"
-            city = "ocean"
-        } else {
-            country = locationResponse.Items[0].Address.CountryName
-            city = locationResponse.Items[0].Address.City
-        }
+		var country, city string
+		if len(locationResponse.Items) == 0 || locationResponse.Items[0].Address.CountryName == "" || locationResponse.Items[0].Address.City == "" {
+			country = "ocean"
+			city = "ocean"
+		} else {
+			country = locationResponse.Items[0].Address.CountryName
+			city = locationResponse.Items[0].Address.City
+		}
 
-        // Check if location already exists
-        var location models.Location
-        if err := db.Where("country = ? AND city = ? AND latitude = ? AND longitude = ?", country, city, req.Latitude, req.Longitude).First(&location).Error; err != nil {
-            if err == gorm.ErrRecordNotFound {
-                // Create new location
-                location = models.Location{
-                    Country:   country,
-                    City:      city,
-                    Latitude:  req.Latitude,
-                    Longitude: req.Longitude,
-                }
-                if err := db.Create(&location).Error; err != nil {
-                    http.Error(w, fmt.Sprintf("Error creating location: %v", err), http.StatusInternalServerError)
-                    return
-                }
-            } else {
-                http.Error(w, fmt.Sprintf("Error querying location: %v", err), http.StatusInternalServerError)
-                return
-            }
-        }
+		// Check if location already exists
+		var location models.Location
+		if err := db.Where("country = ? AND city = ? AND latitude = ? AND longitude = ?", country, city, req.Latitude, req.Longitude).First(&location).Error; err != nil {
+			if err == gorm.ErrRecordNotFound {
+				// Create new location
+				location = models.Location{
+					Country:   country,
+					City:      city,
+					Latitude:  req.Latitude,
+					Longitude: req.Longitude,
+				}
+				if err := db.Create(&location).Error; err != nil {
+					http.Error(w, fmt.Sprintf("Error creating location: %v", err), http.StatusInternalServerError)
+					return
+				}
+			} else {
+				http.Error(w, fmt.Sprintf("Error querying location: %v", err), http.StatusInternalServerError)
+				return
+			}
+		}
 
-        // Create new post
-        post := models.Post{
-            UserID:        req.UserID,
-            Description:   req.Description,
-            CommentsCount: 0,
-            Image:         req.Image,
-            LocationID:    location.LocationID,
-            DateCreated:   time.Now(),
-        }
-        if err := db.Create(&post).Error; err != nil {
-            http.Error(w, fmt.Sprintf("Error creating post: %v", err), http.StatusInternalServerError)
-            return
-        }
+		// Create new post
+		post := models.Post{
+			UserID:        req.UserID,
+			Description:   req.Description,
+			CommentsCount: 0,
+			Image:         req.Image,
+			LocationID:    location.LocationID,
+			DateCreated:   time.Now(),
+		}
+		if err := db.Create(&post).Error; err != nil {
+			http.Error(w, fmt.Sprintf("Error creating post: %v", err), http.StatusInternalServerError)
+			return
+		}
 
-        // Prepare the response
-        response := struct {
-            Location models.Location `json:"location"`
-            Post     models.Post     `json:"post"`
-        }{
-            Location: location,
-            Post:     post,
-        }
+		// Prepare the response
+		response := struct {
+			Location models.Location `json:"location"`
+			Post     models.Post     `json:"post"`
+		}{
+			Location: location,
+			Post:     post,
+		}
 
-        w.Header().Set("Content-Type", "application/json")
-        w.WriteHeader(http.StatusCreated)
-        if err := json.NewEncoder(w).Encode(response); err != nil {
-            http.Error(w, fmt.Sprintf("Error encoding response: %v", err), http.StatusInternalServerError)
-        }
-    }
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusCreated)
+		if err := json.NewEncoder(w).Encode(response); err != nil {
+			http.Error(w, fmt.Sprintf("Error encoding response: %v", err), http.StatusInternalServerError)
+		}
+	}
 }
