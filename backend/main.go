@@ -10,6 +10,8 @@ import (
 )
 
 func main() {
+	const apikey string = "ptmGMXRKNYZMNTjz8DlcSSmw4QbPSA1Re07B2ZDVZiY"
+
 	cfg := config.LoadConfig()
 
 	database, err := db.Initialize(cfg)
@@ -35,9 +37,7 @@ func main() {
 	mux.HandleFunc("/comment", handlers.AddCommentHandler(database))
 	mux.HandleFunc("/comments", handlers.GetCommentsHandler(database))
 	mux.HandleFunc("/rating", handlers.AddRatingHandler(database))
-
-
-
+	mux.HandleFunc("/addlocationpost", handlers.AddLocationAndPostHandler(database, apikey))
 
 	corsMux := setupCORS(mux)
 
