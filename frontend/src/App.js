@@ -7,6 +7,7 @@ import PostPage from './post/PostPage';
 import ProfilePage from './profile/ProfilePage';
 import Locations from './locations/Locations';
 import MapPage from './map/MapPage';
+import RatingPage from './rating/RatingPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/locations" element={<Locations />} />
         <Route path="/map" element={<MapPage />} />
+        <Route path="/rating" element={<RatingPage />} />
       </Routes>
     </Router>
   );

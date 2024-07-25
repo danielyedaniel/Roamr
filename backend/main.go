@@ -34,6 +34,8 @@ func main() {
 	mux.HandleFunc("/locationrating", handlers.GetLocationsSortedByAverageRatingHandler(database))
 	mux.HandleFunc("/comment", handlers.AddCommentHandler(database))
 	mux.HandleFunc("/comments", handlers.GetCommentsHandler(database))
+	mux.HandleFunc("/rating", handlers.AddRatingHandler(database))
+
 
 
 
