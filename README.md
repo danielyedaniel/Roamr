@@ -8,9 +8,8 @@ Roamr is a social media application that allows users to share their travel expe
 - **Search for users**: Users can search for other users on the platform using their username.
 - **Post Creation**: Users can create posts by providing a city, country, description, and an image.
 - **Post Deletion**: Users can delete any of their posts.
-- ~~**Followers:** Users can follow others on the platform.~~ Not implemented yet
-- ~~**Interactive Globe**: Users can view posts on a 3D interactive globe and explore locations based on who they follow.~~ Not implemented yet
-- ~~**User Profiles**: Users have their profiles where they can see all their posts.~~ Not implemented yet
+- **Followers:** Users can follow others on the platform.
+- **Interactive Globe**: Users can view posts on a 3D interactive globe and explore locations based on who they follow.
 
 ## Getting Started
 
